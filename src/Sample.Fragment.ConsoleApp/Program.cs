@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sample.CoderNodes.ConsoleApp
+namespace Sample.Fragment.ConsoleApp
 {
     class Program
     {
