@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Fragment.ConsoleApp"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Fagment.Library", "src\Sample.Fagment.Library\Sample.Fagment.Library.csproj", "{502AD618-9C10-4353-BCE9-3B08B3153759}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{9E04CC6D-364B-4266-9767-EA6D8402CD7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.API", "src\Sample.API\Sample.API.csproj", "{4612642D-67DF-4711-9612-7383D725B9B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{502AD618-9C10-4353-BCE9-3B08B3153759}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{502AD618-9C10-4353-BCE9-3B08B3153759}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{502AD618-9C10-4353-BCE9-3B08B3153759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4612642D-67DF-4711-9612-7383D725B9B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4612642D-67DF-4711-9612-7383D725B9B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4612642D-67DF-4711-9612-7383D725B9B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4612642D-67DF-4711-9612-7383D725B9B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{87AA9F33-4C3B-473E-98D9-EA7BF5AC7241} = {F8063EA8-1B48-4263-8905-6EE337E2E827}
 		{502AD618-9C10-4353-BCE9-3B08B3153759} = {F8063EA8-1B48-4263-8905-6EE337E2E827}
+		{4612642D-67DF-4711-9612-7383D725B9B0} = {9E04CC6D-364B-4266-9767-EA6D8402CD7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {383C701F-D5DB-40A5-A3CF-FA30E1A77A76}
