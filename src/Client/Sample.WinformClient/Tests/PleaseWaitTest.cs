@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sample.WinformClient
+namespace Sample.WinformClient.Tests
 {
-    public partial class PleaseWaitForm : Form
+    public partial class PleaseWaitTest : Form
     {
-        public PleaseWaitForm()
+        public PleaseWaitTest()
         {
             InitializeComponent();
         }
