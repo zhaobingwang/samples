@@ -23,7 +23,7 @@ namespace Sample.WinformClient.Share
         public PleaseWait(Form parent, string message)
         {
             _parent = parent;
-            _message = null;
+            _message = message;
         }
 
         public void Show()
@@ -37,7 +37,7 @@ namespace Sample.WinformClient.Share
             else
                 throw new Exception($"{nameof(lblMessage)} is undefined");
         }
-        public void Cloes()
+        public void Close()
         {
             if (picLoading != null)
             {
@@ -66,7 +66,7 @@ namespace Sample.WinformClient.Share
             pnlContainer.BorderStyle = BorderStyle.None;
             #endregion
 
-            #region message of lable
+            #region message of label
             lblMessage = new Label();
             lblMessage.Text = _message;
             lblMessage.AutoSize = true;
@@ -79,8 +79,10 @@ namespace Sample.WinformClient.Share
 
             #region picture of loading
             picLoading = new PictureBox();
-            picLoading.Size = new Size(37, 37);
             picLoading.Image = Properties.Resources.Pacman_1s_200px;
+            picLoading.Size = new Size(75, 75);
+            picLoading.BorderStyle = BorderStyle.None;
+            picLoading.SizeMode = PictureBoxSizeMode.StretchImage;
             #endregion
 
             // 添加控件
@@ -93,14 +95,14 @@ namespace Sample.WinformClient.Share
             pnlContainer.Top = (_parent.Height - pnlContainer.Height) / 2;
             pnlContainer.BringToFront();
 
-            // 设置文本消息位置（在父窗体中添加完成后设置才有效）
-            lblMessage.Top = (pnlContainer.Height - lblMessage.Height) / 2;
-            lblMessage.Left = (pnlContainer.Width - lblMessage.Width) / 2;
-
-
             // 设置加载动画位置（在父窗体中添加完成后设置才有效）
             picLoading.Left = (pnlContainer.Width - picLoading.Width) / 2;
-            picLoading.Top = lblMessage.Top - picLoading.Height - 30;
+            picLoading.Top = (pnlContainer.Height - lblMessage.Height - picLoading.Height - 20) / 2;
+
+            // 设置文本消息位置（在父窗体中添加完成后设置才有效）
+            lblMessage.Top = picLoading.Top + picLoading.Height + 10;
+            lblMessage.Left = (pnlContainer.Width - lblMessage.Width) / 2;
+
         }
     }
 }
