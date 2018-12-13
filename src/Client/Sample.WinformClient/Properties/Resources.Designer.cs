@@ -63,6 +63,46 @@ namespace Sample.WinformClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dual_Ring_1s_200px {
+            get {
+                object obj = ResourceManager.GetObject("Dual_Ring_1s_200px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Eclipse_1s_200px {
+            get {
+                object obj = ResourceManager.GetObject("Eclipse_1s_200px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gear_2_9s_200px {
+            get {
+                object obj = ResourceManager.GetObject("Gear_2_9s_200px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gear_2_9s_200px1 {
+            get {
+                object obj = ResourceManager.GetObject("Gear_2_9s_200px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Pacman_1s_200px {
             get {
                 object obj = ResourceManager.GetObject("Pacman_1s_200px", resourceCulture);

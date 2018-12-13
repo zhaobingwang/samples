@@ -89,7 +89,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Images\loading\Dual Ring-1s-200px.gif" />
+    <Content Include="Images\loading\Eclipse-1s-200px.gif" />
+    <Content Include="Images\loading\Gear-2.9s-200px.gif" />
     <Content Include="Images\loading\Pacman-1s-200px.gif" />
+    <Content Include="Images\loading\Radio-1s-200px.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

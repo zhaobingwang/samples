@@ -17,13 +17,57 @@ namespace Sample.WinformClient.Share
         private Label lblMessage = null;
         private PictureBox picLoading;
 
-        private Form _parent = null;
-        private string _message = null;
+        private Form _parent;
+        private string _message;
+        private Font _messageFont;
+        private Bitmap _loadingBitmap;
+        private Size _loadingBitmapSize;
+        private Size _containerSize;
 
-        public PleaseWait(Form parent, string message)
+        public PleaseWait(Form parent)
         {
             _parent = parent;
+            _containerSize = new Size(parent.Width, parent.Height);
+            _message = "请等待...";
+            _messageFont = new Font("微软雅黑", 18);
+        }
+        public PleaseWait(Form parent, Size containerSize) : this(parent)
+        {
+            _containerSize = containerSize;
+        }
+
+        public PleaseWait(Form parent, string message) : this(parent)
+        {
             _message = message;
+        }
+        public PleaseWait(Form parent, Size containerSize, string message) : this(parent, message)
+        {
+            _containerSize = containerSize;
+        }
+        public PleaseWait(Form parent, Size containerSize, string message, Font messageFont) : this(parent, containerSize, message)
+        {
+            _messageFont = messageFont;
+        }
+
+        public PleaseWait(Form parent, string message, Bitmap loadingBitmap) : this(parent, message)
+        {
+            _loadingBitmap = loadingBitmap;
+            _loadingBitmapSize = new Size(75, 75);
+            _containerSize = new Size(parent.Width, parent.Height);
+        }
+        public PleaseWait(Form parent, string message, Bitmap loadingBitmap, Size loadingBitmapSize) : this(parent, message, loadingBitmap)
+        {
+            _loadingBitmapSize = loadingBitmapSize;
+            _containerSize = new Size(parent.Width, parent.Height);
+        }
+        public PleaseWait(Form parent, Size containerSize, string message, Bitmap loadingBitmap) : this(parent, containerSize, message)
+        {
+            _loadingBitmap = loadingBitmap;
+            _loadingBitmapSize = new Size(75, 75);
+        }
+        public PleaseWait(Form parent, Size containerSize, string message, Bitmap loadingBitmap, Size loadingBitmapSize) : this(parent, containerSize, message, loadingBitmap)
+        {
+            _loadingBitmapSize = loadingBitmapSize;
         }
 
         public void Show()
@@ -61,8 +105,7 @@ namespace Sample.WinformClient.Share
         {
             #region message container
             pnlContainer = new Panel();
-            pnlContainer.Width = _parent.Width;
-            pnlContainer.Height = _parent.Height / 2;
+            pnlContainer.Size = _containerSize;
             pnlContainer.BorderStyle = BorderStyle.None;
             #endregion
 
@@ -70,8 +113,8 @@ namespace Sample.WinformClient.Share
             lblMessage = new Label();
             lblMessage.Text = _message;
             lblMessage.AutoSize = true;
-            lblMessage.Width = _parent.Width - 100;
-            lblMessage.MaximumSize = new Size(_parent.Width - 100, 0);
+            lblMessage.Width = pnlContainer.Width;
+            lblMessage.MaximumSize = new Size(pnlContainer.Width, 0);
             lblMessage.TextAlign = ContentAlignment.MiddleCenter;
             lblMessage.Font = new Font("微软雅黑", 18);
             lblMessage.BackColor = Color.Transparent;
@@ -79,8 +122,8 @@ namespace Sample.WinformClient.Share
 
             #region picture of loading
             picLoading = new PictureBox();
-            picLoading.Image = Properties.Resources.Pacman_1s_200px;
-            picLoading.Size = new Size(75, 75);
+            picLoading.Image = _loadingBitmap;
+            picLoading.Size = _loadingBitmapSize;
             picLoading.BorderStyle = BorderStyle.None;
             picLoading.SizeMode = PictureBoxSizeMode.StretchImage;
             #endregion
