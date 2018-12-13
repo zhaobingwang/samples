@@ -49,17 +49,27 @@ namespace Sample.WinformClient.Share
             _messageFont = messageFont;
         }
 
+
         public PleaseWait(Form parent, string message, Bitmap loadingBitmap) : this(parent, message)
         {
             _loadingBitmap = loadingBitmap;
             _loadingBitmapSize = new Size(75, 75);
-            _containerSize = new Size(parent.Width, parent.Height);
+        }
+        public PleaseWait(Form parent, string message, Font messageFont, Bitmap loadingBitmap) : this(parent, message,loadingBitmap)
+        {
+            _messageFont = messageFont;
         }
         public PleaseWait(Form parent, string message, Bitmap loadingBitmap, Size loadingBitmapSize) : this(parent, message, loadingBitmap)
         {
             _loadingBitmapSize = loadingBitmapSize;
+        }
+        public PleaseWait(Form parent, string message,Font messageFont, Bitmap loadingBitmap, Size loadingBitmapSize) : this(parent, message, loadingBitmap,loadingBitmapSize)
+        {
+            _messageFont = messageFont;
+            _loadingBitmapSize = loadingBitmapSize;
             _containerSize = new Size(parent.Width, parent.Height);
         }
+
         public PleaseWait(Form parent, Size containerSize, string message, Bitmap loadingBitmap) : this(parent, containerSize, message)
         {
             _loadingBitmap = loadingBitmap;
