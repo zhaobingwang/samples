@@ -127,10 +127,10 @@
   <data name="Gear_2_9s_200px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\loading\Gear-2.9s-200px.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Gear_2_9s_200px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\loading\Gear-2.9s-200px.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Pacman_1s_200px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\loading\Pacman-1s-200px.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Radio_1s_200px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\loading\Radio-1s-200px.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

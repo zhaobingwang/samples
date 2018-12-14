@@ -43,7 +43,7 @@ namespace Sample.WinformClient.Tests
             CancellationTokenSource cts = new CancellationTokenSource();
             CancellationToken token = cts.Token;
 
-            PleaseWait pleaseWait = new PleaseWait(this, "加载中...");
+            PleaseWait pleaseWait = new PleaseWait(this, new Size(this.Width, this.Height), "正在获取数据...", new Font("微软雅黑", 18), Properties.Resources.Dual_Ring_1s_200px, new Size(75, 75));
             pleaseWait.Show();
             Task.Factory.StartNew(delegate
             {

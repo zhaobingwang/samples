@@ -93,9 +93,9 @@ namespace Sample.WinformClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Gear_2_9s_200px1 {
+        internal static System.Drawing.Bitmap Pacman_1s_200px {
             get {
-                object obj = ResourceManager.GetObject("Gear_2_9s_200px1", resourceCulture);
+                object obj = ResourceManager.GetObject("Pacman_1s_200px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace Sample.WinformClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pacman_1s_200px {
+        internal static System.Drawing.Bitmap Radio_1s_200px {
             get {
-                object obj = ResourceManager.GetObject("Pacman_1s_200px", resourceCulture);
+                object obj = ResourceManager.GetObject("Radio_1s_200px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
