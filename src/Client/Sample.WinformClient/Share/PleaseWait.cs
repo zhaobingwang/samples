@@ -18,6 +18,7 @@ namespace Sample.WinformClient.Share
         private PictureBox picLoading;
 
         private Form _parent;
+
         private string _message;
         private Font _messageFont;
         private Bitmap _loadingBitmap;
