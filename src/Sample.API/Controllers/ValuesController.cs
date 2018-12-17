@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Formatting;
 
 namespace Sample.API.Controllers
 {
@@ -12,9 +15,28 @@ namespace Sample.API.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var work = ActualWork(3000);
+            var timeout = Timeout(2000);
+            var finishedTask = await Task.WhenAny(work, timeout);
+            if (finishedTask == timeout)
+            {
+                return StatusCode(408);
+            }
+            else
+            {
+                return StatusCode(200, "Success of get data.");
+            }
+        }
+        private async Task<string> ActualWork(int sleepTime)
+        {
+            await Task.Delay(sleepTime);
+            return "work results";
+        }
+        private async Task Timeout(int timeoutValue)
+        {
+            await Task.Delay(timeoutValue);
         }
 
         // GET api/values/5
