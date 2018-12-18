@@ -14,6 +14,7 @@ namespace Sample.WinformClient.Tests
 {
     public partial class PleaseWaitTest : Form
     {
+        private int timeout = 3000;
         public PleaseWaitTest()
         {
             InitializeComponent();
@@ -33,10 +34,10 @@ namespace Sample.WinformClient.Tests
 
         private void RunTimeConsumingTask()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
         }
 
-        private void btnRunTask_Click(object sender, EventArgs e)
+        private async void btnRunTask_Click(object sender, EventArgs e)
         {
             var backgroundScheduler = TaskScheduler.Default;
             var uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
@@ -45,16 +46,24 @@ namespace Sample.WinformClient.Tests
 
             PleaseWait pleaseWait = new PleaseWait(this, new Size(this.Width, this.Height), "正在获取数据...", new Font("微软雅黑", 18), Properties.Resources.Dual_Ring_1s_200px, new Size(75, 75));
             pleaseWait.Show();
-            Task.Factory.StartNew(delegate
+            var t1 = Task.Factory.StartNew(delegate
             {
                 RunTimeConsumingTask();
 
-            }, token, TaskCreationOptions.None, backgroundScheduler).
-            ContinueWith(delegate
+            }, token, TaskCreationOptions.None, backgroundScheduler);
+            if (await Task.WhenAny(t1, Task.Delay(timeout)) == t1)
             {
-                label1.Text = "成功获取到数据.";
+                await t1.ContinueWith(delegate
+                {
+                    label1.Text = "成功获取到数据.";
+                    pleaseWait.Close();
+                }, token, TaskContinuationOptions.None, uiScheduler);
+            }
+            else
+            {
+                label1.Text = "请求超时.";
                 pleaseWait.Close();
-            }, token, TaskContinuationOptions.None, uiScheduler);
+            }
         }
     }
 }
