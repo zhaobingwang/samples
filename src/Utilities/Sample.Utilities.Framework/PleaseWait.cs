@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sample.WinformClient.Share
+namespace Sample.Utilities.Framework
 {
     /// <summary>
     /// 耗时任务执行中使用此类来显示友好提示

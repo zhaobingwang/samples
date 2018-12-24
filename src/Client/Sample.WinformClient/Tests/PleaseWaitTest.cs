@@ -1,4 +1,4 @@
-﻿using Sample.WinformClient.Share;
+﻿using Sample.Utilities.Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
