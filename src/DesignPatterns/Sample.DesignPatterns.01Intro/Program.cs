@@ -6,59 +6,134 @@ namespace Sample.DesignPatterns._01Intro
     {
         static void Main(string[] args)
         {
-            MallardDuck mallardDuck = new MallardDuck();
+            Duck mallardDuck = new MallardDuck();
             mallardDuck.Display();
-            mallardDuck.Quack();
+            mallardDuck.performQuack();
+            mallardDuck.performFly();
             mallardDuck.Swim();
 
-            RubberDuck rubberDuck = new RubberDuck();
-            rubberDuck.Display();
-            rubberDuck.Quack();
-            rubberDuck.Fly();
+            Duck modelDuck = new ModelDuck();
+            modelDuck.Display();
+            modelDuck.performFly();
+            modelDuck.SetFlyBehavior(new FlyRocketPowered());
+            modelDuck.performFly();
         }
     }
-    public abstract class Duck
+
+    #region 飞行接口及实现类
+    public interface FlyBehavior
+    {
+        void Fly();
+    }
+    public class FlyWithWings : FlyBehavior
+    {
+        public void Fly()
+        {
+            Console.WriteLine("I'm flying");
+        }
+    }
+    public class FlyNoWay : FlyBehavior
+    {
+        public void Fly()
+        {
+            Console.WriteLine("I can't fly");
+        }
+    }
+    public class FlyRocketPowered : FlyBehavior
+    {
+        public void Fly()
+        {
+            Console.WriteLine("I'm flying with a rocket!");
+        }
+    }
+    #endregion
+
+    #region 叫声行为接口及实现类
+    public interface QuackBehavior
+    {
+        void Quack();
+    }
+    public class CommonQuack : QuackBehavior
     {
         public void Quack()
         {
-            // 所有的鸭子都会呱呱叫，由Duck类负责实现
-            Console.WriteLine("呱呱叫...");
+            Console.WriteLine("quack");
+        }
+    }
+    public class MuteQuack : QuackBehavior
+    {
+        public void Quack()
+        {
+            Console.WriteLine("silence");
+        }
+    }
+    public class Squeak : QuackBehavior
+    {
+        public void Quack()
+        {
+            Console.WriteLine("squeak");
+        }
+    }
+    #endregion
+
+    public abstract class Duck
+    {
+        protected FlyBehavior flyBehavior;
+        protected QuackBehavior quackBehavior;
+
+        public Duck()
+        {
+        }
+
+        public abstract void Display();
+
+        public void performFly()
+        {
+            flyBehavior.Fly();
+        }
+        public void performQuack()
+        {
+            quackBehavior.Quack();
         }
         public void Swim()
         {
-            // 所有鸭子都会游泳，由Duck类负责实现
-            Console.WriteLine("游泳中...");
+            Console.WriteLine("swiming");
         }
-        public void Fly()
+
+        public void SetFlyBehavior(FlyBehavior fb)
         {
-            // 部分鸭子会飞
-            Console.WriteLine("飞行中...");
+            flyBehavior = fb;
         }
-        public abstract void Display();    // 每个鸭子的子类负责实现自己的display
+        public void SetQuackBehavior(QuackBehavior qb)
+        {
+            quackBehavior = qb;
+        }
     }
+
     public class MallardDuck : Duck
     {
+        public MallardDuck()
+        {
+            flyBehavior = new FlyWithWings();
+            quackBehavior = new CommonQuack();
+        }
         public override void Display()
         {
-            Console.WriteLine("我是绿头鸭.");
+            Console.WriteLine("I'm a real Mallard duck");
         }
     }
-    public class RedheadDuck : Duck
+
+    public class ModelDuck : Duck
     {
+        public ModelDuck()
+        {
+            flyBehavior = new FlyNoWay();
+            quackBehavior = new CommonQuack();
+        }
+
         public override void Display()
         {
-            Console.WriteLine("我是红头鸭子.");
-        }
-    }
-    public class RubberDuck : Duck
-    {
-        public new void Quack()
-        {
-            Console.WriteLine("吱吱叫...");
-        }
-        public override void Display()
-        {
-            Console.WriteLine("我是橡皮鸭子.");
+            Console.WriteLine("I'm a model duck");
         }
     }
 }
