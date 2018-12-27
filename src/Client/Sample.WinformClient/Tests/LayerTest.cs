@@ -20,7 +20,7 @@ namespace Sample.WinformClient.Tests
 
         private void btnAlert_Click(object sender, EventArgs e)
         {
-            Layer.Alert(pnlContent, "发生错误", new Size(300, 100),2000);
+            Layer2.Alert(pnlContent, "发生错误", new Size(300, 100), 2000);
         }
     }
 }
