@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Sample.WinformClient.Others;
 using Sample.WinformClient.Tests;
 
 namespace Sample.WinformClient
@@ -14,7 +15,7 @@ namespace Sample.WinformClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LayerTest());
+            Application.Run(new Home());
         }
     }
 }

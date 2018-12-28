@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sample.WinformClient.Others;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace Sample.WinformClient
         public Home()
         {
             InitializeComponent();
+        }
+
+        private void btnWinformTimer_Click(object sender, EventArgs e)
+        {
+            WinformTimer winformTimer = new WinformTimer();
+            winformTimer.ShowDialog();
+            winformTimer.Dispose();
         }
     }
 }
