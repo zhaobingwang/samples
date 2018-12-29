@@ -16,16 +16,48 @@ namespace Sample.WinformClient.PrintSample
 {
     public partial class PrintPDF : Form
     {
+        string fileDir;
         public PrintPDF()
         {
             InitializeComponent();
+            fileDir = $"{AppDomain.CurrentDomain.BaseDirectory}templates\\";
         }
-        
-        private void btnPrintExistPDF_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// 使用FreeSpire.PDF打印PDF
+        /// 免费版有 10 页的页数限制，在创建和加载 PDF 文档时要求文档不超过 10 页。将 PDF 文档转换为图片时，仅支持转换前 3 页。
+        /// 专业版购买：http://e-iceblue.cn/buy/spire-pdf-net.html
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPrintPDF_Click(object sender, EventArgs e)
         {
-            string filePath = $"{AppDomain.CurrentDomain.BaseDirectory}templates\\DemoPDF02.pdf";
-            PdfDocument pdf = new PdfDocument(filePath);
-            pdf.Print();
+            PdfDocument pdfDocument = new PdfDocument();
+            var filePaths = GetPDFFilePathList();
+            foreach (var filePath in filePaths)
+            {
+                pdfDocument.PrintDocument.DocumentName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                pdfDocument.LoadFromFile(filePath);
+                pdfDocument.PrintDocument.Print();
+            }
+        }
+
+        private List<string> GetPDFFilePathList()
+        {
+            List<string> list = new List<string>();
+            string fileName = $"";
+            int ctr = 1;
+            while (ctr <= 5)
+            {
+                list.Add($"{fileDir}PDF-P{ctr.ToString().PadLeft(2, '0')}.pdf");
+                ctr++;
+            }
+            return list;
+        }
+
+        private void PrintPDF_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
