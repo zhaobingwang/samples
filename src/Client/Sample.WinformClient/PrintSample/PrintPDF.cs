@@ -36,7 +36,7 @@ namespace Sample.WinformClient.PrintSample
             var filePaths = GetPDFFilePathList();
             foreach (var filePath in filePaths)
             {
-                pdfDocument.PrintDocument.DocumentName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+                //pdfDocument.PrintDocument.DocumentName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
                 pdfDocument.LoadFromFile(filePath);
                 pdfDocument.PrintDocument.Print();
             }
@@ -47,7 +47,7 @@ namespace Sample.WinformClient.PrintSample
             List<string> list = new List<string>();
             string fileName = $"";
             int ctr = 1;
-            while (ctr <= 5)
+            while (ctr <= 1)
             {
                 list.Add($"{fileDir}PDF-P{ctr.ToString().PadLeft(2, '0')}.pdf");
                 ctr++;
@@ -58,6 +58,28 @@ namespace Sample.WinformClient.PrintSample
         private void PrintPDF_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUseAdobe_Click(object sender, EventArgs e)
+        {
+            SendToPrinter();
+        }
+        private void SendToPrinter()
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Verb = "print";
+            info.FileName = $"{fileDir}PDF.pdf";
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
+
+            p.WaitForInputIdle();
+            System.Threading.Thread.Sleep(3000);
+            if (false == p.CloseMainWindow())
+                p.Kill();
         }
     }
 }
