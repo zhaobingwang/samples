@@ -24,17 +24,22 @@ namespace Sample.WinformClient.Others
             timer = new System.Windows.Forms.Timer();
             timer.Tick += Timer_Tick; ;
             timer.Interval = 2000;
-            timer.Enabled = true;
             timer.Start();
+            Task.Factory.StartNew(() =>
+            {
+
+
+            });
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             //Thread.Sleep(3000);
-            //label1.Text = $"{DateTime.Now}";
+            label1.Text = $"{DateTime.Now}";
             //MessageBox.Show("a");
-            NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-            logger.Info($"{DateTime.Now}");
+            //NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+            //logger.Info($"{DateTime.Now}");
         }
 
         private void WinformTimer_FormClosing(object sender, FormClosingEventArgs e)
