@@ -101,7 +101,7 @@ namespace Sample.DesignPatterns._02Observer
     {
         private float temperature;
         private float humidity;
-        public Subject _weatherData;
+        private Subject _weatherData;
 
         public CurrentConditionsDisplay(Subject weatherData)
         {
