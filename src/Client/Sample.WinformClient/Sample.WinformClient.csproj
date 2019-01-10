@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DesignPatterns\ObserverSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesignPatterns\ObserverSample.Designer.cs">
+      <DependentUpon>ObserverSample.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Tests\PleaseWaitTest.Designer.cs">
       <DependentUpon>PleaseWaitTest.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DesignPatterns\ObserverSample.resx">
+      <DependentUpon>ObserverSample.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
