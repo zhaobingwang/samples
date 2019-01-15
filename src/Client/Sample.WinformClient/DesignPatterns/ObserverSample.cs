@@ -49,7 +49,7 @@ namespace Sample.WinformClient.DesignPatterns
 
         private void ObserverSample_Load(object sender, EventArgs e)
         {
-            logger.Info($"闹钟时间设置为：{alarmTime}");
+            logger.LogImportantInfo($"闹钟时间设置为：{alarmTime}");
             TurnOnTheAlarm(alarmTime);
         }
 
@@ -84,26 +84,77 @@ namespace Sample.WinformClient.DesignPatterns
 
         private void Alarm()
         {
-            logger.Info("闹钟响...");
             AlarmClock alarmClock = new AlarmClock();
-            alarmClock.AlarmCustomEvent += TurnOnTheBedsideLamp;
-            alarmClock.AlarmCustomEvent += OpenThecurtains;
-            alarmClock.AlarmCustomEvent += PlayingMusic;
-        }
-        private void TurnOnTheBedsideLamp(object sender, CustomEventArgs e)
-        {
-            logger.Info("打开床头灯");
-        }
-        private void OpenThecurtains(object sender, CustomEventArgs e)
-        {
-            logger.Info("打开窗帘");
-        }
-        private void PlayingMusic(object sender, CustomEventArgs e)
-        {
-            logger.Info("播放音乐");
+            BedsideLamp turnOnTheBedsideLamp = new BedsideLamp(logger, "床头灯", alarmClock);
+            Curtains curtains = new Curtains(logger, "窗帘", alarmClock);
+            Speaker speaker = new Speaker(logger, "音响", alarmClock);
+            alarmClock.DoSomething("闹钟响了，准备起床。");
         }
     }
 
+    #region 订阅了闹钟响铃的设备
+    /// <summary>
+    /// 床头灯
+    /// </summary>
+    public class BedsideLamp
+    {
+        private string id;
+        private Logger _logger;
+        public BedsideLamp(Logger logger, string ID, AlarmClock pub)
+        {
+            _logger = logger;
+            id = ID;
+            pub.AlarmCustomEvent += HandleCustomEvent;
+        }
+        void HandleCustomEvent(object sender, CustomEventArgs e)
+        {
+            _logger.LogImportantInfo($"【{id}】 收到消息: {e.Message}");
+            _logger.LogImportantInfo($"【{id}】 已打开床头灯");
+        }
+    }
+    /// <summary>
+    /// 窗帘
+    /// </summary>
+    public class Curtains
+    {
+        private string id;
+        private Logger _logger;
+        public Curtains(Logger logger, string ID, AlarmClock pub)
+        {
+            _logger = logger;
+            id = ID;
+            pub.AlarmCustomEvent += HandleCustomEvent;
+        }
+        void HandleCustomEvent(object sender, CustomEventArgs e)
+        {
+            _logger.LogImportantInfo($"【{id}】 收到消息: {e.Message}");
+            _logger.LogImportantInfo($"【{id}】 已打开窗帘");
+        }
+    }
+    /// <summary>
+    /// 音箱
+    /// </summary>
+    public class Speaker
+    {
+        private string id;
+        private Logger _logger;
+        public Speaker(Logger logger, string ID, AlarmClock pub)
+        {
+            _logger = logger;
+            id = ID;
+            pub.AlarmCustomEvent += HandleCustomEvent;
+        }
+        void HandleCustomEvent(object sender, CustomEventArgs e)
+        {
+            _logger.LogImportantInfo($"【{id}】 收到消息: {e.Message}");
+            _logger.LogImportantInfo($"【{id}】 开始播放音乐");
+        }
+    }
+    #endregion
+
+    /// <summary>
+    /// 闹钟类
+    /// </summary>
     public class AlarmClock
     {
         public event EventHandler<CustomEventArgs> AlarmCustomEvent;
@@ -117,7 +168,7 @@ namespace Sample.WinformClient.DesignPatterns
             EventHandler<CustomEventArgs> handler = AlarmCustomEvent;
             if (handler != null)
             {
-                e.Message += $" at {DateTime.Now}";
+                //e.Message += $" at {DateTime.Now}";
                 handler(this, e);
             }
         }
