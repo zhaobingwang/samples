@@ -13,12 +13,6 @@ using WinFormTimer = System.Windows.Forms.Timer;
 
 namespace Sample.WinformClient.DesignPatterns
 {
-    /*
-     * 1 智能手表检测到您已睡醒（为了方便演示，本示例使用闹钟替代，闹钟响表示智能手表检测到您已睡醒）
-     * 2.1 打开床头灯
-     * 2.2 打开窗帘
-     * 2.3 播放音乐
-     */
     public partial class ObserverSample : Form
     {
         Logger logger;
