@@ -78,6 +78,12 @@
     <Compile Include="Others\ModifySystemDate.Designer.cs">
       <DependentUpon>ModifySystemDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Others\temp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Others\temp.Designer.cs">
+      <DependentUpon>temp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Others\WinformTimer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Others\ModifySystemDate.resx">
       <DependentUpon>ModifySystemDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Others\temp.resx">
+      <DependentUpon>temp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Others\WinformTimer.resx">
       <DependentUpon>WinformTimer.cs</DependentUpon>

@@ -17,7 +17,7 @@ namespace Sample.WinformClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ObserverSample());
+            Application.Run(new WinformTimer());
         }
     }
 }
