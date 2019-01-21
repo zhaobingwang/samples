@@ -18,7 +18,7 @@ namespace Sample.WinformClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HangFireSample());
+            Application.Run(new PrintPDF());
         }
     }
 }
