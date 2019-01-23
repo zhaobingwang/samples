@@ -31,47 +31,49 @@ namespace Sample.DesignPatterns._02Observer
         static void Main(string[] args)
         {
             WeatherData weatherData = new WeatherData();
-            CurrentConditionsDisplay currentConditionsDisplay = new CurrentConditionsDisplay(weatherData);
+            TackBoardA tackBoardA = new TackBoardA(weatherData);
+            TackBoardB tackBoardB = new TackBoardB(weatherData);
             weatherData.SetMeasurements(10, 50, 30.2f);
             weatherData.SetMeasurements(5, 45, 31.2f);
             weatherData.SetMeasurements(-1, 48, 32.2f);
+            Console.ReadKey();
         }
     }
 
     #region interface
-    public interface Observer
+    public interface IObserver
     {
         void Update(float temp, float humidity, float pressure);
     }
-    public interface Subject
+    public interface ISubject
     {
-        void RegisterObserver(Observer observer);
-        void RemoveObserver(Observer observer);
+        void RegisterObserver(IObserver observer);
+        void RemoveObserver(IObserver observer);
         void NodifyObserver();
     }
-    public interface DisplayElement
+    public interface IDisplayElement
     {
         void Display();
     }
     #endregion
 
-    public class WeatherData : Subject
+    public class WeatherData : ISubject
     {
-        private List<Observer> observers;
+        private List<IObserver> observers;
         private float temperature;
         private float humidity;
         private float pressure;
         public WeatherData()
         {
-            observers = new List<Observer>();
+            observers = new List<IObserver>();
         }
 
-        public void RegisterObserver(Observer observer)
+        public void RegisterObserver(IObserver observer)
         {
             observers.Add(observer);
         }
 
-        public void RemoveObserver(Observer observer)
+        public void RemoveObserver(IObserver observer)
         {
             observers.Remove(observer);
         }
@@ -97,13 +99,13 @@ namespace Sample.DesignPatterns._02Observer
         }
     }
 
-    public class CurrentConditionsDisplay : Observer, DisplayElement
+    public class TackBoardB : IObserver, IDisplayElement
     {
         private float temperature;
         private float humidity;
-        private Subject _weatherData;
+        private ISubject _weatherData;
 
-        public CurrentConditionsDisplay(Subject weatherData)
+        public TackBoardB(ISubject weatherData)
         {
             _weatherData = weatherData;
             _weatherData.RegisterObserver(this);
@@ -111,7 +113,31 @@ namespace Sample.DesignPatterns._02Observer
 
         public void Display()
         {
-            Console.WriteLine($"Current conditions:{temperature}℃ and {humidity}% humidity");
+            Console.WriteLine($"布告板B:{temperature}℃ and {humidity}% humidity");
+        }
+
+        public void Update(float temperature, float humidity, float pressure)
+        {
+            this.temperature = temperature;
+            this.humidity = humidity;
+            Display();
+        }
+    }
+    public class TackBoardA : IObserver, IDisplayElement
+    {
+        private float temperature;
+        private float humidity;
+        private ISubject _weatherData;
+
+        public TackBoardA(ISubject weatherData)
+        {
+            _weatherData = weatherData;
+            _weatherData.RegisterObserver(this);
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($"布告板A:{temperature}℃");
         }
 
         public void Update(float temperature, float humidity, float pressure)
