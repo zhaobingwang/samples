@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Sample.Data.Access.Dapper\Sample.Data.Access.Dapper.csproj" />
-    <ProjectReference Include="..\..\Core\Sample.Data.Entities\Sample.Data.Entities.csproj" />
+    <ProjectReference Include="..\..\Sample.Data.Access.Dapper\Sample.Data.Access.Dapper.csproj" />
+    <ProjectReference Include="..\..\Sample.Data.Entities\Sample.Data.Entities.csproj" />
   </ItemGroup>
 
 </Project>

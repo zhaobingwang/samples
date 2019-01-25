@@ -223,18 +223,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Utilities\Sample.Utilities.Framework\Sample.Utilities.Framework.csproj">
-      <Project>{35F66CAF-9740-41CC-84E0-0E22CBFC96A6}</Project>
-      <Name>Sample.Utilities.Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Images\loading\Dual Ring-1s-200px.gif" />
     <Content Include="Images\loading\Eclipse-1s-200px.gif" />
     <Content Include="Images\loading\Gear-2.9s-200px.gif" />
     <Content Include="Images\loading\Pacman-1s-200px.gif" />
     <Content Include="Images\loading\Radio-1s-200px.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Sample.Utilities.Framework\Sample.Utilities.Framework.csproj">
+      <Project>{35F66CAF-9740-41CC-84E0-0E22CBFC96A6}</Project>
+      <Name>Sample.Utilities.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
