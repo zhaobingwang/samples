@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Sample.WinformClient.DesignPatterns;
 using Sample.WinformClient.JobScheduling;
 using Sample.WinformClient.Others;
+using Sample.WinformClient.PDFHandler;
 using Sample.WinformClient.PrintSample;
 using Sample.WinformClient.Tests;
 
@@ -18,7 +19,7 @@ namespace Sample.WinformClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ObserverSample());
+            Application.Run(new SpirePDFViewer());
         }
     }
 }
