@@ -33,6 +33,7 @@
             this.Prev = new System.Windows.Forms.Button();
             this.Next = new System.Windows.Forms.Button();
             this.lblMessage = new System.Windows.Forms.Label();
+            this.PrintPDF = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pdfDocumentViewer1
@@ -51,7 +52,7 @@
             // LoadPDF
             // 
             this.LoadPDF.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.LoadPDF.Location = new System.Drawing.Point(394, 511);
+            this.LoadPDF.Location = new System.Drawing.Point(334, 511);
             this.LoadPDF.Name = "LoadPDF";
             this.LoadPDF.Size = new System.Drawing.Size(148, 48);
             this.LoadPDF.TabIndex = 1;
@@ -73,7 +74,7 @@
             // Next
             // 
             this.Next.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Next.Location = new System.Drawing.Point(619, 511);
+            this.Next.Location = new System.Drawing.Point(712, 511);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(148, 48);
             this.Next.TabIndex = 3;
@@ -90,11 +91,23 @@
             this.lblMessage.TabIndex = 4;
             this.lblMessage.Text = "Message";
             // 
+            // PrintPDF
+            // 
+            this.PrintPDF.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.PrintPDF.Location = new System.Drawing.Point(522, 511);
+            this.PrintPDF.Name = "PrintPDF";
+            this.PrintPDF.Size = new System.Drawing.Size(148, 48);
+            this.PrintPDF.TabIndex = 5;
+            this.PrintPDF.Text = "PrintPDF";
+            this.PrintPDF.UseVisualStyleBackColor = true;
+            this.PrintPDF.Click += new System.EventHandler(this.PrintPDF_Click);
+            // 
             // SpirePDFViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 597);
+            this.Controls.Add(this.PrintPDF);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.Prev);
@@ -115,5 +128,6 @@
         private System.Windows.Forms.Button Prev;
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Button PrintPDF;
     }
 }

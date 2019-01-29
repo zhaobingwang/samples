@@ -89,5 +89,13 @@ namespace Sample.WinformClient.PDFHandler
             return list;
         }
 
+        private void PrintPDF_Click(object sender, EventArgs e)
+        {
+            foreach (var pdf in pdfs)
+            {
+                pdfDocumentViewer1.LoadFromFile(pdf);
+                pdfDocumentViewer1.PrintDoc();
+            }
+        }
     }
 }
