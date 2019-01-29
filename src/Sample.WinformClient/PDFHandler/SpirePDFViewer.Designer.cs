@@ -115,6 +115,7 @@
             this.Controls.Add(this.pdfDocumentViewer1);
             this.Name = "SpirePDFViewer";
             this.Text = "SpirePDFViewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpirePDFViewer_FormClosing);
             this.Load += new System.EventHandler(this.SpirePDFViewer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

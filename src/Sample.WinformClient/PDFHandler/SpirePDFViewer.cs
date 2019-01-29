@@ -16,11 +16,12 @@ namespace Sample.WinformClient.PDFHandler
         private int index = 0;
         private int total = 0;
         private string filePath = "";
+        private string baseDir = "";
         List<string> pdfs;
         public SpirePDFViewer()
         {
             InitializeComponent();
-            filePath = AppDomain.CurrentDomain.BaseDirectory;
+            baseDir = $"{AppDomain.CurrentDomain.BaseDirectory}temp\\";
             pdfs = new List<string>();
         }
 
@@ -33,6 +34,10 @@ namespace Sample.WinformClient.PDFHandler
         {
             System.Net.WebClient client = new System.Net.WebClient();
             List<string> urls = GetURLs();
+
+            filePath = $"{baseDir}CurrentUser\\";
+            Directory.CreateDirectory(filePath);
+
 
             total = urls.Count();
             foreach (var url in urls)
@@ -95,6 +100,26 @@ namespace Sample.WinformClient.PDFHandler
             {
                 pdfDocumentViewer1.LoadFromFile(pdf);
                 pdfDocumentViewer1.PrintDoc();
+            }
+        }
+
+        private void SpirePDFViewer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 删除下载的临时pdf文件
+            if (Directory.Exists(filePath))
+                DeleteDirectory(filePath);
+        }
+        void DeleteDirectory(string path)
+        {
+            DirectoryInfo dir = new DirectoryInfo(path);
+            if (dir.Exists)
+            {
+                DirectoryInfo[] childs = dir.GetDirectories();
+                foreach (DirectoryInfo child in childs)
+                {
+                    child.Delete(true);
+                }
+                dir.Delete(true);
             }
         }
     }
