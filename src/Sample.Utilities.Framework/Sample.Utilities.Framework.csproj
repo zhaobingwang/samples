@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encrypter.cs" />
     <Compile Include="Layer2.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Logger.cs" />
