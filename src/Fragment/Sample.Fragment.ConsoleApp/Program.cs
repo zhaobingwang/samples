@@ -9,13 +9,14 @@ namespace Sample.Fragment.ConsoleApp
     {
         static void Main(string[] args)
         {
+            int count = 100 * 1000;
             UsersOp usersOp = new UsersOp();
             Stopwatch sw = new Stopwatch();
             Console.WriteLine("start");
             sw.Start();
-            usersOp.BulkToMySql(100 * 1000);
+            usersOp.BulkToMySql(count);
             sw.Stop();
-            Console.WriteLine($"耗时：{sw.ElapsedMilliseconds} ms");
+            Console.WriteLine($"本次共插入{count}条数据，耗时：{sw.ElapsedMilliseconds} ms");
             Console.WriteLine("end");
         }
     }

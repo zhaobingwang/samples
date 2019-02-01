@@ -45,7 +45,7 @@ namespace Sample.Data.Access.Dapper
                 List<string> rows = new List<string>();
                 for (int i = 0; i < bulkCount; i++)
                 {
-                    //Rows.Add(string.Format("('{0}','{1}')", MySqlHelper.EscapeString("test"), MySqlHelper.EscapeString("test")));
+                    //rows.Add(string.Format("('{0}','{1}')", MySqlHelper.EscapeString("test"), MySqlHelper.EscapeString("test")));
                     rows.Add($"('测试{i}','ceshi{i}@qq.com','{0}','{DateTime.Now}','{DateTime.Now}','')");
                 }
                 sqlCmd.Append(string.Join(",", rows));
