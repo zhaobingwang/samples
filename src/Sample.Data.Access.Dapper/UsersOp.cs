@@ -3,6 +3,8 @@ using MySql.Data.MySqlClient;
 using Sample.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Text;
 
 namespace Sample.Data.Access.Dapper
 {
@@ -32,6 +34,28 @@ namespace Sample.Data.Access.Dapper
             using (MySqlConnection connection = new MySqlConnection(_conncetionString))
             {
                 return connection.Query<User>(query, new { nickName });
+            }
+        }
+
+        public void BulkToMySql(int bulkCount)
+        {
+            StringBuilder sqlCmd = new StringBuilder($"insert into users ({nameof(User.NickName)},{nameof(User.Email)},{nameof(User.IsDelete)},{nameof(User.RegTime)},{nameof(User.ModifyTime)},{nameof(User.Remark)}) values ");
+            using (MySqlConnection connection = new MySqlConnection(_conncetionString))
+            {
+                List<string> rows = new List<string>();
+                for (int i = 0; i < bulkCount; i++)
+                {
+                    //Rows.Add(string.Format("('{0}','{1}')", MySqlHelper.EscapeString("test"), MySqlHelper.EscapeString("test")));
+                    rows.Add($"('测试{i}','ceshi{i}@qq.com','{0}','{DateTime.Now}','{DateTime.Now}','')");
+                }
+                sqlCmd.Append(string.Join(",", rows));
+                sqlCmd.Append(";");
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sqlCmd.ToString(), connection))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }
