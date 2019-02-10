@@ -14,7 +14,7 @@ namespace Sample.Data.Access.Dapper
         string _conncetionString = null;
         public UsersOp()
         {
-            _conncetionString = "server=127.0.0.1;user id=root;password=123456;database=sample";
+            _conncetionString = Sample.Share.Constants.DBConnectionString.MySql01;
         }
         public UsersOp(string connString)
         {
@@ -46,7 +46,7 @@ namespace Sample.Data.Access.Dapper
                 for (int i = 0; i < bulkCount; i++)
                 {
                     //rows.Add(string.Format("('{0}','{1}')", MySqlHelper.EscapeString("test"), MySqlHelper.EscapeString("test")));
-                    rows.Add($"('测试{i}','ceshi{i}@qq.com','{0}','{DateTime.Now}','{DateTime.Now}','')");
+                    rows.Add($"('测试{i}','ceshi{i}@qq.com','{0}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','')");
                 }
                 sqlCmd.Append(string.Join(",", rows));
                 sqlCmd.Append(";");
