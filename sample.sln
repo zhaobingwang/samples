@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Data.Access.ADONET",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Data.Access.EFCore", "src\Sample.Data.Access.EFCore\Sample.Data.Access.EFCore.csproj", "{C8EB2D58-DFAD-4AEE-8353-5EE3C102322E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Core", "src\Sample.Core\Sample.Core.csproj", "{0BB5E0A3-6432-416B-9F64-F97563DAAE3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Core", "src\Sample.Core\Sample.Core.csproj", "{0BB5E0A3-6432-416B-9F64-F97563DAAE3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
