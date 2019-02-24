@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Data.Access.EFCore",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Core", "src\Sample.Core\Sample.Core.csproj", "{0BB5E0A3-6432-416B-9F64-F97563DAAE3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Utilities", "src\Sample.Utilities\Sample.Utilities.csproj", "{5CFAB891-1F85-4674-82BD-07DFD289B35F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Utilities", "src\Sample.Utilities\Sample.Utilities.csproj", "{5CFAB891-1F85-4674-82BD-07DFD289B35F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Utilities.Tests", "test\Sample.Utilities.Tests\Sample.Utilities.Tests.csproj", "{85C2E2DF-A69D-44E7-A127-7265B4D93C29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,10 @@ Global
 		{5CFAB891-1F85-4674-82BD-07DFD289B35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CFAB891-1F85-4674-82BD-07DFD289B35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CFAB891-1F85-4674-82BD-07DFD289B35F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85C2E2DF-A69D-44E7-A127-7265B4D93C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85C2E2DF-A69D-44E7-A127-7265B4D93C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85C2E2DF-A69D-44E7-A127-7265B4D93C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85C2E2DF-A69D-44E7-A127-7265B4D93C29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{C8EB2D58-DFAD-4AEE-8353-5EE3C102322E} = {E96A23CB-6DE7-40E0-B4A9-9C5177A218A3}
 		{0BB5E0A3-6432-416B-9F64-F97563DAAE3C} = {E96A23CB-6DE7-40E0-B4A9-9C5177A218A3}
 		{5CFAB891-1F85-4674-82BD-07DFD289B35F} = {58FE9954-59F8-4440-B6EE-F859872D08D7}
+		{85C2E2DF-A69D-44E7-A127-7265B4D93C29} = {3A07D29B-58C6-4180-BFC5-AF555DB9C321}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {383C701F-D5DB-40A5-A3CF-FA30E1A77A76}
