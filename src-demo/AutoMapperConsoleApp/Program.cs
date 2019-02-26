@@ -49,28 +49,42 @@ namespace AutoMapperConsoleApp
             #endregion
 
             #region Custom Type Converters
-            var configCustom = new MapperConfiguration(cfg =>
+            var configCustomTypeConverter = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<string, int>().ConvertUsing(s => Convert.ToInt32(2));
                 cfg.CreateMap<string, DateTime>().ConvertUsing(new DateTimeTypeConverter());
                 cfg.CreateMap<string, Type>().ConvertUsing(new TypeTypeConverter());
-                cfg.CreateMap<SourceCustom, DestinationCustom>();
+                cfg.CreateMap<SourceCustomTypeConverter, DestinationCustomTypeConverter>();
             });
-            var mapperCustom = configCustom.CreateMapper();
-            var destCustom = mapperCustom.Map<DestinationCustom>(new SourceCustom { Value1 = "1", Value2 = "2018-02-25", Value3 = $"{typeof(DestinationCustom)}" });
-            Console.WriteLine($"dest.value1:{destCustom.Value1},dest.value2:{destCustom.Value2},dest.value3:{destCustom.Value3}");
+            var mapperCustomTypeConverter = configCustomTypeConverter.CreateMapper();
+            var destCustomCustomTypeConverter = mapperCustomTypeConverter.Map<DestinationCustomTypeConverter>(new SourceCustomTypeConverter { Value1 = "1", Value2 = "2018-02-25", Value3 = $"{typeof(DestinationCustomTypeConverter)}" });
+            Console.WriteLine($"==========Custom Type Converters==========");
+            Console.WriteLine($"dest.value1:{destCustomCustomTypeConverter.Value1},dest.value2:{destCustomCustomTypeConverter.Value2},dest.value3:{destCustomCustomTypeConverter.Value3}");
+            #endregion
+
+            #region Custom Value Resolvers
+            var configCustomValueResolvers = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<SourceCustomValueResolver, DestinationCustomValueResolver>()
+                .ForMember(dest => dest.Total, opt => opt.MapFrom<CustomResolver>());
+            });
+            var sourceCustomValueResolver = new SourceCustomValueResolver { Value1 = 2, Value2 = 3 };
+            var mapperCustomValueResolver = configCustomValueResolvers.CreateMapper();
+            var destCustomValueResolver = mapperCustomValueResolver.Map<DestinationCustomValueResolver>(sourceCustomValueResolver);
+            Console.WriteLine($"==========Custom Value Resolvers==========");
+            Console.WriteLine($"src.value1:{sourceCustomValueResolver.Value1},src.value2:{sourceCustomValueResolver.Value2},dest.Total:{destCustomValueResolver.Total}");
             #endregion
         }
     }
 
     #region Custom Type Converters
-    public class SourceCustom
+    public class SourceCustomTypeConverter
     {
         public string Value1 { get; set; }
         public string Value2 { get; set; }
         public string Value3 { get; set; }
     }
-    public class DestinationCustom
+    public class DestinationCustomTypeConverter
     {
         public int Value1 { get; set; }
         public DateTime Value2 { get; set; }
@@ -92,4 +106,22 @@ namespace AutoMapperConsoleApp
     }
     #endregion
 
+    #region Custom Value Resolvers
+    public class SourceCustomValueResolver
+    {
+        public int Value1 { get; set; }
+        public int Value2 { get; set; }
+    }
+    public class DestinationCustomValueResolver
+    {
+        public int Total { get; set; }
+    }
+    public class CustomResolver : IValueResolver<SourceCustomValueResolver, DestinationCustomValueResolver, int>
+    {
+        public int Resolve(SourceCustomValueResolver source, DestinationCustomValueResolver destination, int destMember, ResolutionContext context)
+        {
+            return source.Value1 + source.Value2;
+        }
+    }
+    #endregion
 }
