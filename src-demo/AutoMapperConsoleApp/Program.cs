@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace AutoMapperConsoleApp
@@ -48,6 +48,47 @@ namespace AutoMapperConsoleApp
             //System.Console.WriteLine($"{userDTO2.Age2} {userDTO2.NickName}"); 
             #endregion
 
+            #region Lists and Arrays
+            // Lists and Arrays
+            var configListsAndArrays = new MapperConfiguration(cfg =>
+            {
+                cfg.AllowNullCollections = true;    // Handling null collections
+                cfg.CreateMap<SourceListsAndArrays, DestinationListsAndArrays>();
+            });
+            var mapperListsAndArrays = configListsAndArrays.CreateMapper();
+            var srcLists = new[] {
+                new SourceListsAndArrays{ Value1=1},
+                new SourceListsAndArrays{ Value1=2},
+                new SourceListsAndArrays{ Value1=3}
+            };
+            srcLists = null;
+            //SourceListsAndArrays[] src = null;
+            var destListsAndArrays1 = mapperListsAndArrays.Map<SourceListsAndArrays[], IEnumerable<DestinationListsAndArrays>>(srcLists);
+            var destListsAndArrays2 = mapperListsAndArrays.Map<SourceListsAndArrays[], ICollection<DestinationListsAndArrays>>(srcLists);
+            var destListsAndArrays3 = mapperListsAndArrays.Map<SourceListsAndArrays[], IList<DestinationListsAndArrays>>(srcLists);
+            var destListsAndArrays4 = mapperListsAndArrays.Map<SourceListsAndArrays[], List<DestinationListsAndArrays>>(srcLists);
+            var destListsAndArrays5 = mapperListsAndArrays.Map<SourceListsAndArrays[], DestinationListsAndArrays[]>(srcLists);
+
+            // Polymorphic element types in collections
+            var configPolymorphic = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<SourceListsAndArrays, DestinationListsAndArrays>()
+                .Include<SourceListsAndArraysChild, DestinationListsAndArrayChild>();
+                cfg.CreateMap<SourceListsAndArraysChild, DestinationListsAndArrayChild>();
+            });
+            var mapperPolymorphic = configPolymorphic.CreateMapper();
+            var srcPolymorphic = new[] {
+                new SourceListsAndArrays(),
+                new SourceListsAndArraysChild(),
+                new SourceListsAndArrays()
+            };
+
+            var destPolymorphic = mapperPolymorphic.Map<SourceListsAndArrays[], DestinationListsAndArrays[]>(srcPolymorphic);
+
+            Console.WriteLine("==========Lists and Arrays==========");
+
+            #endregion
+
             #region Custom Type Converters
             var configCustomTypeConverter = new MapperConfiguration(cfg =>
             {
@@ -76,6 +117,25 @@ namespace AutoMapperConsoleApp
             #endregion
         }
     }
+
+    #region Lists and Arrays
+    public class SourceListsAndArrays
+    {
+        public int Value1 { get; set; }
+    }
+    public class DestinationListsAndArrays
+    {
+        public int Value1 { get; set; }
+    }
+    public class SourceListsAndArraysChild : SourceListsAndArrays
+    {
+        public int Value2 { get; set; }
+    }
+    public class DestinationListsAndArrayChild : DestinationListsAndArrays
+    {
+        public int Value2 { get; set; }
+    }
+    #endregion
 
     #region Custom Type Converters
     public class SourceCustomTypeConverter
