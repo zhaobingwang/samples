@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sample.Data.Access.ADONET\Sample.Data.Access.ADONET.csproj" />
+    <ProjectReference Include="..\Sample.Data.Access.Dapper\Sample.Data.Access.Dapper.csproj" />
+    <ProjectReference Include="..\Sample.Data.Access.EFCore\Sample.Data.Access.EFCore.csproj" />
+    <ProjectReference Include="..\Sample.Data.Entities\Sample.Data.Entities.csproj" />
+    <ProjectReference Include="..\Sample.DTO\Sample.DTO.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -5,6 +5,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sample.Business\Sample.Business.csproj" />
+  </ItemGroup>
+
 
   
 </Project>
