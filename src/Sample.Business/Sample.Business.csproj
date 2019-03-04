@@ -10,6 +10,12 @@
     <ProjectReference Include="..\Sample.Data.Access.EFCore\Sample.Data.Access.EFCore.csproj" />
     <ProjectReference Include="..\Sample.Data.Entities\Sample.Data.Entities.csproj" />
     <ProjectReference Include="..\Sample.DTO\Sample.DTO.csproj" />
+    <ProjectReference Include="..\Sample.Utilities\Sample.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EF\" />
+    <Folder Include="AdoNet\" />
   </ItemGroup>
 
 </Project>

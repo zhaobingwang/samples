@@ -8,19 +8,19 @@ using System.Text;
 
 namespace Sample.Data.Access.Dapper
 {
-    public class UsersOp
+    public class UserOperator
     {
         MySqlConnection connection;
         string _conncetionString = null;
-        public UsersOp()
+        public UserOperator()
         {
             _conncetionString = Sample.Share.Constants.DBConnectionString.MySql01;
         }
-        public UsersOp(string connString)
+        public UserOperator(string connString)
         {
             _conncetionString = connString;
         }
-        public bool AddUser(User user)
+        public bool Insert(User user)
         {
             string sql = $"insert into Users ({nameof(User.NickName)},{nameof(User.Email)},{nameof(User.IsDelete)},{nameof(User.RegTime)},{nameof(User.ModifyTime)},{nameof(User.Remark)}) values (@NickName,@Email,@IsDelete,@RegTime,@ModifyTime,@Remark)";
             using (MySqlConnection connection = new MySqlConnection(_conncetionString))
