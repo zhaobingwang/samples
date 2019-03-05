@@ -45,4 +45,15 @@ CREATE TABLE `users`  (
   PRIMARY KEY (`Id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_czech_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Table structure for users_targs
+-- ----------------------------
+DROP TABLE IF EXISTS `users_targs`;
+CREATE TABLE `users_targs`  (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标签名称',
+  `FromUserId` int(11) NOT NULL COMMENT '来源用户ID',
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 SET FOREIGN_KEY_CHECKS = 1;
