@@ -48,6 +48,10 @@ namespace AutoMapperConsoleApp
             //System.Console.WriteLine($"{userDTO2.Age2} {userDTO2.NickName}"); 
             #endregion
 
+            #region Flattening
+
+            #endregion
+
             #region Lists and Arrays
             // Lists and Arrays
             var configListsAndArrays = new MapperConfiguration(cfg =>
@@ -117,6 +121,23 @@ namespace AutoMapperConsoleApp
             #endregion
         }
     }
+
+    #region Flattening
+    public class Order
+    {
+
+    }
+    public class Customer
+    {
+        public string Name { get; set; }
+    }
+    public class Product
+    {
+    }
+    public class OrderLineItem
+    {
+    }
+    #endregion
 
     #region Lists and Arrays
     public class SourceListsAndArrays

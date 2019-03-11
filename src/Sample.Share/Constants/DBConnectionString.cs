@@ -9,6 +9,6 @@ namespace Sample.Share.Constants
         /// <summary>
         /// 本机MySQL连接字符串01
         /// </summary>
-        public const string MySql01 = "server=127.0.0.1;user id=root_test;password=123456;database=sample";
+        public const string MySql01 = "server=127.0.0.1;user id=root;password=123456;database=sample";
     }
 }

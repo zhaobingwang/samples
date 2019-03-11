@@ -22,7 +22,7 @@ namespace Sample.Data.Access.Dapper
         }
         public bool Insert(User user)
         {
-            string sql = $"insert into Users ({nameof(User.NickName)},{nameof(User.Email)},{nameof(User.IsDelete)},{nameof(User.RegTime)},{nameof(User.ModifyTime)},{nameof(User.Remark)}) values (@NickName,@Email,@IsDelete,@RegTime,@ModifyTime,@Remark)";
+            string sql = $"insert into users ({nameof(User.NickName)},{nameof(User.Email)},{nameof(User.IsDelete)},{nameof(User.RegTime)},{nameof(User.ModifyTime)},{nameof(User.Remark)}) values (@NickName,@Email,@IsDelete,@RegTime,@ModifyTime,@Remark)";
             using (MySqlConnection connection = new MySqlConnection(_conncetionString))
             {
                 return connection.Execute(sql, user) > 0;
@@ -56,6 +56,22 @@ namespace Sample.Data.Access.Dapper
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                 }
+            }
+        }
+        public int InsertTest(User user)
+        {
+            string sql = $"insert into users ({nameof(User.NickName)},{nameof(User.Email)},{nameof(User.IsDelete)},{nameof(User.RegTime)},{nameof(User.ModifyTime)},{nameof(User.Remark)}) values (@NickName,@Email,@IsDelete,@RegTime,@ModifyTime,@Remark)";
+            using (MySqlConnection connection = new MySqlConnection(_conncetionString))
+            {
+                return connection.Execute(sql, user);
+            }
+        }
+        public int DeleteTest(int id)
+        {
+            string sql = $"delete from users where id=@id";
+            using (MySqlConnection connection = new MySqlConnection(_conncetionString))
+            {
+                return connection.Execute(sql, new { id = id });
             }
         }
     }
