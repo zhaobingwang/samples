@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace AutoMapperConsoleApp
@@ -48,7 +49,70 @@ namespace AutoMapperConsoleApp
             //System.Console.WriteLine($"{userDTO2.Age2} {userDTO2.NickName}"); 
             #endregion
 
+            #region HelloWorld
+            // 第一种方式
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Source, Destination>();
+                cfg.CreateMap<Source, Destination>();
+            });
+            var mapper = config.CreateMapper();
+            var dest = mapper.Map<Source, Destination>(new Source
+            {
+                Id = 1,
+                Name = "test"
+            });
+            Console.WriteLine("==========Hello,World.==========");
+            Console.WriteLine($"id:{dest.Id},name:{dest.Name}");
+
+            // 第二种方式
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Source, Destination>();
+            });
+            var dest2 = Mapper.Map<Destination>(new Source
+            {
+                Id = 1,
+                Name = "test"
+            });
+            Console.WriteLine($"id:{dest2.Id},name:{dest2.Name}");
+
+            var dest3 = Mapper.Map<Source>(new Destination
+            {
+                Id = 2,
+                Name = "test2"
+            });
+            Console.WriteLine($"id:{dest3.Id},name:{dest3.Name}");
+
+            #endregion
+
             #region Flattening
+            var customer = new Customer
+            {
+                Name = "test"
+            };
+            var order = new Order
+            {
+                Customer = customer
+            };
+            var product = new Product
+            {
+                Name = "Surface laptop",
+                Price = 12999.99m
+            };
+            order.AddOrderLienItem(product, 3);
+
+            var configFlattening = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Order, OrderDto>();
+            });
+            var mapperFlattening = configFlattening.CreateMapper();
+            var dto = mapperFlattening.Map<Order, OrderDto>(order);
+            Console.WriteLine("==========Flattening==========");
+            Console.WriteLine($"{dto.CustomerName}\t{dto.Total}");
+            #endregion
+
+            #region Reverse Mapping and Unflattening
 
             #endregion
 
@@ -122,10 +186,36 @@ namespace AutoMapperConsoleApp
         }
     }
 
+    #region HelloWorld
+    public class Source
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    public class Destination
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    #endregion
+
     #region Flattening
     public class Order
     {
-
+        private readonly List<OrderLineItem> _orderLineItems = new List<OrderLineItem>();
+        public Customer Customer { get; set; }
+        public OrderLineItem[] GetOrderLineItems()
+        {
+            return _orderLineItems.ToArray();
+        }
+        public void AddOrderLienItem(Product product, int quantity)
+        {
+            _orderLineItems.Add(new OrderLineItem(product, quantity));
+        }
+        public decimal GetTotal()
+        {
+            return _orderLineItems.Sum(li => li.GetTotal());
+        }
     }
     public class Customer
     {
@@ -133,10 +223,32 @@ namespace AutoMapperConsoleApp
     }
     public class Product
     {
+        public decimal Price { get; set; }
+        public string Name { get; set; }
     }
     public class OrderLineItem
     {
+        public OrderLineItem(Product product, int quantity)
+        {
+            Product = product;
+            Quantity = quantity;
+        }
+        public Product Product { get; private set; }
+        public int Quantity { get; private set; }
+        public decimal GetTotal()
+        {
+            return Quantity * Product.Price;
+        }
     }
+    public class OrderDto
+    {
+        public string CustomerName { get; set; }
+        public decimal Total { get; set; }
+    }
+    #endregion
+
+    #region Reverse Mapping and Unflattening
+
     #endregion
 
     #region Lists and Arrays
