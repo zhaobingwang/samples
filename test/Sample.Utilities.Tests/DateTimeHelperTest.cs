@@ -26,7 +26,7 @@ namespace Sample.Utilities.Tests
             Assert.True(expectedMilliSecond == resultMilliSecond);
         }
 
-        [Fact]
+        [Fact(DisplayName ="获取UTC时间")]
         public void GetDateTime_WithExpectedParameters()
         {
             // arrange
