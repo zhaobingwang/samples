@@ -5,7 +5,7 @@ using AutoMapper;
 
 namespace Sample.Utilities.Tests
 {
-    [Trait("对象映射", "AutoMapper")]
+    [Trait("工具类", "对象映射")]
     public class AutoMapperHelperTest
     {
         public AutoMapperHelperTest()

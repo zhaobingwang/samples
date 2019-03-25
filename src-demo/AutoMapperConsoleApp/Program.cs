@@ -54,7 +54,6 @@ namespace AutoMapperConsoleApp
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Source, Destination>();
-                cfg.CreateMap<Source, Destination>();
             });
             var mapper = config.CreateMapper();
             var dest = mapper.Map<Source, Destination>(new Source
@@ -64,6 +63,14 @@ namespace AutoMapperConsoleApp
             });
             Console.WriteLine("==========Hello,World.==========");
             Console.WriteLine($"id:{dest.Id},name:{dest.Name}");
+
+            var mapper2 = config.CreateMapper();
+            var dest3 = mapper2.Map<Destination, Source>(new Destination
+            {
+                Id = 2,
+                Name = "test2"
+            });
+            Console.WriteLine($"id:{dest3.Id},name:{dest3.Name}");
 
             // 第二种方式
             Mapper.Initialize(cfg =>
@@ -76,13 +83,6 @@ namespace AutoMapperConsoleApp
                 Name = "test"
             });
             Console.WriteLine($"id:{dest2.Id},name:{dest2.Name}");
-
-            var dest3 = Mapper.Map<Source>(new Destination
-            {
-                Id = 2,
-                Name = "test2"
-            });
-            Console.WriteLine($"id:{dest3.Id},name:{dest3.Name}");
 
             #endregion
 
@@ -114,6 +114,39 @@ namespace AutoMapperConsoleApp
 
             #region Reverse Mapping and Unflattening
 
+            #endregion
+
+            #region Projection
+            var configProjection = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<CalendarEvent, CalendarEventForm>()
+                    .ForMember(dest => dest.EventDate, opt => opt.MapFrom(src => src.Date.Date))
+                    .ForMember(dest => dest.EventHour, opt => opt.MapFrom(src => src.Date.Hour))
+                    .ForMember(dest => dest.EventMinute, opt => opt.MapFrom(src => src.Date.Minute));
+            });
+            var mapperProjection = configProjection.CreateMapper();
+            var calendarEventForm = mapperProjection.Map<CalendarEvent, CalendarEventForm>(new CalendarEvent
+            {
+                Date = new DateTime(2019, 3, 23, 10, 10, 10),
+                Title = "Go party."
+            });
+            Console.WriteLine($"{calendarEventForm.Title}-{calendarEventForm.EventDate}-{calendarEventForm.EventHour}-{calendarEventForm.EventMinute}");
+            #endregion
+
+            #region Configuration Validation
+            var configConfigurationValidation = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<SourceConfigurationValidation, DestinationConfigurationValidation>(MemberList.None)
+                    .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
+            });
+            var mapperConfigurationValidation = configConfigurationValidation.CreateMapper();
+            var destConfigurationValidation = mapperConfigurationValidation.Map<DestinationConfigurationValidation>(new SourceConfigurationValidation
+            {
+                SomeValue = "hi."
+            });
+            configConfigurationValidation.AssertConfigurationIsValid();
+            Console.WriteLine("==========Configuration Validation==========");
+            Console.WriteLine(destConfigurationValidation.SomeValuefff);
             #endregion
 
             #region Lists and Arrays
@@ -249,6 +282,34 @@ namespace AutoMapperConsoleApp
 
     #region Reverse Mapping and Unflattening
 
+    #endregion
+
+    #region Projection
+    public class CalendarEvent
+    {
+        public DateTime Date { get; set; }
+        public string Title { get; set; }
+    }
+
+    public class CalendarEventForm
+    {
+        public DateTime EventDate { get; set; }
+        public int EventHour { get; set; }
+        public int EventMinute { get; set; }
+        public string Title { get; set; }
+    }
+    #endregion
+
+    #region Configuration Validation
+    public class SourceConfigurationValidation
+    {
+        public string SomeValue { get; set; }
+    }
+
+    public class DestinationConfigurationValidation
+    {
+        public string SomeValuefff { get; set; }
+    }
     #endregion
 
     #region Lists and Arrays
