@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Sample.Share\Sample.Share.csproj" />
     <ProjectReference Include="..\..\src\Sample.Utilities\Sample.Utilities.csproj" />
   </ItemGroup>
 
