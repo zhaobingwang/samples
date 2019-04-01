@@ -13,12 +13,11 @@ namespace Sample.Utilities
         /// <summary>
         /// 将对象序列化位json字符串
         /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="t">待序列化的对象</param>
+        /// <param name="obj">待序列化的对象</param>
         /// <returns>json字符串</returns>
-        public static string ToJson<T>(T t) where T : class, new()
+        public static string ToJson(object obj)
         {
-            return JsonConvert.SerializeObject(t);
+            return JsonConvert.SerializeObject(obj);
         }
 
         /// <summary>

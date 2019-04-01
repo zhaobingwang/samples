@@ -30,7 +30,7 @@ namespace Sample.Utilities.Tests
             var fakeUser = GetFakeUser();
 
             // act
-            var result = JsonOperator.ToJson<User>(fakeUser);
+            var result = JsonOperator.ToJson(fakeUser);
 
             // assert
             Assert.NotNull(result);
