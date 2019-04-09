@@ -24,5 +24,16 @@ namespace Sample.WinformClient
             winformTimer.ShowDialog();
             winformTimer.Dispose();
         }
+
+        private void BtnDelay_Click(object sender, EventArgs e)
+        {
+            Task task = DelayAsync();
+            task.Wait();
+        }
+
+        private async Task DelayAsync()
+        {
+            await Task.Delay(3000);//.ConfigureAwait(false); // 使用此配置 避免死锁
+        }
     }
 }

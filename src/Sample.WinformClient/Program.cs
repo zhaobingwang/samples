@@ -19,7 +19,7 @@ namespace Sample.WinformClient
        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SpirePDFViewer());
+            Application.Run(new Home());
         }
     }
 }
