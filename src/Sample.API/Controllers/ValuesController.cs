@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Formatting;
+//using System.Net.Http.Formatting;
 
 namespace Sample.API.Controllers
 {
@@ -62,6 +62,12 @@ namespace Sample.API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        public ActionResult<string> TestGet()
+        {
+            return "test get";
         }
     }
 }
