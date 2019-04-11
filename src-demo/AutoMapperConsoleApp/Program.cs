@@ -190,6 +190,26 @@ namespace AutoMapperConsoleApp
 
             #endregion
 
+            #region Nested Mappings
+            var configNested = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<OuterSource, OuterDest>();
+                cfg.CreateMap<InnerSource, InnerDest>();
+            });
+            config.AssertConfigurationIsValid();
+
+            var source = new OuterSource
+            {
+                Value = 5,
+                Inner = new InnerSource { OtherValue = 15 }
+            };
+            var mapperNested = config.CreateMapper();
+            var destNested = mapper.Map<OuterSource, OuterDest>(source);
+            Console.WriteLine($"==========Nested Mappings==========");
+            Console.WriteLine(destNested.Value);
+            Console.WriteLine(destNested.Inner.OtherValue);
+            #endregion
+
             #region Custom Type Converters
             var configCustomTypeConverter = new MapperConfiguration(cfg =>
             {
@@ -328,6 +348,27 @@ namespace AutoMapperConsoleApp
     public class DestinationListsAndArrayChild : DestinationListsAndArrays
     {
         public int Value2 { get; set; }
+    }
+    #endregion
+
+    #region Nested Mappings
+    public class OuterSource
+    {
+        public int Value { get; set; }
+        public InnerSource Inner { get; set; }
+    }
+    public class InnerSource
+    {
+        public int OtherValue { get; set; }
+    }
+    public class OuterDest
+    {
+        public int Value { get; set; }
+        public InnerDest Inner { get; set; }
+    }
+    public class InnerDest
+    {
+        public int OtherValue { get; set; }
     }
     #endregion
 
