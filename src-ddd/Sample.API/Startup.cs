@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using Sample.Infrastructure;
+using Sample.API.Filters;
+using Sample.Infrastructure.Repositories;
 
 namespace Sample.API
 {
@@ -24,7 +28,17 @@ namespace Sample.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(GlobalExceptionFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<SampleContext>(options =>
+            {
+                options.UseMySQL(Configuration.GetConnectionString("MySql-Sample"));
+            });
+
+            services.AddTransient<TodoItemRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
