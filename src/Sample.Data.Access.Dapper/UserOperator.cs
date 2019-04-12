@@ -20,6 +20,15 @@ namespace Sample.Data.Access.Dapper
         {
             _conncetionString = connString;
         }
+
+        public IEnumerable<User> GetAll()
+        {
+            string query = $"select {nameof(User.NickName)},{nameof(User.Email)},{(nameof(User.Remark))} from Users";
+            using (MySqlConnection connection = new MySqlConnection(_conncetionString))
+            {
+                return connection.Query<User>(query);
+            }
+        }
         public bool Insert(User user)
         {
             string sql = $"insert into users ({nameof(User.NickName)},{nameof(User.Email)},{nameof(User.IsDelete)},{nameof(User.RegTime)},{nameof(User.ModifyTime)},{nameof(User.Remark)}) values (@NickName,@Email,@IsDelete,@RegTime,@ModifyTime,@Remark)";
