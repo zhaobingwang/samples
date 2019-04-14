@@ -9,6 +9,9 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="NLog" Version="4.6.2" />
+    <PackageReference Include="NLog.Config" Version="4.6.2" />
+    <PackageReference Include="NLog.Web" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>

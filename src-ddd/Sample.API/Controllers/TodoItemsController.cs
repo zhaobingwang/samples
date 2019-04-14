@@ -11,7 +11,7 @@ namespace Sample.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class TodoItemsController : ControllerBase
+    public class TodoItemsController : BaseController
     {
         TodoItemRepository _todoItemRepository;
         public TodoItemsController(TodoItemRepository todoItemRepository)
@@ -22,6 +22,7 @@ namespace Sample.API.Controllers
         [Route("get-all")]
         public async Task<ActionResult<string>> GetAsync()
         {
+            logger.Info($"Visit the function:{typeof(TodoItemsController)}.{nameof(TodoItemsController.GetAsync)}");
             var todoItem = await _todoItemRepository.GetAllAsync();
             return Ok(todoItem);
         }
