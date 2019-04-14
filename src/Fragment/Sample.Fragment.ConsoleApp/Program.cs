@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Diagnostics;
 using System.Transactions;
+using Sample.Utilities;
+using AutoMapper;
 
 namespace Sample.Fragment.ConsoleApp
 {
@@ -13,30 +15,21 @@ namespace Sample.Fragment.ConsoleApp
         {
             try
             {
-                UserOperator userOperator = new UserOperator();
-                UserTagOperator userTagOperator = new UserTagOperator();
-                using (var scope = new TransactionScope())
+                AutoMapper.Mapper.Initialize(cfg =>
                 {
-                    //var result1 = userTagOperator.Insert(new Data.Entities.UserTag { Name = "friends", FromUserId = 7, TargetUserId = 8 });
-                    //var result2 = userTagOperator.Insert(new Data.Entities.UserTag { Name = "game", FromUserId = 7, TargetUserId = 8 });
-                    //scope.Complete();
+                    //cfg.CreateMap<Source, Destination>();
+                    //cfg.AddProfile(new Source2DestinationProfile());
+                    cfg.AddProfile<Source2DestinationProfile>();
+                });
+                Source src = new Source() { DBName = "test" };
+                var dest = src.MapTo<Destination>();
+                Console.WriteLine(dest.ViewName);
+                //    UserOperator userOperator = new UserOperator();
+                //    UserTagOperator userTagOperator = new UserTagOperator();
+                //    using (var scope = new TransactionScope())
+                //    {
 
-                    //var result1 = userTagOperator.Insert(new Data.Entities.UserTag { Name = "test1", FriendId = 7, UserId = 8 });
-                    //var result2 = userTagOperator.Insert(new Data.Entities.UserTag { Name = "test2", FriendId = 7, UserId = 8 });
-                    var userTag1 = new Data.Entities.UserTag { Name = "000", UserId = 7, FriendId = 8 };
-                    var userTag2 = new Data.Entities.UserTag { Name = "111", UserId = 7, FriendId = 8 };
-                    Stopwatch sw = new Stopwatch();
-                    sw.Start();
-                    var result1 = userTagOperator.Insert(userTag1);
-                    Console.WriteLine(sw.ElapsedMilliseconds);
-                    var result2 = userTagOperator.InsertByContrib(userTag1);
-                    Console.WriteLine(sw.ElapsedMilliseconds);
-                    sw.Stop();
-                    //scope.Complete();
-                    Console.WriteLine(result1);
-                    Console.WriteLine(result2);
-                    //Console.WriteLine(result2);
-                }
+                //    }
             }
             catch (Exception ex)
             {
@@ -44,9 +37,28 @@ namespace Sample.Fragment.ConsoleApp
             }
         }
     }
+
+    public class Source2DestinationProfile : Profile
+    {
+        public Source2DestinationProfile()
+        {
+            CreateMap<Source, Destination>()
+                .ForMember(dest => dest.ViewName, options => options.MapFrom(src => src.DBName));
+        }
+    }
+
     class Test
     {
         [StringLength(4, ErrorMessage = "max length 4")]
         public string name { get; set; }
+    }
+
+    class Source
+    {
+        public string DBName { get; set; }
+    }
+    class Destination
+    {
+        public string ViewName { get; set; }
     }
 }
