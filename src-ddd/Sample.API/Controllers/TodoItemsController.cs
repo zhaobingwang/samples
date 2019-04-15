@@ -25,6 +25,7 @@ namespace Sample.API.Controllers
         [Route("get-all")]
         public async Task<ActionResult<string>> GetAsync()
         {
+            _logger.LogInformation($"Visit {nameof(GetAsync)}");
             var todoItem = await _todoItemRepository.GetAllAsync();
             return Ok(todoItem);
         }

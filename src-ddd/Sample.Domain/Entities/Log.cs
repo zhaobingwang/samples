@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Sample.Domain.Entities
 {
     public class Log
     {
-        public string Id { get; set; }
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
         public string Application { get; set; }
-        public string Logged { get; set; }
+        public DateTime Logged { get; set; }
         public string Level { get; set; }
         public string Message { get; set; }
         public string Logger { get; set; }

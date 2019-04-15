@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sample.Infrastructure.Migrations
 {
@@ -10,9 +11,10 @@ namespace Sample.Infrastructure.Migrations
                 name: "Logs",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
                     Application = table.Column<string>(nullable: true),
-                    Logged = table.Column<string>(nullable: true),
+                    Logged = table.Column<DateTime>(nullable: false),
                     Level = table.Column<string>(nullable: true),
                     Message = table.Column<string>(nullable: true),
                     Logger = table.Column<string>(nullable: true),

@@ -12,6 +12,16 @@ namespace Sample.Infrastructure
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Log>().Property(l => l.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Log>()
+                .ToTable("Logs")
+                .HasKey(l => l.Id);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<TodoItem> TodoItems { get; set; }
         public DbSet<Log> Logs { get; set; }
     }
