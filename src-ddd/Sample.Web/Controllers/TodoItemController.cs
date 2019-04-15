@@ -8,11 +8,11 @@ using Sample.Infrastructure.Repositories;
 
 namespace Sample.Web.Controllers
 {
-    public class TodoItemsController : Controller
+    public class TodoItemController : Controller
     {
-        private readonly ILogger<TodoItemsController> _logger;
+        private readonly ILogger<TodoItemController> _logger;
         TodoItemRepository _todoItemRepository;
-        public TodoItemsController(ILogger<TodoItemsController> logger, TodoItemRepository todoItemRepository)
+        public TodoItemController(ILogger<TodoItemController> logger, TodoItemRepository todoItemRepository)
         {
             _logger = logger;
             _todoItemRepository = todoItemRepository;

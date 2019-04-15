@@ -13,5 +13,6 @@ namespace Sample.Infrastructure
 
         }
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 }
