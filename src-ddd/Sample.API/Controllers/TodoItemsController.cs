@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Sample.Infrastructure;
 using Sample.Infrastructure.Repositories;
 
@@ -13,16 +14,17 @@ namespace Sample.API.Controllers
     [ApiController]
     public class TodoItemsController : BaseController
     {
+        private readonly ILogger<TodoItemsController> _logger;
         TodoItemRepository _todoItemRepository;
-        public TodoItemsController(TodoItemRepository todoItemRepository)
+        public TodoItemsController(ILogger<TodoItemsController> logger, TodoItemRepository todoItemRepository)
         {
+            _logger = logger;
             _todoItemRepository = todoItemRepository;
         }
         [HttpGet]
         [Route("get-all")]
         public async Task<ActionResult<string>> GetAsync()
         {
-            logger.Info($"Visit the function:{typeof(TodoItemsController)}.{nameof(TodoItemsController.GetAsync)}");
             var todoItem = await _todoItemRepository.GetAllAsync();
             return Ok(todoItem);
         }
