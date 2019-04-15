@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<Sample.Domain.Entities.TodoItem>
+
+<h1>Index</h1>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>待办事项</th>
+                <th>是否完成</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="success">
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @(item.IsComplete == 1 ? "是" : "否")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
