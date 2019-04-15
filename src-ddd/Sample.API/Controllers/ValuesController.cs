@@ -14,6 +14,8 @@ namespace Sample.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            int a = 0;
+            int b = 10 / a;
             return new string[] { "value1", "value2" };
         }
 

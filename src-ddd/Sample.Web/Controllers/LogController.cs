@@ -17,9 +17,9 @@ namespace Sample.Web.Controllers
             _logger = logger;
             _logRepository = logRepository;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber = 1)
         {
-            var logs = await _logRepository.GetAllAsync();
+            var logs = await _logRepository.GetPaginatedList(pageNumber, 10);
             return View(logs);
         }
     }
