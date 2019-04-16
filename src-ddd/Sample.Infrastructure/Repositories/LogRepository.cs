@@ -22,9 +22,15 @@ namespace Sample.Infrastructure.Repositories
             return await _context.Logs.ToListAsync();
         }
 
+        public async Task<Log> GetAsync(long id)
+        {
+            return await _context.Logs.FindAsync(id);
+        }
+
         public async Task<PaginatedList<Log>> GetPaginatedList(int pageIndex, int pageSize)
         {
             var logs = from log in _context.Logs
+                       orderby log.Logged ascending
                        select log;
             return await PaginatedList<Log>.CreateAsync(logs, pageIndex, pageSize);
         }

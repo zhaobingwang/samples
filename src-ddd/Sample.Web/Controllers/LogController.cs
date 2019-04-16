@@ -22,5 +22,12 @@ namespace Sample.Web.Controllers
             var logs = await _logRepository.GetPaginatedList(pageNumber, 10);
             return View(logs);
         }
+
+
+        public async Task<IActionResult> Details(long id)
+        {
+            var log = await _logRepository.GetAsync(id);
+            return View(log);
+        }
     }
 }
