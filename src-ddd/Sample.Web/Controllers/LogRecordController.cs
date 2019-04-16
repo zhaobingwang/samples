@@ -8,11 +8,11 @@ using Sample.Infrastructure.Repositories;
 
 namespace Sample.Web.Controllers
 {
-    public class LogController : Controller
+    public class LogRecordController : Controller
     {
-        private readonly ILogger<LogController> _logger;
+        private readonly ILogger<LogRecordController> _logger;
         private LogRepository _logRepository;
-        public LogController(ILogger<LogController> logger, LogRepository logRepository)
+        public LogRecordController(ILogger<LogRecordController> logger, LogRepository logRepository)
         {
             _logger = logger;
             _logRepository = logRepository;
