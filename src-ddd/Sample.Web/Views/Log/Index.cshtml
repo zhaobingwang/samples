@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@*@model List<Sample.Domain.Entities.Log>
+*@
+@model Sample.Infrastructure.Share.PaginatedList<Sample.Domain.Entities.Log>
+        ;
+
+<h1>Index</h1>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>应用名称</th>
+                <th>等级</th>
+                <th>日志信息</th>
+                <th>请求地址</th>
+                <th>记录时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                string styleTr = "";
+            }
+            @foreach (var item in Model)
+            {
+
+                if (item.Level.ToLower() == "info")
+                {
+                    styleTr = "table-success";
+                }
+                else if (item.Level.ToLower() == "error")
+                {
+                    styleTr = "table-danger";
+                }
+                else
+                {
+                    styleTr = "";
+                }
+
+                <tr class="@styleTr">
+                    <td>
+                        @item.Application
+                    </td>
+                    <td>
+                        @item.Level
+                    </td>
+                    <td>
+                        @item.Message
+                    </td>
+                    <td>
+                        @item.Url
+                    </td>
+                    <td>
+                        @item.Logged
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-primary" asp-controller="Log" asp-action="Details" asp-route-id="@item.Id">查看</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        var currentPageIndex = Model.PageIndex;
+    }
+
+
+
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @prevDisabled">
+                <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="page-link">
+                    Previous
+                </a>
+            </li>
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                if (currentPageIndex == i)
+                {
+                    <li class="page-item active">
+                        <span class="page-link">
+                            @i
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item"><a asp-action="Index" asp-route-pageNumber="@i" class="page-link">@i</a></li>
+                }
+            }
+
+            <li class="page-item @nextDisabled">
+                <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="page-link ">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+        });
+    </script>
+}
+

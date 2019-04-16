@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Details";
+}
+@model Sample.Domain.Entities.Log
+
+<h1>Details</h1>
+<div class="container table-responsive col-xl-auto">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col">Key</th>
+                <th class="col-6">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>应用名称</td>
+                <td>@Model.Application</td>
+            </tr>
+            <tr>
+                <td>请求操作</td>
+                <td>@Model.Action</td>
+            </tr>
+            <tr>
+                <td>记录时间</td>
+                <td>@Model.Logged</td>
+            </tr>
+            <tr>
+                <td>请求地址</td>
+                <td>@Model.Url</td>
+            </tr>
+
+            <tr>
+                <td>日志等级</td>
+                <td><button class="btn btn-danger">@Model.Level</button></td>
+            </tr>
+            <tr class="table-info">
+                <td>日志信息</td>
+                <td>@Model.Message</td>
+            </tr>
+            <tr class="table-danger">
+                <td>异常信息</td>
+                <td>@Model.Exception</td>
+            </tr>
+            <tr>
+                <td>记录者</td>
+                <td>@Model.Logger</td>
+            </tr>
+            <tr>
+                <td>调用位置</td>
+                <td>@Model.Callsite</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
