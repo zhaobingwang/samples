@@ -1,16 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
-@*@model List<Sample.Domain.Entities.Log>
-*@
+
 @model Sample.Infrastructure.Share.PaginatedList<Sample.Domain.Entities.Log>
-        ;
 
 <h1>Index</h1>
 
 <div class="table-responsive">
     <table class="table table-hover table-striped">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th>应用名称</th>
                 <th>等级</th>
@@ -26,12 +24,7 @@
             }
             @foreach (var item in Model)
             {
-
-                if (item.Level.ToLower() == "info")
-                {
-                    styleTr = "table-success";
-                }
-                else if (item.Level.ToLower() == "error")
+                if (item.Level.ToLower() == "error")
                 {
                     styleTr = "table-danger";
                 }

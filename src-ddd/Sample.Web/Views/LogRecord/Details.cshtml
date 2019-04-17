@@ -4,12 +4,12 @@
 @model Sample.Domain.Entities.Log
 
 <h1>Details</h1>
-<div class="container table-responsive col-xl-auto">
+<div class="table-responsive">
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th class="col">Key</th>
-                <th class="col-6">Value</th>
+                <th class="col-4">Key</th>
+                <th class="col-8">Value</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
             </tr>
             <tr class="table-danger">
                 <td>异常信息</td>
-                <td>@Model.Exception</td>
+                <td><code>@Model.Exception</code></td>
             </tr>
             <tr>
                 <td>记录者</td>
