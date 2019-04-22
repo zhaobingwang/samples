@@ -7,11 +7,9 @@ namespace Concurrency.TPL.ConsoleApp
 {
     public class BaseClass
     {
-        public int Count { get; set; } = 10;
-        public List<ExampleClass> FakeExampleClassList { get; set; }
-        public BaseClass()
+        public List<ExampleClass> GetFakeExampleClassList(int count)
         {
-            FakeExampleClassList = FakeData.GetExampleData(Count);
+            return FakeData.GetExampleData(count);
         }
     }
 }

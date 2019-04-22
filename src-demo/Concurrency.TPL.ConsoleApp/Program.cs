@@ -12,7 +12,7 @@ namespace Concurrency.TPL.ConsoleApp
             // hello world
             Console.WriteLine("==hello world  start==");
             HelloWorld helloWorld = new HelloWorld();
-            helloWorld.Run();
+            helloWorld.Run(50);
             Console.WriteLine("==hello world end==");
 
 

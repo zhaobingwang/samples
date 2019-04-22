@@ -8,11 +8,14 @@ namespace Concurrency.TPL.ConsoleApp
 {
     public class HelloWorld : BaseClass
     {
-        public void Run()
+        public HelloWorld()
         {
-            Count = 50;//10 * 1000 * 1000;
+
+        }
+        public void Run(int count)
+        {
             Console.WriteLine("init start");
-            var list = FakeExampleClassList;
+            var list = GetFakeExampleClassList(count);
 
             Console.WriteLine("start");
             Stopwatch sw = new Stopwatch();
@@ -21,12 +24,12 @@ namespace Concurrency.TPL.ConsoleApp
             {
                 Process(item);
             }
-            Console.WriteLine($"串行计算{Count}条数据耗时:{sw.ElapsedMilliseconds} ms");
+            Console.WriteLine($"串行计算{count}条数据耗时:{sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             Parallel.ForEach(list, item => Process(item));
             sw.Stop();
-            Console.WriteLine($"并行计算{Count}条数据耗时:{sw.ElapsedMilliseconds} ms");
+            Console.WriteLine($"并行计算{count}条数据耗时:{sw.ElapsedMilliseconds} ms");
         }
         public static void Process(ExampleClass exampleClass)
         {
