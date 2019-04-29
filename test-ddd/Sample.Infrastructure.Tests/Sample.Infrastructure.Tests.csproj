@@ -16,4 +16,8 @@
     <ProjectReference Include="..\..\src-ddd\Sample.Infrastructure\Sample.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="RepositoriesDapper\MySql\" />
+  </ItemGroup>
+
 </Project>
