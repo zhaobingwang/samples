@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,11 +10,30 @@ namespace Concurrency.TPL.ConsoleApp
     {
         static void Main(string[] args)
         {
-            // hello world
-            Console.WriteLine("==hello world  start==");
-            HelloWorld helloWorld = new HelloWorld();
-            helloWorld.Run(50);
-            Console.WriteLine("==hello world end==");
+            #region hello world
+            //Console.WriteLine("==hello world  start==");
+            //HelloWorld helloWorld = new HelloWorld();
+            //helloWorld.Run(50);
+            //Console.WriteLine("==hello world end=="); 
+            #endregion
+
+            #region TAP
+            Console.WriteLine($"**********[{nameof(TAP)}] [START]**********");
+            TAP tap = new TAP();
+            Stopwatch stopwatch = new Stopwatch();
+
+            // 1.hello,world
+            Console.WriteLine($"    =={nameof(TAP.HelloWorld)} start==    ");
+            stopwatch.Start();
+            tap.HelloWorld();
+            Console.WriteLine($"elapsed time:{stopwatch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"    =={nameof(TAP.HelloWorld)} end==    ");
+
+            // 2.
+            stopwatch.Reset();
+
+            Console.WriteLine($"**********[{nameof(TAP)}] [END]**********");
+            #endregion
 
 
             Console.Read();
