@@ -30,7 +30,7 @@ namespace Sample.Infrastructure.Repositories
         public async Task<PaginatedList<Log>> GetPaginatedList(int pageIndex, int pageSize)
         {
             var logs = from log in _context.Logs
-                       orderby log.Logged ascending
+                       orderby log.Logged descending
                        select log;
             return await PaginatedList<Log>.CreateAsync(logs, pageIndex, pageSize);
         }

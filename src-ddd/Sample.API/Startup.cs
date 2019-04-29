@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Sample.Infrastructure;
 using Sample.API.Filters;
 using Sample.Infrastructure.Repositories;
+using Sample.Infrastructure.RepositoriesDapper.MySql;
 
 namespace Sample.API
 {
@@ -39,6 +40,7 @@ namespace Sample.API
             });
 
             services.AddTransient<TodoItemRepository>();
+            services.AddTransient<T01Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
