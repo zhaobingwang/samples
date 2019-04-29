@@ -120,9 +120,9 @@ namespace AutoMapperConsoleApp
             var configProjection = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<CalendarEvent, CalendarEventForm>()
-                    .ForMember(dest => dest.EventDate, opt => opt.MapFrom(src => src.Date.Date))
-                    .ForMember(dest => dest.EventHour, opt => opt.MapFrom(src => src.Date.Hour))
-                    .ForMember(dest => dest.EventMinute, opt => opt.MapFrom(src => src.Date.Minute));
+                    .ForMember(dest1 => dest1.EventDate, opt => opt.MapFrom(src => src.Date.Date))
+                    .ForMember(dest1 => dest1.EventHour, opt => opt.MapFrom(src => src.Date.Hour))
+                    .ForMember(dest1 => dest1.EventMinute, opt => opt.MapFrom(src => src.Date.Minute));
             });
             var mapperProjection = configProjection.CreateMapper();
             var calendarEventForm = mapperProjection.Map<CalendarEvent, CalendarEventForm>(new CalendarEvent
@@ -137,7 +137,7 @@ namespace AutoMapperConsoleApp
             var configConfigurationValidation = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<SourceConfigurationValidation, DestinationConfigurationValidation>(MemberList.None)
-                    .ForMember(dest => dest.SomeValuefff, opt => opt.Ignore());
+                    .ForMember(dest5 => dest5.SomeValuefff, opt => opt.Ignore());
             });
             var mapperConfigurationValidation = configConfigurationValidation.CreateMapper();
             var destConfigurationValidation = mapperConfigurationValidation.Map<DestinationConfigurationValidation>(new SourceConfigurationValidation
@@ -228,7 +228,7 @@ namespace AutoMapperConsoleApp
             var configCustomValueResolvers = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<SourceCustomValueResolver, DestinationCustomValueResolver>()
-                .ForMember(dest => dest.Total, opt => opt.MapFrom<CustomResolver>());
+                .ForMember(dest4 => dest4.Total, opt => opt.MapFrom<CustomResolver>());
             });
             var sourceCustomValueResolver = new SourceCustomValueResolver { Value1 = 2, Value2 = 3 };
             var mapperCustomValueResolver = configCustomValueResolvers.CreateMapper();

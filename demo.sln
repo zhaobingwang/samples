@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Concurrency", "Concurrency"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concurrency.TPL.ConsoleApp", "src-demo\Concurrency.TPL.ConsoleApp\Concurrency.TPL.ConsoleApp.csproj", "{01548BC8-BF76-4CD7-BF38-9ED3EB4C6B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ClassLibrary", "src-demo\Demo.ClassLibrary\Demo.ClassLibrary.csproj", "{7E057649-7590-4140-9A56-CB19F003E584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.ClassLibrary", "src-demo\Demo.ClassLibrary\Demo.ClassLibrary.csproj", "{7E057649-7590-4140-9A56-CB19F003E584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenchmarkDotNetExample", "src-demo\BenchmarkDotNetExample\BenchmarkDotNetExample.csproj", "{ABE807A8-2E32-4E0E-95C0-E5CBF9B878E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{7E057649-7590-4140-9A56-CB19F003E584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E057649-7590-4140-9A56-CB19F003E584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E057649-7590-4140-9A56-CB19F003E584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE807A8-2E32-4E0E-95C0-E5CBF9B878E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE807A8-2E32-4E0E-95C0-E5CBF9B878E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE807A8-2E32-4E0E-95C0-E5CBF9B878E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE807A8-2E32-4E0E-95C0-E5CBF9B878E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
