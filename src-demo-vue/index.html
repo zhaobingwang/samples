@@ -11,7 +11,19 @@
       {{ message }}
     </div>
     <div id="app-2">
-      <span v-bind:title=""> </span>
+      <span v-bind:title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+      </span>
+    </div>
+    <div id="app-3">
+      <p v-if="seen">现在你看到我了吧</p>
+    </div>
+    <div id="app-4">
+      <ol>
+        <li v-for="todo in todos">
+          {{todo.text}}
+        </li>
+      </ol>
     </div>
   </body>
 </html>
@@ -19,9 +31,34 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
   var app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
-      message: "Hello Vue!"
+      message: 'Hello Vue!'
+    }
+  });
+
+  var app2 = new Vue({
+    el: '#app-2',
+    data: {
+      message: '页面加载于'+new Date().toLocaleString()
+    }
+  });
+
+  var app3=new Vue({
+    el:'#app-3',
+    data:{
+      seen:true
+    }
+  });
+  
+  var app4=new Vue({
+    el:'#app-4',
+    data:{
+      todos:[
+        { text: '学习 JavaScript' },
+        { text: '学习 Vue' },
+        { text: '整个牛项目' }
+      ]
     }
   });
 </script>

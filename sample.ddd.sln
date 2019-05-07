@@ -13,13 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Web", "src-ddd\Sampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.ConsoleApp", "src-ddd\Sample.ConsoleApp\Sample.ConsoleApp.csproj", "{5383925C-58EA-4140-8FBA-C4331414CA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Infrastructure.Tests", "test-ddd\Sample.Infrastructure.Tests\Sample.Infrastructure.Tests.csproj", "{8B19B38C-A03B-4521-9CCC-F19AC4ECE850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Infrastructure.Tests", "test-ddd\Sample.Infrastructure.Tests\Sample.Infrastructure.Tests.csproj", "{8B19B38C-A03B-4521-9CCC-F19AC4ECE850}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.test", "0.test", "{E773DBBB-1B0A-4612-8696-76922C479236}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.tools", "1.tools", "{AD784AF4-1FD7-4F13-95D0-CB92BBE4F8E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Tools.GB.T2260.Build", "src-tools\Sample.Tools.GB.T2260.Build\Sample.Tools.GB.T2260.Build.csproj", "{42618765-36EC-4902-8E93-1BA84509D5A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Tools.GB.T2260.Build", "src-tools\Sample.Tools.GB.T2260.Build\Sample.Tools.GB.T2260.Build.csproj", "{42618765-36EC-4902-8E93-1BA84509D5A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
