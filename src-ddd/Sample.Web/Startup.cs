@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sample.Infrastructure;
 using Sample.Infrastructure.Repositories;
+using Sample.Web.Hubs;
 
 namespace Sample.Web
 {
@@ -43,6 +44,9 @@ namespace Sample.Web
 
             services.AddTransient<TodoItemRepository>();
             services.AddTransient<LogRepository>();
+
+            // SignalR
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +72,11 @@ namespace Sample.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/chathub");
             });
         }
     }

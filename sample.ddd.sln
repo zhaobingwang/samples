@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.tools", "1.tools", "{AD78
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Tools.GB.T2260.Build", "src-tools\Sample.Tools.GB.T2260.Build\Sample.Tools.GB.T2260.Build.csproj", "{42618765-36EC-4902-8E93-1BA84509D5A4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.PresentationLayer", "2.PresentationLayer", "{28CE44DB-6AF5-44B7-9824-9980475EA22B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Winform", "src-ddd\Sample.Winform\Sample.Winform.csproj", "{8553BE42-68B7-44CA-A1C6-87A8104C02F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{42618765-36EC-4902-8E93-1BA84509D5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42618765-36EC-4902-8E93-1BA84509D5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42618765-36EC-4902-8E93-1BA84509D5A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8553BE42-68B7-44CA-A1C6-87A8104C02F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8553BE42-68B7-44CA-A1C6-87A8104C02F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8553BE42-68B7-44CA-A1C6-87A8104C02F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8553BE42-68B7-44CA-A1C6-87A8104C02F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8B19B38C-A03B-4521-9CCC-F19AC4ECE850} = {E773DBBB-1B0A-4612-8696-76922C479236}
 		{42618765-36EC-4902-8E93-1BA84509D5A4} = {AD784AF4-1FD7-4F13-95D0-CB92BBE4F8E3}
+		{8553BE42-68B7-44CA-A1C6-87A8104C02F2} = {28CE44DB-6AF5-44B7-9824-9980475EA22B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6AA1BCF-E029-47F3-B085-DEC36EED0D61}
