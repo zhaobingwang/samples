@@ -7,12 +7,14 @@ namespace FrameworkDesign.ClassLibrary
 {
     public class Items : List<Item>, IEnumerable<Item>
     {
+        public const string VipString = "VIP_";
+        public const string NormalString = "Normal_";
         public Items()
         {
-            this.Add(new Item() { Code = "VIP_001", Name = "小米笔记本Pro", Price = 6999.00 });
-            this.Add(new Item() { Code = "Normal_001", Name = "Cherry MX Board 8.0 机械键盘", Price = 1779.00 });
-            this.Add(new Item() { Code = "VIP_002", Name = "戴尔 U2417H 23.8英寸显示器", Price = 1479.00 });
-            this.Add(new Item() { Code = "Normal_002", Name = "金士顿DDR4 骇客神条 16G", Price = 599.00 });
+            this.Add(new Item() { Code = $"{VipString}001", Name = "小米笔记本Pro", Price = 6999.00 });
+            this.Add(new Item() { Code = $"{NormalString}001", Name = "Cherry MX Board 8.0 机械键盘", Price = 1779.00 });
+            this.Add(new Item() { Code = $"{VipString}002", Name = "戴尔 U2417H 23.8英寸显示器", Price = 1479.00 });
+            this.Add(new Item() { Code = $"{NormalString}002", Name = "金士顿DDR4 骇客神条 16G", Price = 599.00 });
         }
         public IEnumerable<Item> GetVIPItems()
         {
