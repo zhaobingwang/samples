@@ -1,20 +1,21 @@
-using System;
+ï»¿using System;
 using FrameworkDesign.ClassLibrary;
+using FrameworkDesign.ClassLibrary.OperationPrice;
 using Xunit;
 
 namespace FrameworkDesign.ClassLibrary.Tests
 {
-    [Trait("¿ò¼ÜÉè¼Æ", "¶©µ¥²âÊÔ")]
+    [Trait("æ¡†æž¶è®¾è®¡", "è®¢å•æµ‹è¯•")]
     public class OrderTest
     {
-        [Fact(DisplayName = "ÉÌÆ·¼Û¸ñÊÇ·ñÕýÈ·-Òì³£²âÊÔ")]
-        public void Order_ItemsPrice_IsCorrect_WithExpectedParameters()
+        [Fact(DisplayName = "å•†å“ä»·æ ¼æ˜¯å¦æ­£ç¡®-å¼‚å¸¸æµ‹è¯•")]
+        public void Order_ItemsPrice_IsCorrect_WithUnExpectedParameters()
         {
             // arrange
-            OperationNoormalPrices operationNoormalPrices = new OperationNoormalPrices();
+            OperationNormalPrices operationNoormalPrices = new OperationNormalPrices();
             Order order = new Order(operationNoormalPrices);
             Items items = new Items();
-            items.Add(new Item() { Name = "Î÷¹Ï", Price = 0.0 });
+            items.Add(new Item() { Name = "è¥¿ç“œ", Price = 0.0 });
 
             // act
             order.Items = items;
@@ -23,14 +24,14 @@ namespace FrameworkDesign.ClassLibrary.Tests
             Assert.Null(order.Items);
         }
 
-        [Fact(DisplayName = "ÉÌÆ·¼Û¸ñÊÇ·ñÕýÈ·-Õý³£²âÊÔ")]
-        public void Order_ItemsPrice_IsCorrect_WithUnExpectedParameters()
+        [Fact(DisplayName = "å•†å“ä»·æ ¼æ˜¯å¦æ­£ç¡®-æ­£å¸¸æµ‹è¯•")]
+        public void Order_ItemsPrice_IsCorrect_WithExpectedParameters()
         {
             // arrange
-            OperationNoormalPrices operationNoormalPrices = new OperationNoormalPrices();
+            OperationNormalPrices operationNoormalPrices = new OperationNormalPrices();
             Order order = new Order(operationNoormalPrices);
             Items items = new Items();
-            items.Add(new Item() { Name = "Î÷¹Ï", Price = 39.99 });
+            items.Add(new Item() { Name = "è¥¿ç“œ", Price = 39.99 });
 
             // act
             order.Items = items;
@@ -38,6 +39,44 @@ namespace FrameworkDesign.ClassLibrary.Tests
             // assert
             Assert.NotNull(order.Items);
             Assert.True(order.Items.Count > 0);
+        }
+
+        [Fact(DisplayName = "èŽ·å–è®¢å•ä»·æ ¼-æ­£å¸¸æµ‹è¯•")]
+        public void Order_GetPrices_WithExpectedParameters()
+        {
+            // arrange
+            double expectedTotalPrice = 10935.99;
+            OperationNormalPrices operationNormalPrices = new OperationNormalPrices();
+            Order order = new Order(operationNormalPrices);
+            Items items = new Items();
+            items.Add(new Item() { Code = "Normal_003", Name = "è¥¿ç“œ", Price = 39.99 });
+            order.Items = items;
+
+            // act
+            order.FilteredItemsCountEvents += (obj) => { };
+            var result = order.GetPrices();
+
+            // assert
+            Assert.True(result == expectedTotalPrice);
+        }
+
+        [Fact(DisplayName = "è¿‡æ»¤åŽçš„å•†å“æ•°é‡-æ­£å¸¸æµ‹è¯•")]
+        public void Order_ItemsCountAfterFilter_WithExpectedParameters()
+        {
+            // arrange
+            int expected = 4;
+            OperationNormalPrices operationNormalPrices = new OperationNormalPrices();
+            Order order = new Order(operationNormalPrices);
+            Items items = new Items();
+            order.Items = items;
+
+            // act
+            int countAfterFilter = -1;
+            order.FilteredItemsCountEvents += (obj) => { countAfterFilter = obj; };
+            var result = order.GetPrices();
+
+            // assert
+            Assert.True(countAfterFilter == expected);
         }
     }
 }

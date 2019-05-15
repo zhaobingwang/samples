@@ -32,7 +32,40 @@ namespace FrameworkDesign.ClassLibrary
         }
         public double GetPrices()
         {
+            this.Filter(item =>
+            {
+                if (item.Price <= 0)
+                {
+                    return true;
+                }
+                return false;
+            });
             return this.OperationPrices.GetPrices(this);
+        }
+
+        private Action<int> filteredItemsCountEvents;
+        public event Action<int> FilteredItemsCountEvents
+        {
+            add
+            {
+                filteredItemsCountEvents = value;
+            }
+            remove
+            {
+                if (filteredItemsCountEvents != null)
+                    filteredItemsCountEvents -= value;
+            }
+        }
+
+        public List<Item> Filter(Func<Item, bool> filter)
+        {
+            var result = from item in Items where filter(item) select item;
+            result.ToList().ForEach(item =>
+            {
+                Items.Remove(item);
+            });
+            this.filteredItemsCountEvents(Items.Count);    // 触发过滤后的事件
+            return result.DefaultIfEmpty().ToList();
         }
     }
 }
