@@ -19,7 +19,7 @@ namespace Sample.Winform
             InitializeComponent();
 
             connection = new HubConnection("http://localhost:5002/ChatHub");
-            connection.Closed += Connection_Closed;
+            //connection.Closed += Connection_Closed;
         }
 
         private async Task Connection_Closed()
