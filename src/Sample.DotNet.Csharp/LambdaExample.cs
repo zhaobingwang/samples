@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Sample.DotNet.Csharp
 {
+    /// <summary>
+    /// 参见：https://www.cnblogs.com/jesse2013/p/happylambda.html#b01
+    /// http://www.cnblogs.com/jesse2013/p/happylambda-part2.html
+    /// </summary>
     public class LambdaExample
     {
         public void HelloWorld()
