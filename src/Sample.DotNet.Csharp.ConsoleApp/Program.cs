@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Sample.DotNet.Csharp.ConsoleApp
+namespace Sample.DotNet.CSharp.ConsoleApp
 {
     class Program
     {

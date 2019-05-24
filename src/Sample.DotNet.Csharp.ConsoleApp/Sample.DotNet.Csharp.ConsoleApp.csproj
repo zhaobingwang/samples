@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sample.DotNet.Csharp\Sample.DotNet.Csharp.csproj" />
+    <ProjectReference Include="..\Sample.DotNet.Csharp\Sample.DotNet.CSharp.csproj" />
   </ItemGroup>
 
 </Project>

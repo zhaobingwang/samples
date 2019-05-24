@@ -59,9 +59,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Business.Infrastruct
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".NET", ".NET", "{2EF630B6-06FF-4CFB-85D8-E6A253536A7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.DotNet.Csharp", "src\Sample.DotNet.Csharp\Sample.DotNet.Csharp.csproj", "{83D0D3A4-E4CC-4AB6-A525-56EF51F24C8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.DotNet.CSharp", "src\Sample.DotNet.Csharp\Sample.DotNet.CSharp.csproj", "{83D0D3A4-E4CC-4AB6-A525-56EF51F24C8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.DotNet.Csharp.ConsoleApp", "src\Sample.DotNet.Csharp.ConsoleApp\Sample.DotNet.Csharp.ConsoleApp.csproj", "{3F8F161A-EF31-449D-9B18-AE3D9503762C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.DotNet.CSharp.ConsoleApp", "src\Sample.DotNet.Csharp.ConsoleApp\Sample.DotNet.CSharp.ConsoleApp.csproj", "{3F8F161A-EF31-449D-9B18-AE3D9503762C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

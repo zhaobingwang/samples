@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sample.DotNet.Csharp
+namespace Sample.DotNet.CSharp
 {
     /// <summary>
     /// 参见：https://www.cnblogs.com/jesse2013/p/happylambda.html#b01

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Sample.DotNet.Csharp
+namespace Sample.DotNet.CSharp
 {
     /// <summary>
     /// 表达式树：https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/expression-trees/

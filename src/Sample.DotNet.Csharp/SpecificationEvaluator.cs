@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Sample.DotNet.Csharp
+namespace Sample.DotNet.CSharp
 {
     public interface ISpecification<T>
     {
