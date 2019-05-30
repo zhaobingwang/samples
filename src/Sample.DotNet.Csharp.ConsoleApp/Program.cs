@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sample.DotNet.CSharp.Concepts;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -31,17 +32,33 @@ namespace Sample.DotNet.CSharp.ConsoleApp
             //Console.WriteLine(sw.ElapsedMilliseconds);
             //Console.ReadLine();
 
-            ExpressionExample expressionExample = new ExpressionExample();
-            expressionExample.CreatingExpressionTreesFromLambdaExpressions();
-            expressionExample.CreatingExpressionTreesByUsingTheAPI();
+            //ExpressionExample expressionExample = new ExpressionExample();
+            //expressionExample.CreatingExpressionTreesFromLambdaExpressions();
+            //expressionExample.CreatingExpressionTreesByUsingTheAPI();
 
-            var users = GetUsers();
-            UserSpecification spec = new UserSpecification("用户1");
-            var result = SpecificationEvaluator<User>.GetQuery(users.AsQueryable(), spec).ToList();
-            foreach (var item in result)
-            {
-                Console.WriteLine($"{item.Id}\t{item.Name}");
-            }
+            //var users = GetUsers();
+            //UserSpecification spec = new UserSpecification("用户1");
+            //var result = SpecificationEvaluator<User>.GetQuery(users.AsQueryable(), spec).ToList();
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"{item.Id}\t{item.Name}");
+            //}
+
+
+            #region 逆变（contravariance）与协变（covariance）
+            Dog dog = new Dog();
+            Animal animal = dog;
+
+            //List<Dog> dogs = new List<Dog>();
+            //List<Animal> animals = dogs;
+
+            //IMyList<Dog> dogs = new MyList<Dog>();
+            //IMyList<Animal> animals = dogs;
+
+            IMyList<Animal> animals = new MyList<Animal>();
+            IMyList<Dog> dogs = animals;
+
+            #endregion
         }
 
         private static List<User> GetUsers()

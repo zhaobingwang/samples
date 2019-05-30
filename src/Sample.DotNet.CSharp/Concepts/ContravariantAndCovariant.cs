@@ -7,9 +7,33 @@ namespace Sample.DotNet.CSharp.Concepts
     /// <summary>
     /// 逆变（contravariance）与协变（covariance）
     /// </summary>
-    public class ContravariantAndCovariant
+    public static class ContravariantAndCovariant
     {
-        public delegate T MyFuncA<T>(); // 不支持逆变和协变
-        public delegate T MyFuncB<out T>(); // 支持协变
+
+    }
+
+    public abstract class Animal
+    {
+    }
+
+    public class Dog : Animal
+    {
+    }
+
+    public interface IMyList<in T>
+    {
+        //T GetElement();
+        void ChangeT(T t);
+    }
+    public class MyList<T> : IMyList<T>
+    {
+        //public T GetElement()
+        //{
+        //    return default(T);
+        //}
+        public void ChangeT(T t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -78,5 +78,16 @@ namespace FrameworkDesign.ClassLibrary.Tests
             // assert
             Assert.True(countAfterFilter == expected);
         }
+
+        public void Order_MergeOrders_ThrowException()
+        {
+            // arrange
+            MergeOrders<Order> merge = new MergeOrders<Order>();
+            viporder
+
+            // act
+
+            // assert
+        }
     }
 }
