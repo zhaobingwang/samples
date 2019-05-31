@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FrameworkDesign.ClassLibrary
 {
-    public interface IMergeOrderList<TOrder> where TOrder : Order
+    public interface IMergeOrderList<in TOrder> where TOrder : Order
     {
     }
 
@@ -14,7 +14,7 @@ namespace FrameworkDesign.ClassLibrary
 
     public class MergeOrders<TOrder> where TOrder : Order
     {
-        public IMergeOrderList<TOrder> Merge(TOrder order1, TOrder order2)
+        public IMergeOrderList<TOrder> MergeNormal<TChild>(TOrder order1, TChild order2)
         {
             return new MergeOrderList<TOrder>();
         }

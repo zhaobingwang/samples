@@ -79,15 +79,22 @@ namespace FrameworkDesign.ClassLibrary.Tests
             Assert.True(countAfterFilter == expected);
         }
 
+        [Fact(DisplayName = "协变与逆变")]
         public void Order_MergeOrders_ThrowException()
         {
             // arrange
             MergeOrders<Order> merge = new MergeOrders<Order>();
-            viporder
+            OperationNormalPrices operationNoormalPrices = new OperationNormalPrices();
+            VipOrder order1 = new VipOrder(operationNoormalPrices) { };
+            VipOrder order2 = new VipOrder(operationNoormalPrices) { };
 
             // act
 
+            IMergeOrderList<VipOrder> result = merge.MergeNormal(order1, order2);
+            IMergeOrderList<VipOrder> result2 = merge.MergeNormal<VipOrder>(order1, order2);
+
             // assert
+            Assert.True(result.GetType().Name == typeof(MergeOrderList<VipOrder>).Name);
         }
     }
 }
