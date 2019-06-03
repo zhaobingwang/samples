@@ -1,4 +1,6 @@
-﻿using Sample.DotNet.CSharp.Concepts;
+﻿#define 自定义
+
+using Sample.DotNet.CSharp.Concepts;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +12,8 @@ namespace Sample.DotNet.CSharp.ConsoleApp
     {
         static void Main(string[] args)
         {
-            LambdaExample example = new LambdaExample();
+            #region MyRegion
+            //LambdaExample example = new LambdaExample();
 
             //example.HelloWorld();
             //example.Closure();
@@ -42,23 +45,52 @@ namespace Sample.DotNet.CSharp.ConsoleApp
             //foreach (var item in result)
             //{
             //    Console.WriteLine($"{item.Id}\t{item.Name}");
-            //}
-
+            //} 
+            #endregion
 
             #region 逆变（contravariance）与协变（covariance）
-            Dog dog = new Dog();
-            Animal animal = dog;
+            //Dog dog = new Dog();
+            //Animal animal = dog;
 
-            //List<Dog> dogs = new List<Dog>();
-            //List<Animal> animals = dogs;
+            ////List<Dog> dogs = new List<Dog>();
+            ////List<Animal> animals = dogs;
 
-            //IMyList<Dog> dogs = new MyList<Dog>();
-            //IMyList<Animal> animals = dogs;
+            ////IMyList<Dog> dogs = new MyList<Dog>();
+            ////IMyList<Animal> animals = dogs;
 
-            IMyList<Animal> animals = new MyList<Animal>();
-            IMyList<Dog> dogs = animals;
+            //IMyList<Animal> animals = new MyList<Animal>();
+            //IMyList<Dog> dogs = animals;
 
             #endregion
+
+            #region 特性（Attributes）
+            AttributesSample attributesSample = new AttributesSample();
+            // 自定义属性
+            PrintAuthorInfo(typeof(AttributesSample));
+
+            // 通用属性
+            attributesSample.ConditionalDebugMethod();
+            attributesSample.ConditionalReleaseMethod();
+            attributesSample.ConditionalCustomMethod();
+            #endregion
+        }
+
+        private static void PrintAuthorInfo(Type t)
+        {
+            Console.WriteLine($"Author information for {t}");
+
+            // using reflection.
+            Attribute[] attrs = Attribute.GetCustomAttributes(t);
+
+            // Displaying output
+            foreach (var attr in attrs)
+            {
+                if (attr is Author)
+                {
+                    Author author = (Author)attr;
+                    Console.WriteLine($"    {author.GetName()},version {author.version}");
+                }
+            }
         }
 
         private static List<User> GetUsers()
