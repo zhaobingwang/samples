@@ -65,6 +65,12 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="LayerSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LayerSample.Designer.cs">
+      <DependentUpon>LayerSample.cs</DependentUpon>
+    </Compile>
     <Compile Include="MemoryLeak.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,11 +79,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIModule\Layer.cs" />
     <EmbeddedResource Include="Chat.resx">
       <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerSample.resx">
+      <DependentUpon>LayerSample.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MemoryLeak.resx">
       <DependentUpon>MemoryLeak.cs</DependentUpon>
@@ -105,5 +115,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
