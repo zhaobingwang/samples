@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,15 @@ namespace Sample.Infrastructure.Util
             var response = client.Execute(request);
             var content = response.Content;
             return content;
+        }
+
+        public T RESTGet<T>() where T : class, new()
+        {
+            var client = new RestSharp.RestClient(url);
+            var request = new RestSharp.RestRequest(RestSharp.Method.GET);
+            var response = client.Execute(request);
+            var content = response.Content;
+            return JsonConvert.DeserializeObject<T>(content);
         }
 
         //public string RESTGet(Dictionary<string, string> keyValuePairs)
