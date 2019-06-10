@@ -14,29 +14,41 @@ namespace Sample.Infrastructure.Util
                 throw new ArgumentNullException(nameof(url));
             this.url = url;
         }
-        public string GetByRestSharp(Dictionary<string, string> keyValuePairs)
+
+        public string RESTGet()
         {
             var client = new RestSharp.RestClient(url);
             var request = new RestSharp.RestRequest(RestSharp.Method.GET);
-            foreach (var keyValuePair in keyValuePairs)
-            {
-                request.AddParameter(keyValuePair.Key, keyValuePair.Value);
-            }
-            RestSharp.IRestResponse response = client.Execute(request);
+            var response = client.Execute(request);
             var content = response.Content;
             return content;
         }
 
-        public async Task<string> GetAsyncByRestSharp(Dictionary<string, string> keyValuePairs)
-        {
-            var client = new RestSharp.RestClient(url);
-            var request = new RestSharp.RestRequest(RestSharp.Method.GET);
-            foreach (var keyValuePair in keyValuePairs)
-            {
-                request.AddParameter(keyValuePair.Key, keyValuePair.Value);
-            }
-            var response = await client.ExecuteGetTaskAsync(request);
-            return response.Content;
-        }
+        //public string RESTGet(Dictionary<string, string> keyValuePairs)
+        //{
+        //    if (keyValuePairs == null)
+        //        throw new ArgumentNullException(nameof(keyValuePairs));
+        //    var client = new RestSharp.RestClient(url);
+        //    var request = new RestSharp.RestRequest(RestSharp.Method.GET);
+        //    foreach (var keyValuePair in keyValuePairs)
+        //    {
+        //        request.AddParameter(keyValuePair.Key, keyValuePair.Value);
+        //    }
+        //    RestSharp.IRestResponse response = client.Execute(request);
+        //    var content = response.Content;
+        //    return content;
+        //}
+
+        //public async Task<string> GetAsyncByRestSharp(Dictionary<string, string> keyValuePairs)
+        //{
+        //    var client = new RestSharp.RestClient(url);
+        //    var request = new RestSharp.RestRequest(RestSharp.Method.GET);
+        //    foreach (var keyValuePair in keyValuePairs)
+        //    {
+        //        request.AddParameter(keyValuePair.Key, keyValuePair.Value);
+        //    }
+        //    var response = await client.ExecuteGetTaskAsync(request);
+        //    return response.Content;
+        //}
     }
 }
