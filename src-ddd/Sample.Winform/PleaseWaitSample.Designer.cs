@@ -1,6 +1,6 @@
 ﻿namespace Sample.Winform
 {
-    partial class LayerSample
+    partial class PleaseWaitSample
     {
         /// <summary>
         /// Required designer variable.
@@ -28,44 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(75, 373);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 43);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "btnShowMessage";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // pnlMain
             // 
             this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlMain.Location = new System.Drawing.Point(75, 27);
+            this.pnlMain.Location = new System.Drawing.Point(41, 27);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(630, 268);
-            this.pnlMain.TabIndex = 1;
+            this.pnlMain.Size = new System.Drawing.Size(858, 393);
+            this.pnlMain.TabIndex = 0;
             // 
-            // LayerSample
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(82, 503);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            // 
+            // PleaseWaitSample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(934, 572);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.button1);
-            this.Name = "LayerSample";
-            this.Text = "LayerSample";
+            this.Name = "PleaseWaitSample";
+            this.Text = "PleaseWaitSample";
+            this.Load += new System.EventHandler(this.PleaseWaitSample_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

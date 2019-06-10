@@ -22,5 +22,10 @@ namespace Sample.Winform
         {
             Layer.ShowMessage("这是一个测试内容AAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBCCCCCCCCCCCC啊啊啊啊啊啊啊啊啊啊啊啊", pnlMain, pnlMain.Width);
         }
+
+        private void BtnAlert_Click(object sender, EventArgs e)
+        {
+            Layer.Alert(pnlMain, "这是一个测试内容", pnlMain.Width);
+        }
     }
 }
