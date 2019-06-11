@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Sample.API.Framework.Controllers
 {
     [RoutePrefix("api/samples")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SampleAPIController : ApiController
     {
         List<SampleProduct> products = null;
