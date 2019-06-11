@@ -19,6 +19,9 @@ namespace Sample.API.Framework
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // 注册支持浏览器的跨域访问
+            config.EnableCors();
         }
     }
 }

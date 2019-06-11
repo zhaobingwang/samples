@@ -10,5 +10,17 @@
 </html>
 <script src="js/jQuery/jquery-3.4.1.js"></script>
 <script type="text/javascript">
-  $(function() {});
+  var uri = "https://localhost:44347/api/samples/get-all-products";
+  $(function() {
+    $.ajax({
+      url: uri,
+      type: "get",
+      dataType: "jsonp" /*加上datatype*/,
+      success: function(data) {
+        var aa = 1;
+        console.log('1');
+        console.log(data);
+      }
+    });
+  });
 </script>
