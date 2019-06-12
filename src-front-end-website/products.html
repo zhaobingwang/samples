@@ -2,55 +2,55 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
 </head>
 
 <body>
-  <div>
-    <h2>All Products</h2>
-    <ul id="products" />
-  </div>
+    <div>
+        <h2>Search by ID</h2>
+        <input type="text" id="prodId" size="5" />
+        <input type="button" value="Search" onclick="find()" />
+        <p id="product"></p>
+    </div>
+    <div>
+        <h2>All Products</h2>
+        <ul id="products" />
+    </div>
 </body>
 
 </html>
 <script src="js/jQuery/jquery-3.4.1.js"></script>
 <script type="text/javascript">
-  var uri = "https://localhost:44347/api/samples/get-all-products";
-  $(function () {
-    $.getJSON(uri, function (data) {
-      console.log(data);
-      $.each(data, function (key, item) {
-        // Add a list item for the product.
-        $('<li>', { text: formatItem(item) }).appendTo($('#products'));
-      });
+    var uri = "https://localhost:44347/api/samples/get-all-products";
+    var uri2 = "https://localhost:44347/api/samples/get-product/";
+    $(function() {
+        $.getJSON(uri, function(data) {
+            console.log(data);
+            $.each(data, function(key, item) {
+                // Add a list item for the product.
+                $('<li>', {
+                    text: formatItem(item)
+                }).appendTo($('#products'));
+            });
+        });
+        // getProducts();
     });
-    // getProducts();
-  });
-  function formatItem(item) {
-    return item.Id + ',' + item.Name;
-  }
-  function getProducts() {
-    $.ajax({
-      async: false,
-      url: uri,
-      type: "get",
-      crossDomain: true,
-      dataType: 'json',
-      xhrFields: "'Access-Control-Allow-Origin':'*'",
-      success: function (data) {
-        alert('a');
-      },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {  // 请求失败后返回
-        // 状态码
-        console.log(XMLHttpRequest.status);
-        // 状态
-        console.log(XMLHttpRequest.readyState);
-        // 错误信息   
-        console.log(textStatus);
-      }
-    });
-  }
+
+    function formatItem(item) {
+        return item.Id + ',' + item.Name;
+    }
+
+    function find() {
+        var id = $('#prodId').val();
+        $.getJSON(uri2 + id)
+            .done(function(data) {
+                $('#product').text(formatItem(data));
+            })
+            .fail(function(jqXHR, textStatus, err) {
+                $('#product').text('Error:' + err);
+            })
+    }
 </script>
