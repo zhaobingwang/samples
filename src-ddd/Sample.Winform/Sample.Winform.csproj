@@ -71,6 +71,12 @@
     <Compile Include="PleaseWaitSample.Designer.cs">
       <DependentUpon>PleaseWaitSample.cs</DependentUpon>
     </Compile>
+    <Compile Include="TemporaryPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TemporaryPage.Designer.cs">
+      <DependentUpon>TemporaryPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIModuleSample\LayerSample.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIModule\Layer.cs" />
     <Compile Include="UIModule\PleaseWait.cs" />
+    <Compile Include="UIModule\SoftKeyboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIModule\SoftKeyboard.designer.cs">
+      <DependentUpon>SoftKeyboard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Chat.resx">
       <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PleaseWaitSample.resx">
       <DependentUpon>PleaseWaitSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemporaryPage.resx">
+      <DependentUpon>TemporaryPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIModuleSample\LayerSample.resx">
       <DependentUpon>LayerSample.cs</DependentUpon>
@@ -112,6 +127,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UIModule\SoftKeyboard.resx">
+      <DependentUpon>SoftKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
