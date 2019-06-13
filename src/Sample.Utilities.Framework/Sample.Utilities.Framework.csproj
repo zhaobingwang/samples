@@ -49,6 +49,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="PleaseWait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeConvertOperator.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

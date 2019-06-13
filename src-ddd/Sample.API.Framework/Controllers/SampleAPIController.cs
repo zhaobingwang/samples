@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Sample.Utilities.Framework;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -65,23 +69,29 @@ namespace Sample.API.Framework.Controllers
             return Ok(product);
         }
 
+
         [HttpPost]
         [Route("post-file")]
-        public IHttpActionResult PostFile([FromBody] string name)
+        public IHttpActionResult PostFile([FromBody] FileUpload sampleUpload)
         {
-            return Ok(name);
+            TypeConvertOperator typeConvertOperator = new TypeConvertOperator();
+            var img = typeConvertOperator.ConvertBase64StringToImage(sampleUpload.fileBase64String);
+            Bitmap bitmap = new Bitmap(img);
+            string dir = "c:\\Temp\\SampleAPI\\";
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            bitmap.Save($"{dir}{sampleUpload.name}.png", ImageFormat.Png);
+            return Ok(AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 
-    public class Account
-    {
-        public string accountNumber { get; set; }
-    }
 
-    public class SampleUploadImage
+    public class FileUpload
     {
-        public string key { get; set; }
-        public byte[] value { get; set; }
+        public string name { get; set; }
+        public string fileBase64String { get; set; }
     }
 
     public class SampleProduct
