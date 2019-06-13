@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -84,6 +85,34 @@ namespace Sample.API.Framework.Controllers
             }
             bitmap.Save($"{dir}{sampleUpload.name}.png", ImageFormat.Png);
             return Ok(AppDomain.CurrentDomain.BaseDirectory);
+        }
+
+        /// <summary>
+        /// 测试WebAPI2的操作结果
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("get-action-result")]
+        public IEnumerable<SampleProduct> GetActionResult()
+        {
+            #region HttpResponseMessage
+            //HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, products);
+            ////response.Content = new StringContent("hello,world", Encoding.Unicode);
+            ////response.Headers.CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue()
+            ////{
+            ////    MaxAge = TimeSpan.FromMinutes(20)
+            ////};
+            //return response; 
+            #endregion
+
+            #region IHttpActionResult
+            //return NotFound();
+            //return Ok(products);
+            #endregion
+
+            #region Other Return Types
+            return products;
+            #endregion
         }
     }
 
