@@ -15,21 +15,21 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace Sample.API.Framework.Controllers
+namespace Sample.API.Framework.Controllers.API
 {
     /// <summary>
     /// Sample ASP.NET WEB API2
     /// </summary>
     [RoutePrefix("api/samples")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class SampleAPIController : ApiController
+    public class SampleController : BaseController
     {
         List<SampleProduct> products = null;
         IDbConnection conn = null;
         /// <summary>
         /// ctor
         /// </summary>
-        public SampleAPIController()
+        public SampleController()
         {
             products = new List<SampleProduct>();
             for (int i = 1; i <= 100; i++)
@@ -40,7 +40,7 @@ namespace Sample.API.Framework.Controllers
                     Name = $"产品{i}"
                 });
             }
-            conn = new MySqlConnection("server=localhost;port=3306;database=Sample;userid=root;password=123456");
+            conn = new MySqlConnection(Constants.CONN_MYSQL_SAMPLE);
         }
 
         /// <summary>
