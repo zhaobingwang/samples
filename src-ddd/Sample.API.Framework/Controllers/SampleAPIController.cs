@@ -14,11 +14,18 @@ using System.Web.Http.Cors;
 
 namespace Sample.API.Framework.Controllers
 {
+    /// <summary>
+    /// Sample ASP.NET WEB API2
+    /// </summary>
     [RoutePrefix("api/samples")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SampleAPIController : ApiController
     {
         List<SampleProduct> products = null;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
         public SampleAPIController()
         {
             products = new List<SampleProduct>();
@@ -31,7 +38,12 @@ namespace Sample.API.Framework.Controllers
                 });
             }
         }
-        [HttpGet]
+
+        /// <summary>
+        /// 接受多个http方法（GET,POST）
+        /// </summary>
+        /// <returns></returns>
+        [AcceptVerbs("GET", "POST")]
         [Route("")]
         [Route("get-date-time")]
         public string GetDateTime()
@@ -39,8 +51,12 @@ namespace Sample.API.Framework.Controllers
             return DateTimeOffset.Now.ToString();
         }
 
+        /// <summary>
+        /// Use a tilde (~) on the method attribute to override the route prefix
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Route("get-string")]
+        [Route("~/api/get-string")]
         public string GetString()
         {
             return "hello,world";
@@ -59,7 +75,7 @@ namespace Sample.API.Framework.Controllers
         /// <param name="id">产品ID</param>
         /// <returns>产品的json信息</returns>
         [HttpGet]
-        [Route("get-product/{id:int}")]
+        [Route("get-product/{id:nonzero}")]
         public IHttpActionResult GetProduct(int id)
         {
             var product = products.FirstOrDefault(p => p.Id == id);

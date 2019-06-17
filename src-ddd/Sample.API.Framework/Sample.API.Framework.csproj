@@ -175,6 +175,7 @@
     <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Controllers\SwaggerController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Custom\CustomRouteConstraints.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
