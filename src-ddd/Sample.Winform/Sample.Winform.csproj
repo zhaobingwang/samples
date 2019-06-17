@@ -39,6 +39,15 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.License, Version=1.3.7.46, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreeSpire.PDFViewer.4.1.0\lib\net46\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=5.1.20.20046, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreeSpire.PDFViewer.4.1.0\lib\net46\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.PdfViewer.Forms, Version=4.1.8.30046, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreeSpire.PDFViewer.4.1.0\lib\net46\Spire.PdfViewer.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.WebRequest" />
@@ -64,6 +73,12 @@
     </Compile>
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page\DocumentOperation\PDFPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Page\DocumentOperation\PDFPage.Designer.cs">
+      <DependentUpon>PDFPage.cs</DependentUpon>
     </Compile>
     <Compile Include="PleaseWaitSample.cs">
       <SubType>Form</SubType>
@@ -105,9 +120,13 @@
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Page\DocumentOperation\PDFPage.resx">
+      <DependentUpon>PDFPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PleaseWaitSample.resx">
       <DependentUpon>PleaseWaitSample.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="TemporaryPage.resx">
       <DependentUpon>TemporaryPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +149,24 @@
     <EmbeddedResource Include="UIModule\SoftKeyboard.resx">
       <DependentUpon>SoftKeyboard.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="files\PDF-P01.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="files\PDF-P02.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="files\PDF-P03.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="files\PDF-P04.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="files\PDF-P05.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="files\PDF.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -149,5 +186,6 @@
     <Content Include="Images\loading\loading_02.gif" />
     <Content Include="Images\loading\loading_document.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

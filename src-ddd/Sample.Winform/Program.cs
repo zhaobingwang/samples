@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sample.Winform.Page.DocumentOperation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Sample.Winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TemporaryPage());
+            Application.Run(new PDFPage());
         }
     }
 }
