@@ -19,6 +19,9 @@ namespace Sample.API.Framework
 
             // Web API 路由
             //config.MapHttpAttributeRoutes();
+            var constraintResolver = new DefaultInlineConstraintResolver();
+            constraintResolver.ConstraintMap.Add("nonzero", typeof(NonZeroConstraint));
+            config.MapHttpAttributeRoutes(constraintResolver);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -28,11 +31,6 @@ namespace Sample.API.Framework
 
             // 注册支持浏览器的跨域访问
             config.EnableCors();
-
-            // 自定义路由约束
-            var constraintResolver = new DefaultInlineConstraintResolver();
-            constraintResolver.ConstraintMap.Add("nonzero", typeof(NonZeroConstraint));
-            config.MapHttpAttributeRoutes(constraintResolver);
         }
     }
 }

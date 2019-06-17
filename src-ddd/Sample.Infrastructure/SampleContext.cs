@@ -25,5 +25,7 @@ namespace Sample.Infrastructure
         public DbSet<TodoItem> TodoItems { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<T01> T01 { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

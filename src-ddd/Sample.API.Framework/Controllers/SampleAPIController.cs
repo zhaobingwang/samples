@@ -11,6 +11,9 @@ using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Dapper;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Sample.API.Framework.Controllers
 {
@@ -22,7 +25,7 @@ namespace Sample.API.Framework.Controllers
     public class SampleAPIController : ApiController
     {
         List<SampleProduct> products = null;
-
+        IDbConnection conn = null;
         /// <summary>
         /// ctor
         /// </summary>
@@ -37,6 +40,7 @@ namespace Sample.API.Framework.Controllers
                     Name = $"产品{i}"
                 });
             }
+            conn = new MySqlConnection("server=localhost;port=3306;database=Sample;userid=root;password=123456");
         }
 
         /// <summary>
@@ -44,7 +48,7 @@ namespace Sample.API.Framework.Controllers
         /// </summary>
         /// <returns></returns>
         [AcceptVerbs("GET", "POST")]
-        [Route("")]
+        //[Route("")]
         [Route("get-date-time")]
         public string GetDateTime()
         {
@@ -75,7 +79,7 @@ namespace Sample.API.Framework.Controllers
         /// <param name="id">产品ID</param>
         /// <returns>产品的json信息</returns>
         [HttpGet]
-        [Route("get-product/{id:nonzero}")]
+        [Route("get-product/{id:nonzero}", Name = "GetProductById")]
         public IHttpActionResult GetProduct(int id)
         {
             var product = products.FirstOrDefault(p => p.Id == id);
@@ -118,7 +122,7 @@ namespace Sample.API.Framework.Controllers
             ////{
             ////    MaxAge = TimeSpan.FromMinutes(20)
             ////};
-            //return response; 
+            //return response;
             #endregion
 
             #region IHttpActionResult
@@ -129,6 +133,25 @@ namespace Sample.API.Framework.Controllers
             #region Other Return Types
             return products;
             #endregion
+        }
+
+        /// <summary>
+        /// 添加一个商品，并使用路由名称生成链接
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("post-product")]
+        public HttpResponseMessage PostProduct(SampleProduct product)
+        {
+            // Validate and add product to database (not shown)
+
+            var response = Request.CreateResponse(HttpStatusCode.Created);
+
+            // Generate a link to the new product and set the Location header in the response.
+            string uri = Url.Link("GetProductById", new { id = product.Id });
+            response.Headers.Location = new Uri(uri);
+            return response;
         }
     }
 
