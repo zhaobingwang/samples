@@ -1,3 +1,4 @@
+using Sample.API.Framework.AutoMapperConfig;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,23 @@ namespace Sample.API.Framework
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+
+            #region mapper
+            //var config = new AutoMapper.MapperConfiguration(cfg =>
+            //{
+            //    cfg.AddProfile<Book2BookDtoProfile>();
+            //});
+            //var mapper = config.CreateMapper();
+
+            //AutoMapper.Mapper.Initialize(cfg =>
+            //{
+            //    cfg.AddProfile<Book2BookDtoProfile>();
+            //});
+
+            var cfg = new AutoMapper.Configuration.MapperConfigurationExpression();
+            cfg.AddProfile<Book2BookDtoProfile>();
+            AutoMapper.Mapper.Initialize(cfg);
+            #endregion
         }
     }
 }
