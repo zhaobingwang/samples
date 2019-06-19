@@ -1,53 +1,119 @@
-﻿using Dapper;
-using Sample.API.Framework.DTOs;
-using Sample.API.Framework.Models;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Sample.API.Framework.Models;
 
 namespace Sample.API.Framework.Controllers.API
 {
-    /// <summary>
-    /// 书籍API
-    /// </summary>
-    [RoutePrefix("api/books")]
-    public class BooksController : BaseController
+    public class BooksController : ApiController
     {
+        private BooksContext db = new BooksContext();
 
-        /// <summary>
-        /// 获取所有书籍基本信息
-        /// </summary>
-        /// <returns></returns>
-        [Route("")]
-        public IEnumerable<BookDto> GetBooks()
+        // GET: api/Books
+        public IQueryable<Book> GetBooks()
         {
-            string sql = "select a.Title as title,b.Name as author,a.Genre as genre from Books a left join Authors b on a.AuthorId=b.AuthorId";
-            return connection.Query<BookDto>(sql);
+            return db.Books;
         }
 
-        /// <summary>
-        /// 根据ID获取一本书
-        /// </summary>
-        /// <param name="id">书籍ID</param>
-        /// <returns></returns>
-        [Route("{id:int}")]
-        [ResponseType(typeof(BookDto))]
-        public IHttpActionResult GetBook(int id)
+        // GET: api/Books/5
+        [ResponseType(typeof(Book))]
+        public async Task<IHttpActionResult> GetBook(int id)
         {
-            string sqlBook = $"select * from Books where {nameof(Book.BookId)}=@id";
-            string sqlAuthor = $"select * from Authors where {nameof(Author.AuthorId)}=@authorId";
-            var book = connection.Query<Book>(sqlBook, new { id = id }).FirstOrDefault();
-            var author = connection.Query<Author>(sqlAuthor, new { authorId = book.AuthorId }).FirstOrDefault();
-
-            book.Author = author;
-
-            var bookDto = MapperHelper.MapTo<BookDto>(book);
-            if (bookDto == null)
+            Book book = await db.Books.FindAsync(id);
+            if (book == null)
             {
                 return NotFound();
             }
-            return Ok(bookDto);
+
+            return Ok(book);
+        }
+
+        // PUT: api/Books/5
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PutBook(int id, Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != book.BookId)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(book).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/Books
+        [ResponseType(typeof(Book))]
+        public async Task<IHttpActionResult> PostBook(Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Books.Add(book);
+            await db.SaveChangesAsync();
+
+            return CreatedAtRoute("DefaultApi", new { id = book.BookId }, book);
+        }
+
+        // DELETE: api/Books/5
+        [ResponseType(typeof(Book))]
+        public async Task<IHttpActionResult> DeleteBook(int id)
+        {
+            Book book = await db.Books.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            db.Books.Remove(book);
+            await db.SaveChangesAsync();
+
+            return Ok(book);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool BookExists(int id)
+        {
+            return db.Books.Count(e => e.BookId == id) > 0;
         }
     }
 }

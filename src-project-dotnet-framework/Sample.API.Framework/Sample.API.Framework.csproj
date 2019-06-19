@@ -56,6 +56,12 @@
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -194,6 +200,7 @@
     <Compile Include="AutoMapperConfig\Book2BookDtoProfile.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\API\BaseController.cs" />
+    <Compile Include="Controllers\API\Books222Controller.cs" />
     <Compile Include="Controllers\API\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\API\SampleAPIController.cs" />
@@ -207,8 +214,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MapperHelper.cs" />
+    <Compile Include="Migrations\201906190902028_Initial.cs" />
+    <Compile Include="Migrations\201906190902028_Initial.Designer.cs">
+      <DependentUpon>201906190902028_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\BooksContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +314,15 @@
       <Project>{35F66CAF-9740-41CC-84E0-0E22CBFC96A6}</Project>
       <Name>Sample.Utilities.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sample.Infrastructure.Framework\Sample.Infrastructure.Framework.csproj">
+      <Project>{3ac8020f-b9b3-4186-9ba6-72a1b75d138d}</Project>
+      <Name>Sample.Infrastructure.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906190902028_Initial.resx">
+      <DependentUpon>201906190902028_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
