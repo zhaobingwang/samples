@@ -35,5 +35,23 @@ namespace Sample.Infrastructure.Repositories
             _context.TodoItems.Add(entity);
             return _context.SaveChanges() > 0;
         }
+
+        public async Task<bool> InsertAsync(TodoItem entity)
+        {
+            await _context.TodoItems.AddAsync(entity);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> UpdateAsync(TodoItem entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> DeleteAsync(TodoItem entity)
+        {
+            _context.TodoItems.Remove(entity);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

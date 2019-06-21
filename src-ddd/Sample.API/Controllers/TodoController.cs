@@ -12,7 +12,7 @@ using Sample.Infrastructure.Util;
 
 namespace Sample.API.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TodoController : ControllerBase
     {
@@ -31,13 +31,13 @@ namespace Sample.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItemsAsync()
         {
             return await _todoItemRepository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItem>> GetAsync(long id)
+        public async Task<ActionResult<TodoItem>> GetTodoItemAsync(long id)
         {
             var todoItem = await _todoItemRepository.GetByIdAsync(id);
 
@@ -47,6 +47,37 @@ namespace Sample.API.Controllers
             }
 
             return todoItem;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostTodoItem(TodoItem item)
+        {
+            await _todoItemRepository.InsertAsync(item);
+
+            return CreatedAtAction(nameof(GetTodoItemAsync), new { id = item.Id }, item);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTodoItem(long id, TodoItem item)
+        {
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
+
+            await _todoItemRepository.UpdateAsync(item);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodoItem(long id)
+        {
+            var todoItem = await _todoItemRepository.GetByIdAsync(id);
+            if (todoItem == null)
+                return NotFound();
+            await _todoItemRepository.DeleteAsync(todoItem);
+
+            return NoContent();
         }
 
         [HttpGet]
