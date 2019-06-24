@@ -1,0 +1,1 @@
+CREATE TABLE sample(I64Value Int64, StringValue String, DateValue Date,Float64Value Float64,PartitionByValue Date,PKI64 Int64,PKString String) ENGINE=ReplacingMergeTree(PartitionByValue,(PKI64,PKString),8192 );
