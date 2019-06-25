@@ -27,15 +27,18 @@ namespace CodeSnippets
             // 当第一个线程运行到这里时，会对locker对象“加锁”
             // 当第二个线程运行到这里时，首先检测到locker对象为“加锁”状态，该线程就会挂起等待第一个线程解锁
             // lock语句运行完成后（即线程运行完之后）会对该对象“加锁”
-            lock (locker)
+            if (uniqueInstance==null)
             {
-                // 如果实例不存在则创建，否则直接返回
-                if (uniqueInstance == null)
+                lock (locker)
                 {
-                    uniqueInstance = new Singleton();
+                    // 如果实例不存在则创建，否则直接返回
+                    if (uniqueInstance == null)
+                    {
+                        uniqueInstance = new Singleton();
+                    }
                 }
-                return uniqueInstance;
             }
+            return uniqueInstance;
         }
     }
 }
