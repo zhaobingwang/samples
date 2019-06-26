@@ -9,28 +9,24 @@ namespace Temporary
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("start");
-
-            for (int i = 0; i < 1000; i++)
+            try
             {
-                Task.Factory.StartNew(() =>
-                {
-                    //Console.WriteLine($"loop{i}");
-                    Singleton a = Singleton.GetInstance();
-                    Singleton b = Singleton.GetInstance();
-                    if (a.Equals(b))
-                    {
-                        //Console.WriteLine("same");
-                    }
-                    else
-                    {
-                        Console.WriteLine("diff");
-                    }
-                });
+                int[] array = new[] { 1, 2, 3 };
+                //ExceptionOperation.TestThrow();
+                ExceptionOperation.GetInt(array, 3);
             }
-
-            Thread.Sleep(5000);
-            Console.WriteLine("end");
+            catch (CustomException ex)
+            {
+                Console.WriteLine(ex);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
