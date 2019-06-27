@@ -33,7 +33,8 @@ namespace Sample.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItemsAsync()
         {
-            return await _todoItemRepository.GetAllAsync();
+            var result = await _todoItemRepository.GetAllAsync();
+            return result;
         }
 
         [HttpGet("{id}")]
