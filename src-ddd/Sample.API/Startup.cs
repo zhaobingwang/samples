@@ -39,7 +39,7 @@ namespace Sample.API
 
             services.AddDbContext<SampleContext>(options =>
             {
-                options.UseMySQL(Configuration.GetConnectionString("MySql-Sample"));
+                options.UseMySql(Configuration.GetConnectionString("MySql-Sample"));
             });
 
             services.AddTransient<TodoItemRepository>();

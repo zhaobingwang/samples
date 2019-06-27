@@ -37,7 +37,7 @@ namespace Sample.Web
 
             services.AddDbContext<SampleContext>(options =>
             {
-                options.UseMySQL(Configuration.GetConnectionString("MySql-Sample"));
+                options.UseMySql(Configuration.GetConnectionString("MySql-Sample"));
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

@@ -12,6 +12,6 @@ namespace Sample.Domain.Entities
         /// <summary>
         /// 0:未完成,1:已完成.
         /// </summary>
-        public short IsComplete { get; set; }
+        public bool IsComplete { get; set; }
     }
 }

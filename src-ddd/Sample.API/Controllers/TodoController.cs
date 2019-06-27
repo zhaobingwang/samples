@@ -25,8 +25,8 @@ namespace Sample.API.Controllers
 
             if (_todoItemRepository.GetCount() == 0)
             {
-                _todoItemRepository.Insert(new Domain.Entities.TodoItem { Name = "测试1", IsComplete = 0 });
-                _todoItemRepository.Insert(new Domain.Entities.TodoItem { Name = "测试2", IsComplete = 0 });
+                _todoItemRepository.Insert(new Domain.Entities.TodoItem { Name = "测试1", IsComplete = false });
+                _todoItemRepository.Insert(new Domain.Entities.TodoItem { Name = "测试2", IsComplete = false });
             }
         }
 
