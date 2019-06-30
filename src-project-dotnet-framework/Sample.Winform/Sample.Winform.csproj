@@ -74,6 +74,12 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="MQ\PublishMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MQ\PublishMessage.Designer.cs">
+      <DependentUpon>PublishMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Page\DocumentOperation\PDFPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MQ\PublishMessage.resx">
+      <DependentUpon>PublishMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\DocumentOperation\PDFPage.resx">
       <DependentUpon>PDFPage.cs</DependentUpon>
@@ -186,6 +195,11 @@
     <Content Include="Images\loading\loading_02.gif" />
     <Content Include="Images\loading\loading_document.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Sample.Utilities.Framework\Sample.Utilities.Framework.csproj">
+      <Project>{fa3ce91d-aa96-4985-893d-d5b279ed19b3}</Project>
+      <Name>Sample.Utilities.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using Sample.Winform.Page.DocumentOperation;
+﻿using Sample.Winform.MQ;
+using Sample.Winform.Page.DocumentOperation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Sample.Winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PDFPage());
+            Application.Run(new PublishMessage());
         }
     }
 }

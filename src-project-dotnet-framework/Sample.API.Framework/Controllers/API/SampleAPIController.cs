@@ -91,21 +91,21 @@ namespace Sample.API.Framework.Controllers.API
         }
 
 
-        [HttpPost]
-        [Route("post-file")]
-        public IHttpActionResult PostFile([FromBody] FileUpload sampleUpload)
-        {
-            TypeConvertOperator typeConvertOperator = new TypeConvertOperator();
-            var img = typeConvertOperator.ConvertBase64StringToImage(sampleUpload.fileBase64String);
-            Bitmap bitmap = new Bitmap(img);
-            string dir = "c:\\Temp\\SampleAPI\\";
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-            bitmap.Save($"{dir}{sampleUpload.name}.png", ImageFormat.Png);
-            return Ok(AppDomain.CurrentDomain.BaseDirectory);
-        }
+        //[HttpPost]
+        //[Route("post-file")]
+        //public IHttpActionResult PostFile([FromBody] FileUpload sampleUpload)
+        //{
+        //    TypeConvertOperator typeConvertOperator = new TypeConvertOperator();
+        //    var img = typeConvertOperator.ConvertBase64StringToImage(sampleUpload.fileBase64String);
+        //    Bitmap bitmap = new Bitmap(img);
+        //    string dir = "c:\\Temp\\SampleAPI\\";
+        //    if (!Directory.Exists(dir))
+        //    {
+        //        Directory.CreateDirectory(dir);
+        //    }
+        //    bitmap.Save($"{dir}{sampleUpload.name}.png", ImageFormat.Png);
+        //    return Ok(AppDomain.CurrentDomain.BaseDirectory);
+        //}
 
         /// <summary>
         /// 测试WebAPI2的操作结果
