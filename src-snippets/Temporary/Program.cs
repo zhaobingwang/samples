@@ -11,8 +11,10 @@ namespace Temporary
         {
             try
             {
-                var now = DateTime.Now.ToUniversalTime();
-                Console.WriteLine(now);
+                var utc = DateTime.UtcNow;
+                var localTime = TimeZoneInfo.ConvertTimeFromUtc(utc,TimeZoneInfo.Local);
+                Console.WriteLine($"{utc}");
+                Console.WriteLine($"{localTime}");
             }
             catch (CustomException ex)
             {

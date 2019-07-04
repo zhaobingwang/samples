@@ -34,6 +34,8 @@ namespace Sample.Winform.CK
                 PKString = "分类1",
 
             };
+            List<Test> list = new List<Test>();
+            list.Add(t);
             try
             {
                 var result = baseAccess.Insert(t, "test");

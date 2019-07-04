@@ -56,6 +56,27 @@ namespace Sample.Infrastructure.Framework
             return true;
         }
 
+        public bool Insert(List<T> entities, string tableName = null)
+        {
+            if (entities == null || entities.Count < 1)
+            {
+                throw new ArgumentException(nameof(entities));
+            }
+            string sqlInsert = GetBulkInsertSQL(entities[0], tableName);
+            using (var conn = GetConnection())
+            {
+                var cmd = conn.CreateCommand(sqlInsert);
+                cmd.Parameters.Add(new ClickHouseParameter
+                {
+                    DbType = DbType.Object,
+                    ParameterName = "bulk",
+                    Value = entities
+                });
+                var result = cmd.ExecuteNonQuery();
+            }
+            return true;
+        }
+
         private static void PrintData(IDataReader reader)
         {
             do
@@ -125,6 +146,23 @@ namespace Sample.Infrastructure.Framework
 
             return result;
         }
+        private string GetBulkInsertSQL(T obj, string tableName = null)
+        {
+            string sqlInsert = $"INSERT INTO { tableName ?? typeof(T).Name} (";
+            Type t = obj.GetType();
+            var properties = t.GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                var pName = property.Name;
+                if (property == properties.Last())
+                    sqlInsert += $"{pName}";
+                else
+                    sqlInsert += $"{pName},";
+            }
+            sqlInsert += ") VALUES @bulk";
+            return sqlInsert;
+        }
+
         private DbType ConvertToDbType(Type t)
         {
             if (t == typeof(long))
