@@ -68,6 +68,12 @@
     <Compile Include="Chat.Designer.cs">
       <DependentUpon>Chat.cs</DependentUpon>
     </Compile>
+    <Compile Include="CK\CKIndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CK\CKIndexForm.Designer.cs">
+      <DependentUpon>CKIndexForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     </Compile>
     <EmbeddedResource Include="Chat.resx">
       <DependentUpon>Chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CK\CKIndexForm.resx">
+      <DependentUpon>CKIndexForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
@@ -196,10 +205,19 @@
     <Content Include="Images\loading\loading_document.gif" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sample.Domain.Framework\Sample.Domain.Framework.csproj">
+      <Project>{f4e41c0e-06f9-4ffd-9d1a-e41060014217}</Project>
+      <Name>Sample.Domain.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sample.Infrastructure.Framework\Sample.Infrastructure.Framework.csproj">
+      <Project>{3ac8020f-b9b3-4186-9ba6-72a1b75d138d}</Project>
+      <Name>Sample.Infrastructure.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Utilities.Framework\Sample.Utilities.Framework.csproj">
       <Project>{fa3ce91d-aa96-4985-893d-d5b279ed19b3}</Project>
       <Name>Sample.Utilities.Framework</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

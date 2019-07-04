@@ -17,7 +17,7 @@ namespace Sample.Infrastructure.Framework
     {
         private string _conn = string.Empty;
 
-        public BaseAccess(string conn = "Compress=True;CheckCompressedHash=False;Compressor=lz4;Host=127.0.0.1;Port=9000;Database=default;User=default;Password=")
+        public BaseAccess(string conn = "Compress=True;CheckCompressedHash=False;Compressor=lz4;Host=192.168.2.22;Port=9000;Database=sample;User=default;Password=")
         {
             _conn = conn;
         }

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Infrastructure.Frame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WindowsService", "src-project-dotnet-framework\Sample.WindowsService\Sample.WindowsService.csproj", "{A28C2C16-879C-429C-ACEA-E503BA14110E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Domain.Framework", "src-project-dotnet-framework\Sample.Domain.Framework\Sample.Domain.Framework.csproj", "{F4E41C0E-06F9-4FFD-9D1A-E41060014217}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A28C2C16-879C-429C-ACEA-E503BA14110E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A28C2C16-879C-429C-ACEA-E503BA14110E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A28C2C16-879C-429C-ACEA-E503BA14110E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E41C0E-06F9-4FFD-9D1A-E41060014217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E41C0E-06F9-4FFD-9D1A-E41060014217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E41C0E-06F9-4FFD-9D1A-E41060014217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E41C0E-06F9-4FFD-9D1A-E41060014217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

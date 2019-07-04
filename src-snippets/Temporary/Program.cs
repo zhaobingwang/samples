@@ -11,9 +11,8 @@ namespace Temporary
         {
             try
             {
-                int[] array = new[] { 1, 2, 3 };
-                //ExceptionOperation.TestThrow();
-                ExceptionOperation.GetInt(array, 3);
+                var now = DateTime.Now.ToUniversalTime();
+                Console.WriteLine(now);
             }
             catch (CustomException ex)
             {
@@ -26,6 +25,10 @@ namespace Temporary
             catch (ArgumentOutOfRangeException ex)
             {
                 Console.WriteLine(ex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
