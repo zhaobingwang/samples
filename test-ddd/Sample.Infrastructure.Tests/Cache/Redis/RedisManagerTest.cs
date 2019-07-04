@@ -56,5 +56,11 @@ namespace Sample.Infrastructure.Tests.Cache.Redis
             var result = await redisManager.GetAllHashAsync(hashKey);
             Assert.True(result.Count > 0);
         }
+
+        [Fact(DisplayName = "删除哈希数据")]
+        public async Task DeleteHashAsyncSuccess()
+        {
+            await redisManager.DeleteHashAsync(hashKey, "Z");
+        }
     }
 }

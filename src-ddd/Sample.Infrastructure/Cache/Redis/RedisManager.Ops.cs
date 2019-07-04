@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using Sample.Infrastructure.Extensions;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,9 @@ namespace Sample.Infrastructure.Cache.Redis
         {
             IDatabase db = redis.GetDatabase(_dbIndex);
             var result = await db.HashGetAllAsync(key);
-            return ConvertHashEntry2Dictionary(result);
+            return result.ToStringDictionary();
         }
+
         public async Task SetHashAsync(string key, string hashField, string value)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -38,23 +40,18 @@ namespace Sample.Infrastructure.Cache.Redis
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             IDatabase db = redis.GetDatabase(_dbIndex);
-            await db.HashSetAsync(key, ConvertDictionary2HashEntry(dictionary));
+            await db.HashSetAsync(key, dictionary.ToHashEntry());
         }
-        private HashEntry[] ConvertDictionary2HashEntry(Dictionary<string, string> dictionary)
-        {
-            var fields = dictionary.Select(
-                pair => new HashEntry(pair.Key, pair.Value)).ToArray();
-            return fields;
-        }
-        private Dictionary<string, string> ConvertHashEntry2Dictionary(HashEntry[] fields)
-        {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-            foreach (var item in fields)
-            {
-                dictionary.Add(item.Name, item.Value);
-            }
-            return dictionary;
+        public async Task DeleteHashAsync(string key, string hashField)
+        {
+            IDatabase db = redis.GetDatabase(_dbIndex);
+            await db.HashDeleteAsync(key, hashField);
+        }
+        public async Task DeleteHashAsync(string key, string[] hashFields)
+        {
+            IDatabase db = redis.GetDatabase(_dbIndex);
+            await db.HashDeleteAsync(key, hashFields.ToRedisValueArray());
         }
         #endregion
     }
