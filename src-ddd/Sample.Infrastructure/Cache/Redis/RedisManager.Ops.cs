@@ -10,12 +10,12 @@ namespace Sample.Infrastructure.Cache.Redis
     public partial class RedisManager
     {
         #region string
-        public async Task<bool> SetString(string key, string value, TimeSpan? expiry = null)
+        public async Task<bool> SetStringAsync(string key, string value, TimeSpan? expiry = null)
         {
             IDatabase db = redis.GetDatabase(_dbIndex);
             return await db.StringSetAsync(key, value, expiry);
         }
-        public async Task<string> GetString(string key)
+        public async Task<string> GetStringAsync(string key)
         {
             IDatabase db = redis.GetDatabase(_dbIndex);
             return await db.StringGetAsync(key);

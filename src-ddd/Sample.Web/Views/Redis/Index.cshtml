@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Redis Operation</h1>
+<div>
+    <p>MySql中的数据存储在Redis中的规则</p>
+    <p>键：Sample:TodoItems:{todo.Id}:Datas</p>
+</div>
+<div>
+    <p>Get datas from redis.</p>
+    <p id="rv"></p>
+    <button id="getRedisValue">获取数据</button>
+</div>
+
+@section Scripts{
+<script>
+    $(function () {
+        $('#getRedisValue').click(function () {
+            $.ajax({
+                'type': 'POST',
+                'url': 'redis/GetRedisValue',
+                success: function (data) {
+                    $('#rv').text(data);
+                }
+            })
+        });
+    })
+</script>
+}

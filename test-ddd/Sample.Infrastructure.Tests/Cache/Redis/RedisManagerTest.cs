@@ -26,7 +26,7 @@ namespace Sample.Infrastructure.Tests.Cache.Redis
         [Fact(DisplayName = "字符串-写入-成功")]
         public async Task SetStringSuccess()
         {
-            var result = await redisManager.SetString(stringKey, "1", TimeSpan.FromSeconds(60));
+            var result = await redisManager.SetStringAsync(stringKey, "1", TimeSpan.FromSeconds(60));
             Assert.True(result);
         }
 
@@ -34,7 +34,7 @@ namespace Sample.Infrastructure.Tests.Cache.Redis
         [Fact(DisplayName = "字符串-读取-成功")]
         public async Task GetStringSuccess()
         {
-            var result = await redisManager.GetString(stringKey);
+            var result = await redisManager.GetStringAsync(stringKey);
             Assert.True(result == "1");
         }
         #endregion
