@@ -18,7 +18,7 @@ namespace Sample.Winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CK.CKIndexForm());
+            Application.Run(new MQ.RabbitMQOperation());
         }
     }
 }

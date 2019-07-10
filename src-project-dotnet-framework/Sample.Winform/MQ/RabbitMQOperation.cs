@@ -9,25 +9,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sample.Utilities.Framework.RabbitMQOperation;
+using Sample.Utilities.Framework.WinformOperation;
 
 namespace Sample.Winform.MQ
 {
-    public partial class PublishMessage : Form
+    public partial class RabbitMQOperation : Form
     {
-        public PublishMessage()
+        Logger logger;
+        public RabbitMQOperation()
         {
             InitializeComponent();
+            logger = new Logger(rtxLogs);
         }
 
         private void PublishMessage_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Task.Run(() =>
-                {
-                    Publish();
-                });
-            }
+            MQManager mqManager = new MQManager();
+            var result = mqManager.GetQueueReadyMessageCount("click_house");
+
+            logger.LogInfo($"消费者数量：{result.consumerCount}");
+            logger.LogInfo($"消息数量：{result.messageCount}");
         }
 
         public void Publish(int count)
@@ -47,5 +48,7 @@ namespace Sample.Winform.MQ
                 Thread.Sleep(10);
             }
         }
+
+
     }
 }

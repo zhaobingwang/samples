@@ -80,11 +80,11 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
-    <Compile Include="MQ\PublishMessage.cs">
+    <Compile Include="MQ\RabbitMQOperation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MQ\PublishMessage.Designer.cs">
-      <DependentUpon>PublishMessage.cs</DependentUpon>
+    <Compile Include="MQ\RabbitMQOperation.Designer.cs">
+      <DependentUpon>RabbitMQOperation.cs</DependentUpon>
     </Compile>
     <Compile Include="Page\DocumentOperation\PDFPage.cs">
       <SubType>Form</SubType>
@@ -135,8 +135,8 @@
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MQ\PublishMessage.resx">
-      <DependentUpon>PublishMessage.cs</DependentUpon>
+    <EmbeddedResource Include="MQ\RabbitMQOperation.resx">
+      <DependentUpon>RabbitMQOperation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\DocumentOperation\PDFPage.resx">
       <DependentUpon>PDFPage.cs</DependentUpon>
