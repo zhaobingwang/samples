@@ -1,4 +1,5 @@
 ﻿using CodeSnippets;
+using CodeSnippets.Issues;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,10 +12,6 @@ namespace Temporary
         {
             try
             {
-                var utc = DateTime.UtcNow;
-                var localTime = TimeZoneInfo.ConvertTimeFromUtc(utc,TimeZoneInfo.Local);
-                Console.WriteLine($"{utc}");
-                Console.WriteLine($"{localTime}");
             }
             catch (CustomException ex)
             {

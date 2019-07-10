@@ -16,4 +16,8 @@
     <ProjectReference Include="..\..\src-snippets\CodeSnippets\CodeSnippets.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Issues\" />
+  </ItemGroup>
+
 </Project>
