@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CodeSnippets.Books.CSharp157
 {
-    public class _01StringOperation
+    public class _001StringOperation
     {
     }
 }

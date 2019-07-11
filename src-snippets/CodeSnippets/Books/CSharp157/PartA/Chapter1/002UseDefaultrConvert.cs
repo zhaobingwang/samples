@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CodeSnippets.Books.CSharp157
 {
-    public class _02UseDefaultrConvert
+    public class _002UseDefaultrConvert
     {
         public static string IpConvert(string strIp)
         {
