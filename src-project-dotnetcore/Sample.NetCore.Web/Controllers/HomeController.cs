@@ -4,17 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-using Sample.Web.Models;
+using Sample.NetCore.Web.Models;
 
-namespace Sample.Web.Controllers
+namespace Sample.NetCore.Web.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly IHubContext<NotificationHub>
         public IActionResult Index()
         {
-            ViewData["Now"] = DateTime.Now;
             return View();
         }
 
