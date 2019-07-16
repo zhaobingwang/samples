@@ -13,7 +13,7 @@ namespace Temporary
         {
             try
             {
-                _010Comparer.CompareTemperatures();
+                _011EqualsAndOPEquals.RefrenceTypeEquals();
             }
             catch (CustomException ex)
             {
