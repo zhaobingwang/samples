@@ -16,7 +16,7 @@ namespace Temporary
         {
             try
             {
-                _014DeepCopyAndShallowCopy.Run();
+                _015DynamicAndReflection.Run();
             }
             catch (CustomException ex)
             {
