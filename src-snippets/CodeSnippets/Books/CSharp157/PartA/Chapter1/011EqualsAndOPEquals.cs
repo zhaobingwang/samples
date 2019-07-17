@@ -10,6 +10,7 @@ namespace CodeSnippets.Books.CSharp157
     /// 无论==还是Equals都倾向于表达这样一个原则：
     /// 1. 对于值类型，如果类型的值相等，就应该返回true。
     /// 2. 对于引用类型，如果类型指向同一个对象，则返回true。
+    /// 对于引用类型，如果我们要定义“值相等性”，应该仅仅去重载Equals方法，同时让“==”表示引用相等性
     /// </summary>
     public class _011EqualsAndOPEquals
     {
@@ -51,32 +52,6 @@ namespace CodeSnippets.Books.CSharp157
             Console.WriteLine(p1.Equals(p2));   // false 重写Equals后返回true
             p2 = p1;
             Console.WriteLine(p1.Equals(p2));   // true
-        }
-    }
-
-    /// <summary>
-    /// 对于引用类型，如果我们要定义“值相等性”，应该仅仅去重载Equals方法，同时让“==”表示引用相等性
-    /// </summary>
-    public class Person : IEquatable<Person>
-    {
-        public string IDCode { get; private set; }
-        public Person(string idCode)
-        {
-            this.IDCode = idCode;
-        }
-        public override bool Equals(object obj)
-        {
-            return IDCode == (obj as Person).IDCode;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(IDCode);
-        }
-
-        public bool Equals(Person other)
-        {
-            return IDCode == other.IDCode;
         }
     }
 }
