@@ -16,7 +16,7 @@ namespace Temporary
         {
             try
             {
-                _011EqualsAndOPEquals.RefrenceTypeEquals();
+                _012OverrideGetHashCode.Run();
             }
             catch (CustomException ex)
             {

@@ -57,7 +57,7 @@ namespace CodeSnippets.Books.CSharp157
     /// <summary>
     /// 对于引用类型，如果我们要定义“值相等性”，应该仅仅去重载Equals方法，同时让“==”表示引用相等性
     /// </summary>
-    public class Person
+    public class Person : IEquatable<Person>
     {
         public string IDCode { get; private set; }
         public Person(string idCode)
@@ -67,6 +67,16 @@ namespace CodeSnippets.Books.CSharp157
         public override bool Equals(object obj)
         {
             return IDCode == (obj as Person).IDCode;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IDCode);
+        }
+
+        public bool Equals(Person other)
+        {
+            return IDCode == other.IDCode;
         }
     }
 }
