@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.NetCore.API", "src-p
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.NetCore.ApplicationCore", "src-project-dotnetcore\Sample.NetCore.ApplicationCore\Sample.NetCore.ApplicationCore.csproj", "{06F5FA22-13DA-4903-B4F6-6B1C1F3E9085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.NetCore.Domain", "src-project-dotnetcore\Sample.NetCore.Domain\Sample.NetCore.Domain.csproj", "{BB466275-DEA5-4885-90B5-215171EC596B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.NetCore.Domain", "src-project-dotnetcore\Sample.NetCore.Domain\Sample.NetCore.Domain.csproj", "{BB466275-DEA5-4885-90B5-215171EC596B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.NetCore.Infrastructure", "src-project-dotnetcore\Sample.NetCore.Infrastructure\Sample.NetCore.Infrastructure.csproj", "{75F0AB78-0923-4D06-A71F-94E6E5FCFF11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.NetCore.Infrastructure", "src-project-dotnetcore\Sample.NetCore.Infrastructure\Sample.NetCore.Infrastructure.csproj", "{75F0AB78-0923-4D06-A71F-94E6E5FCFF11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.NetCore.HostBackgroundTasks", "src-project-dotnetcore\Sample.NetCore.HostBackgroundTasks\Sample.NetCore.HostBackgroundTasks.csproj", "{1B27BFBD-9723-45BC-BE5D-58A81687EA49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{75F0AB78-0923-4D06-A71F-94E6E5FCFF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75F0AB78-0923-4D06-A71F-94E6E5FCFF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75F0AB78-0923-4D06-A71F-94E6E5FCFF11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B27BFBD-9723-45BC-BE5D-58A81687EA49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B27BFBD-9723-45BC-BE5D-58A81687EA49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B27BFBD-9723-45BC-BE5D-58A81687EA49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B27BFBD-9723-45BC-BE5D-58A81687EA49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
