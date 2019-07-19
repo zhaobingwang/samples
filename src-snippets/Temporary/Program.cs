@@ -16,7 +16,7 @@ namespace Temporary
         {
             try
             {
-                _015DynamicAndReflection.Run();
+                _018ForeachAndFor2.Run();
             }
             catch (CustomException ex)
             {
@@ -29,6 +29,10 @@ namespace Temporary
             catch (ArgumentOutOfRangeException ex)
             {
                 Console.WriteLine(ex);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
