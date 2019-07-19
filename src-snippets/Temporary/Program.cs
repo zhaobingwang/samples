@@ -16,7 +16,7 @@ namespace Temporary
         {
             try
             {
-                _018ForeachAndFor2.Run();
+                _020GenericCollections.Run();
             }
             catch (CustomException ex)
             {
