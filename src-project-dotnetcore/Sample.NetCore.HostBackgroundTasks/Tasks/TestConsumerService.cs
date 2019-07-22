@@ -63,9 +63,9 @@ namespace Sample.NetCore.HostBackgroundTasks.Tasks
     }
     public class TestConsumer : Consumer
     {
-        public const string QUEUE_NAME = "click_house";
+        public const string QUEUE_NAME = "";
         ILogger<TestConsumerService> _logger;
-        public TestConsumer(ILogger<TestConsumerService> logger) : base("amqp://admin:admin@10.8.76.178:5672", QUEUE_NAME)
+        public TestConsumer(ILogger<TestConsumerService> logger) : base("amqp://admin:admin@127.0.0.1:5672", QUEUE_NAME)
         {
             _logger = logger;
         }
