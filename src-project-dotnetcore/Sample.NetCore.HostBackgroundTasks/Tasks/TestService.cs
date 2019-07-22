@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Sample.NetCore.HostBackgroundTasks
+namespace Sample.NetCore.HostBackgroundTasks.Tasks
 {
-    public class TestService : IHostedService, IDisposable
+    public class TestService : IHostedService//BackgroundService//IHostedService, IDisposable
     {
         private Timer _timer;
         private readonly ILogger<TestService> _logger;
@@ -16,10 +16,26 @@ namespace Sample.NetCore.HostBackgroundTasks
         {
             _logger = logger;
         }
+
+        //protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        //{
+        //    _logger.LogDebug($"TestService background task is starting.");
+        //    stoppingToken.Register(TaskStop);
+        //    while (!stoppingToken.IsCancellationRequested)
+        //    {
+        //        DoWork(null);
+
+        //        await Task.Delay(1000, stoppingToken);
+        //    }
+        //}
+        private void TaskStop()
+        {
+            _logger.LogDebug($"TestService background task is stopping.");
+        }
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation($"{nameof(TestService)} starting...");
-            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromSeconds(2));
             return Task.CompletedTask;
         }
 
@@ -34,9 +50,9 @@ namespace Sample.NetCore.HostBackgroundTasks
             _logger.LogInformation(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
         }
 
-        public void Dispose()
-        {
-            _timer?.Dispose();
-        }
+        //public void Dispose()
+        //{
+        //    _timer?.Dispose();
+        //}
     }
 }
