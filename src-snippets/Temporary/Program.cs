@@ -16,7 +16,7 @@ namespace Temporary
         {
             try
             {
-                _020GenericCollections.PerformanceTest();
+                _022EnsureTheCollectionIsThreadSafe.RunThrowInvalidOperationException();
                 Console.Read();
             }
             catch (CustomException ex)
