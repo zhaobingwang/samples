@@ -34,7 +34,7 @@ namespace CodeSnippets.Books.CSharp157
         // ConcurrentBag<T> 对应 List<T>
         // ConcurrentStack<T> 对应 Stack<T>
 
-        //static object syncObj = new object();   // 如果是ArrayList，内置已经实现的lock:SyncRoot
+        static object syncObj = new object();   // 如果是ArrayList，内置已经实现的lock:SyncRoot
 
         public static void RunThrowInvalidOperationException()
         {
