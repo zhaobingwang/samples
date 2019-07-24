@@ -16,7 +16,8 @@ namespace Temporary
         {
             try
             {
-                _020GenericCollections.Run();
+                _020GenericCollections.PerformanceTest();
+                Console.Read();
             }
             catch (CustomException ex)
             {

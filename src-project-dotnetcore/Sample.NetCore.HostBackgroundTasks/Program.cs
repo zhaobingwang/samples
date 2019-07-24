@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
 using Sample.NetCore.HostBackgroundTasks.Tasks;
-using System.Threading;
+using System;
 using System.Runtime.Loader;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Sample.NetCore.HostBackgroundTasks
 {
@@ -29,7 +28,7 @@ namespace Sample.NetCore.HostBackgroundTasks
                 services.AddSingleton<IHostedService, TestService>();
                 //services.AddHostedService<TestConsumerService>();
                 services.AddLogging();
-                //services.AddHostedService<LifetimeEventsHostedService>();
+                services.AddHostedService<LifetimeEventsHostedService>();
 
                 var serviceProvider = services.BuildServiceProvider();
             })
@@ -39,8 +38,10 @@ namespace Sample.NetCore.HostBackgroundTasks
                 configLogging.SetMinimumLevel(LogLevel.Trace);
                 configLogging.AddNLog();
                 //configLogging.AddDebug();
-            });
-            await builder.RunConsoleAsync();
+            })
+            .UseConsoleLifetime()
+            .Build();
+            await builder.RunAsync();
             //_closing.WaitOne();
         }
 
