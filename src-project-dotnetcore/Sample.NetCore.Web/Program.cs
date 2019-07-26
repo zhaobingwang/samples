@@ -25,7 +25,8 @@ namespace Sample.NetCore.Web
                 var service = scope.ServiceProvider;
                 try
                 {
-                    var context = service.GetRequiredService<MSSQLContext>();
+                    //var context = service.GetRequiredService<MSSQLContext>();
+                    var context = service.GetRequiredService<PostgreSQLContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(service);
                 }

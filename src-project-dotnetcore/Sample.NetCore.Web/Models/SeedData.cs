@@ -13,9 +13,9 @@ namespace Sample.NetCore.Web.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new MSSQLContext(
+            using (var context = new PostgreSQLContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<MSSQLContext>>()))
+                    DbContextOptions<PostgreSQLContext>>()))
             {
                 // Look for any movies.
                 if (context.Movies.Any())

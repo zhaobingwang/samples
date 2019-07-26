@@ -12,9 +12,10 @@ namespace Sample.NetCore.Web.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly MSSQLContext _context;
+        //private readonly MSSQLContext _context;
+        private readonly PostgreSQLContext _context;
 
-        public MoviesController(MSSQLContext context)
+        public MoviesController(PostgreSQLContext context)
         {
             _context = context;
         }
