@@ -38,6 +38,9 @@ namespace Sample.NetCore.Web
 
             services.AddDbContext<MSSQLContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MSSQLContext")));
+
+            services.AddDbContext<PostgreSQLContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

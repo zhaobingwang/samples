@@ -17,6 +17,7 @@ namespace Temporary
             try
             {
                 _022EnsureTheCollectionIsThreadSafe.RunThrowInvalidOperationException();
+                File.AppendAllText("c:/temp/logs.txt", "aaa");
                 Console.Read();
             }
             catch (CustomException ex)
