@@ -78,7 +78,7 @@ namespace Sample.NetCore.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,ReleaseDate,Genre,Price,ID")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Title,ReleaseDate,Genre,Price,Rating,ID")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace Sample.NetCore.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Title,ReleaseDate,Genre,Price,ID")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Title,ReleaseDate,Genre,Price,Rating,ID")] Movie movie)
         {
             if (id != movie.ID)
             {
