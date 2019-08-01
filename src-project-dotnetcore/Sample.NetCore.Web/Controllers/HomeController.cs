@@ -31,6 +31,13 @@ namespace Sample.NetCore.Web.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            //return View();
+            //return View("Views/Home/About.cshtml");
+            return View("Privacy");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
