@@ -10,15 +10,19 @@ using System.Xml;
 
 namespace Temporary
 {
+    class A
+    {
+        public int MyProperty { get; set; }
+    }
     class Program
     {
         static void Main(string[] args)
         {
             try
             {
-                _022EnsureTheCollectionIsThreadSafe.RunThrowInvalidOperationException();
-                File.AppendAllText("c:/temp/logs.txt", "aaa");
-                Console.Read();
+                DataAnnotationsIssues.Run();
+                A a = null;
+                Console.WriteLine(a.MyProperty);
             }
             catch (CustomException ex)
             {
