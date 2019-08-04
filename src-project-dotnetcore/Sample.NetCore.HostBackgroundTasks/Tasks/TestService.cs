@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Sample.NetCore.HostBackgroundTasks.Tasks
 {
+    /// <summary>
+    /// Gracefully Stopping Docker Containers:
+    /// docker kill --signal=SIGQUIT containername
+    /// from: https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/
+    /// </summary>
     public class TestService : IHostedService//BackgroundService//IHostedService, IDisposable
     {
         private Timer _timer;
