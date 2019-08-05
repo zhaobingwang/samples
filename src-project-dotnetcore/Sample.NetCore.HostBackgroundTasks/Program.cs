@@ -30,6 +30,7 @@ namespace Sample.NetCore.HostBackgroundTasks
                 //configLogging.AddConsole();
                 configLogging.SetMinimumLevel(LogLevel.Trace);
                 configLogging.AddNLog();
+
                 //configLogging.AddDebug();
             })
             //.UseConsoleLifetime()
