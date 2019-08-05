@@ -28,7 +28,8 @@ namespace Sample.NetCore.Web.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            var url = Url.Action("Index", "Home", new { id = 1 });
+            return Content(url);
         }
 
         public IActionResult About()

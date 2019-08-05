@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Sample.NetCore.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace Sample.NetCore.Web
 {
@@ -34,7 +35,10 @@ namespace Sample.NetCore.Web
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<MSSQLContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MSSQLContext")));
@@ -66,6 +70,11 @@ namespace Sample.NetCore.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "items",
+                    template: "Items/{country}/{action}",
+                    defaults: new { controller = "Items" });
             });
         }
     }
