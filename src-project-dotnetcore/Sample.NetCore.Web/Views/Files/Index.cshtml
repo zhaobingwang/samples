@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div>
+    <form method="post" enctype="multipart/form-data" asp-controller="Files" asp-action="Upload">
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>上传一个或者多个文件</p>
+                <input type="file" name="files" multiple />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="上传" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -12,6 +12,17 @@ namespace Sample.NetCore.Infrastructure.Data
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityUser>()
+                .ToTable("Users")
+                .HasDiscriminator<string>("user_type")
+                .HasValue<ApplicationUser>("user_app")
+                .HasValue<IdentityUser>("user_id");
+        }
+
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<IdentityUser> IdentityUser { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }
