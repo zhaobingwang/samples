@@ -42,6 +42,12 @@ namespace Sample.NetCore.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                config.AddJsonFile("appsettings.others.json",
+                    optional: false,
+                    reloadOnChange: false);
+            })
+            .UseStartup<Startup>();
     }
 }

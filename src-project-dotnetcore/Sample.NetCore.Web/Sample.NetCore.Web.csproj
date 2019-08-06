@@ -17,6 +17,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\Sample.NetCore.ApplicationCore\Sample.NetCore.ApplicationCore.csproj" />
     <ProjectReference Include="..\Sample.NetCore.Domain\Sample.NetCore.Domain.csproj" />
     <ProjectReference Include="..\Sample.NetCore.Infrastructure\Sample.NetCore.Infrastructure.csproj" />
   </ItemGroup>

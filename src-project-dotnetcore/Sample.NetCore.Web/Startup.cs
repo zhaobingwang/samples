@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Sample.NetCore.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Sample.NetCore.ApplicationCore.Interfaces;
+using Sample.NetCore.ApplicationCore.Services;
 
 namespace Sample.NetCore.Web
 {
@@ -34,6 +36,8 @@ namespace Sample.NetCore.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSingleton<IDateTime, SystemDateTime>();
+            services.Configure<Settings>(Configuration);
 
             services.AddMvc(options =>
             {

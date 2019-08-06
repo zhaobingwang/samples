@@ -7,21 +7,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Sample.NetCore.Web.Models;
 using Sample.NetCore.Infrastructure;
+using Sample.NetCore.ApplicationCore.Interfaces;
+using Microsoft.Extensions.Options;
 
 namespace Sample.NetCore.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IConfiguration Configuration { get; }
-        public HomeController(IConfiguration configuration)
+        private readonly IDateTime _dateTime;
+        //public IConfiguration Configuration { get; }
+        private readonly Settings _settings;
+        public HomeController(IOptions<Settings> settings, IDateTime dateTime)
         {
-            Configuration = configuration;
+            _settings = settings.Value;
+            _dateTime = dateTime;
         }
         public IActionResult Index()
         {
-            //ViewData["Config"] = Configuration.GetValue<string>("AppName");
-            Temporary temporary = new Temporary(Configuration);
-            ViewData["Config"] = temporary.GetConfigValue("AppName");
+            ViewData["AppName"] = _settings.AppName;
+            ViewData["Others"] = _settings.Others;
+
+            // say hi
+            var serverTime = _dateTime.Now;
+            if (serverTime.Hour < 12)
+                ViewData["SayHi"] = "早上好";
+            else if (serverTime.Hour < 17)
+                ViewData["SayHi"] = "下午好";
+            else
+                ViewData["SayHi"] = "晚上好";
 
             return View();
         }
@@ -32,11 +45,12 @@ namespace Sample.NetCore.Web.Controllers
             return Content(url);
         }
 
-        public IActionResult About()
+        public IActionResult About([FromServices] IDateTime dateTime)
         {
-            //return View();
             //return View("Views/Home/About.cshtml");
-            return View("Privacy");
+            //return View("Privacy");
+            ViewData["Now"] = $"当前服务器时间：{dateTime.Now}";
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
