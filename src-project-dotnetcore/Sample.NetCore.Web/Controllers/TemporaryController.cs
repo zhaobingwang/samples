@@ -15,6 +15,7 @@ namespace Sample.NetCore.Web.Controllers
         {
             _todoItemRepository = todoItemRepository;
         }
+
         public async Task<IActionResult> Index()
         {
             var todos = await _todoItemRepository.ListAsync();
