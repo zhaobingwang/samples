@@ -22,4 +22,11 @@
     <ProjectReference Include="..\Sample.NetCore.Infrastructure\Sample.NetCore.Infrastructure.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
