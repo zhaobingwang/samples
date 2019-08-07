@@ -14,6 +14,7 @@ using Sample.NetCore.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Sample.NetCore.ApplicationCore.Interfaces;
 using Sample.NetCore.ApplicationCore.Services;
+using Sample.NetCore.Web.Services;
 
 namespace Sample.NetCore.Web
 {
@@ -36,7 +37,12 @@ namespace Sample.NetCore.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // services
+            // Transient objects are always different; a new instance is provided to every controller and every service.
+            // Scoped objects are the same within a request, but different across different requests.
+            // Singleton objects are the same for every object and every request.
             services.AddSingleton<IDateTime, SystemDateTime>();
+            services.AddSingleton<ProfileOptionsService>();
             services.Configure<Settings>(Configuration);
 
             services.AddMvc(options =>

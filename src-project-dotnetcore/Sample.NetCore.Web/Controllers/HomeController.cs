@@ -36,7 +36,15 @@ namespace Sample.NetCore.Web.Controllers
             else
                 ViewData["SayHi"] = "晚上好";
 
-            return View();
+            // 视图注入-填充查找数据
+            var profile = new ProfileViewModel()
+            {
+                Name = "张三",
+                FavColor = "蓝",
+                Gender = "男",
+                Province = new ProvinceViewModel("浙江", "Zhejiang")
+            };
+            return View(profile);
         }
 
         public IActionResult Privacy()

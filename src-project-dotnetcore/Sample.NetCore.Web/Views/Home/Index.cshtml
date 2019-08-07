@@ -2,9 +2,46 @@
     ViewData["Title"] = "Home Page";
 }
 
+@*配置注入*@
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    string myValue = Configuration["root:parent:child"];
+}
+
+@*服务注入*@
+@using Sample.NetCore.ApplicationCore.Interfaces;
+@inject IDateTime systemDateTime
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <h2>@ViewData["SayHi"]</h2>
     <h3>@ViewData["AppName"]</h3>
     <h3>@ViewData["Others"]</h3>
+    <h3>配置注入:@myValue</h3>
+    <h3>服务注入:@systemDateTime.Now</h3>
+</div>
+
+
+@using System.Threading.Tasks
+@using Sample.NetCore.Web.Services
+@model Sample.NetCore.Web.Models.ProfileViewModel
+@inject ProfileOptionsService Options
+<div>
+    <h1>Update Profile</h1>
+    Name: @Html.TextBoxFor(m => m.Name)
+    <br />
+    Gender: @Html.DropDownList("Gender",
+Options.ListGenders().Select(g =>
+new SelectListItem() { Text = g, Value = g }))
+    <br />
+
+    State: @Html.DropDownListFor(m => m.Province.Pinyin,
+Options.ListProvinces().Select(s =>
+  new SelectListItem() { Text = s.Name, Value = s.Pinyin}))
+    <br />
+
+    Fav. Color: @Html.DropDownList("FavColor",
+Options.ListColors().Select(c =>
+new SelectListItem() { Text = c, Value = c }))
 </div>
