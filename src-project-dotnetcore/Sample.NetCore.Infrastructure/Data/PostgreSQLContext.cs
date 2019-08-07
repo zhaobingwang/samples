@@ -24,5 +24,6 @@ namespace Sample.NetCore.Infrastructure.Data
         public DbSet<Movie> Movies { get; set; }
         public DbSet<IdentityUser> IdentityUser { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
 }

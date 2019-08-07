@@ -9,7 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sample.NetCore.Domain.Entities;
 using Sample.NetCore.Infrastructure.Data;
+using Sample.NetCore.Infrastructure.Interfaces;
 using Sample.NetCore.Web.Models;
 
 namespace Sample.NetCore.Web
@@ -29,6 +31,9 @@ namespace Sample.NetCore.Web
                     var context = service.GetRequiredService<PostgreSQLContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(service);
+
+                    var repository = service.GetService<ITodoItemRepository>();
+                    InitializeDatabaseAsync(repository).Wait();
                 }
                 catch (Exception ex)
                 {
@@ -49,5 +54,42 @@ namespace Sample.NetCore.Web
                     reloadOnChange: false);
             })
             .UseStartup<Startup>();
+
+
+
+        private static async Task InitializeDatabaseAsync(ITodoItemRepository repository)
+        {
+            var sessionList = await repository.ListAsync();
+            if (!sessionList.Any())
+            {
+                await repository.AddAsync(GetTestTodos());
+            }
+        }
+
+        private static TodoItem GetTestTodos()
+        {
+            var todo = new TodoItem()
+            {
+                Name = "测试",
+                IsComplete = false,
+                CreateTime = DateTimeOffset.UtcNow,
+                ModifyTime = DateTimeOffset.UtcNow,
+            };
+            var step1 = new TodoItemStep()
+            {
+                Index = 1,
+                Name = "步骤1"
+            };
+            var step2 = new TodoItemStep()
+            {
+                Index = 1,
+                Name = "步骤2"
+            };
+
+            todo.AddStep(step1);
+            todo.AddStep(step2);
+
+            return todo;
+        }
     }
 }

@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Sample.NetCore.ApplicationCore.Interfaces;
 using Sample.NetCore.ApplicationCore.Services;
 using Sample.NetCore.Web.Services;
+using Sample.NetCore.Infrastructure.Interfaces;
+using Sample.NetCore.Infrastructure.Repositories;
+using Sample.NetCore.Domain.Entities;
 
 namespace Sample.NetCore.Web
 {
@@ -37,6 +40,17 @@ namespace Sample.NetCore.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<MSSQLContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MSSQLContext")));
+
+            services.AddDbContext<PostgreSQLContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLContext")));
+
+            services.AddMvc(options =>
+            {
+                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             // services
             // Transient objects are always different; a new instance is provided to every controller and every service.
             // Scoped objects are the same within a request, but different across different requests.
@@ -44,17 +58,7 @@ namespace Sample.NetCore.Web
             services.AddSingleton<IDateTime, SystemDateTime>();
             services.AddSingleton<ProfileOptionsService>();
             services.Configure<Settings>(Configuration);
-
-            services.AddMvc(options =>
-            {
-                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddDbContext<MSSQLContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MSSQLContext")));
-
-            services.AddDbContext<PostgreSQLContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLContext")));
+            services.AddScoped<ITodoItemRepository, TodoItemRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +67,8 @@ namespace Sample.NetCore.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //var repository = app.ApplicationServices.GetService<ITodoItemRepository>();
+                //InitializeDatabaseAsync(repository).Wait();
             }
             else
             {

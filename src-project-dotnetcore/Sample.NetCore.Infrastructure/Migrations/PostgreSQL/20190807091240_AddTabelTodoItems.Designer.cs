@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sample.NetCore.Infrastructure.Data;
@@ -9,9 +10,10 @@ using Sample.NetCore.Infrastructure.Data;
 namespace Sample.NetCore.Infrastructure.Migrations.PostgreSQL
 {
     [DbContext(typeof(PostgreSQLContext))]
-    partial class PostgreSQLContextModelSnapshot : ModelSnapshot
+    [Migration("20190807091240_AddTabelTodoItems")]
+    partial class AddTabelTodoItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,36 +75,17 @@ namespace Sample.NetCore.Infrastructure.Migrations.PostgreSQL
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTimeOffset>("CreateTime");
+                    b.Property<DateTime>("CreateTime");
 
                     b.Property<bool>("IsComplete");
 
-                    b.Property<DateTimeOffset>("ModifyTime");
+                    b.Property<DateTime>("ModifyTime");
 
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
 
                     b.ToTable("TodoItems");
-                });
-
-            modelBuilder.Entity("Sample.NetCore.Domain.Entities.TodoItemStep", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte>("Index");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<int?>("TodoItemID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("TodoItemID");
-
-                    b.ToTable("TodoItemStep");
                 });
 
             modelBuilder.Entity("Sample.NetCore.Domain.Entities.ApplicationUser", b =>
@@ -112,13 +95,6 @@ namespace Sample.NetCore.Infrastructure.Migrations.PostgreSQL
                     b.Property<byte[]>("AvatarImage");
 
                     b.HasDiscriminator().HasValue("user_app");
-                });
-
-            modelBuilder.Entity("Sample.NetCore.Domain.Entities.TodoItemStep", b =>
-                {
-                    b.HasOne("Sample.NetCore.Domain.Entities.TodoItem")
-                        .WithMany("Steps")
-                        .HasForeignKey("TodoItemID");
                 });
 #pragma warning restore 612, 618
         }
