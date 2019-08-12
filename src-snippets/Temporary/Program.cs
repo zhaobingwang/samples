@@ -20,9 +20,7 @@ namespace Temporary
         {
             try
             {
-                DataAnnotationsIssues.Run();
-                A a = null;
-                Console.WriteLine(a.MyProperty);
+                _023.Run2();
             }
             catch (CustomException ex)
             {
