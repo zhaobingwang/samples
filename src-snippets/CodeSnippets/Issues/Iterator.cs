@@ -42,4 +42,46 @@ namespace CodeSnippets.Issues
             }
         }
     }
+
+    #region 实现自己的迭代器
+    public class MyIEnumerable : IEnumerable
+    {
+        private string[] _strList;
+        public MyIEnumerable(string[] strList)
+        {
+            _strList = strList;
+        }
+        public IEnumerator GetEnumerator()
+        {
+            return new MyIEnumerator(_strList);
+        }
+    }
+    public class MyIEnumerator : IEnumerator
+    {
+        private string[] _strList;
+        private int position;
+        public MyIEnumerator(string[] strList)
+        {
+            _strList = strList;
+            position = -1;
+        }
+        public object Current
+        {
+            get { return _strList[position]; }
+        }
+
+        public bool MoveNext()
+        {
+            position++;
+            if (position < _strList.Length)
+                return true;
+            return false;
+        }
+
+        public void Reset()
+        {
+            position = -1;
+        }
+    }
+    #endregion
 }

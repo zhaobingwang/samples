@@ -8,9 +8,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Temporary
 {
+    class User
+    {
+        public int Id { get; set; }
+    }
     class Program
     {
         static void Main(string[] args)
@@ -39,6 +44,33 @@ namespace Temporary
                 foreach (var line in Iterator.ReadLines("Files/TextFile.txt"))
                 {
                     Console.WriteLine(line);
+                }
+
+                List<User> users = new List<User>() {
+                    new User{ Id=1},
+                    new User{ Id=2}
+                };
+                foreach (var user in users)
+                {
+                    //users.Add(new User { Id = 10 });
+                    Console.WriteLine(user.Id);
+                }
+
+                string[] strList = new string[] { "第一个节点数据", "第二个节点数据", "第三个节点数据" };
+                MyIEnumerable myIEnumerable = new MyIEnumerable(strList);
+                // 1.获取IEnumerator接口实例
+                var enumerator = myIEnumerable.GetEnumerator();
+
+                // 2.判断是否可以继续循环
+                while (enumerator.MoveNext())
+                {
+                    // 3.取值
+                    Console.WriteLine(enumerator.Current);
+                }
+                Console.WriteLine("==========");
+                foreach (var item in myIEnumerable) // 效果等同于上述方式
+                {
+                    Console.WriteLine(item);
                 }
             }
             catch (CustomException ex)
