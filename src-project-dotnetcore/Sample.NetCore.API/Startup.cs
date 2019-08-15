@@ -6,10 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Sample.NetCore.Infrastructure.Data;
+using Sample.NetCore.Infrastructure.Interfaces;
+using Sample.NetCore.Infrastructure.Repositories;
 
 namespace Sample.NetCore.API
 {
@@ -25,6 +29,8 @@ namespace Sample.NetCore.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PostgreSQLContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLContext")));
+            services.AddScoped<ITodoItemRepository, TodoItemRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
