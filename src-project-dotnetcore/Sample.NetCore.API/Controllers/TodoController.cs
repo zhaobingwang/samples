@@ -20,14 +20,14 @@ namespace Sample.NetCore.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItem>> GetTodoItem(int id)
+        public async Task<ActionResult> GetTodoItem(int id)
         {
             var todoItem = await _todoItemRepository.GetAsync(id);
             if (todoItem == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
-            return todoItem;
+            return Ok(todoItem);
         }
     }
 }

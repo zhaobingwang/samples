@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src-project-dotnetcore\Sample.NetCore.API\Sample.NetCore.API.csproj" />
     <ProjectReference Include="..\..\src-project-dotnetcore\Sample.NetCore.Web\Sample.NetCore.Web.csproj" />
   </ItemGroup>
 
