@@ -23,7 +23,7 @@ namespace Temporary
         {
             try
             {
-                Iterator.Run();
+                DataAnnotationsIssues.Run();
             }
             catch (CustomException ex)
             {
@@ -44,6 +44,10 @@ namespace Temporary
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("end");
             }
         }
     }
