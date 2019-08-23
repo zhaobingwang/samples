@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using CodeSnippets.CSharp;
 using CodeSnippets.Infrastructure;
+using CodeSnippets.ThirdParty;
 
 namespace Temporary
 {
@@ -24,8 +25,8 @@ namespace Temporary
         {
             try
             {
-                DataAnnotationsIssues.Run();
-                var db = new NpgsqlEFContext();
+                DapperSample dapperSample = new DapperSample();
+                dapperSample.GetBlogs();
             }
             catch (CustomException ex)
             {

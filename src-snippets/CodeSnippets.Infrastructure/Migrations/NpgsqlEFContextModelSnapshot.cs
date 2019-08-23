@@ -27,7 +27,7 @@ namespace CodeSnippets.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blog");
+                    b.ToTable("blogs");
                 });
 
             modelBuilder.Entity("CodeSnippets.Infrastructure.Entities.Post", b =>
@@ -45,7 +45,7 @@ namespace CodeSnippets.Infrastructure.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Post");
+                    b.ToTable("posts");
                 });
 
             modelBuilder.Entity("CodeSnippets.Infrastructure.Entities.Post", b =>

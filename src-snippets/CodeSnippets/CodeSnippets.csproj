@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.60.6" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\src-thirdparty\Dapper\Dapper\Dapper.csproj" />
     <ProjectReference Include="..\CodeSnippets.Infrastructure\CodeSnippets.Infrastructure.csproj" />
   </ItemGroup>
 

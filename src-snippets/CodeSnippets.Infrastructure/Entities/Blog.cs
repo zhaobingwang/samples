@@ -14,5 +14,10 @@ namespace CodeSnippets.Infrastructure.Entities
         public string Url { get; set; }
 
         public List<Post> Posts { get; set; }
+
+        public static string GetTableName()
+        {
+            return "blogs";
+        }
     }
 }

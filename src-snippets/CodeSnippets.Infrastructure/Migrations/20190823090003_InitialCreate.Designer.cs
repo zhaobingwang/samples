@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CodeSnippets.Infrastructure.Migrations
 {
     [DbContext(typeof(NpgsqlEFContext))]
-    [Migration("20190823033250_Initial")]
-    partial class Initial
+    [Migration("20190823090003_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace CodeSnippets.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blog");
+                    b.ToTable("blogs");
                 });
 
             modelBuilder.Entity("CodeSnippets.Infrastructure.Entities.Post", b =>
@@ -47,7 +47,7 @@ namespace CodeSnippets.Infrastructure.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Post");
+                    b.ToTable("posts");
                 });
 
             modelBuilder.Entity("CodeSnippets.Infrastructure.Entities.Post", b =>

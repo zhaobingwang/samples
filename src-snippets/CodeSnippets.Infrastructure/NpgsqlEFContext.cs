@@ -15,6 +15,15 @@ namespace CodeSnippets.Infrastructure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
                => optionsBuilder.UseNpgsql("Host=192.168.0.166;Database=NpgsqlEFContext;Username=postgres;Password=123456");
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Blog>()
+                .ToTable("blogs");
+
+            modelBuilder.Entity<Post>()
+            .ToTable("posts");
+        }
+
         public DbSet<Blog> Blog { get; set; }
         public DbSet<Post> Post { get; set; }
     }
