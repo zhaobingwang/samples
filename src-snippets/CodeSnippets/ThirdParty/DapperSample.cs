@@ -17,6 +17,10 @@ namespace CodeSnippets.ThirdParty
             dbConnection = new NpgsqlConnection("Host=192.168.0.166;Database=NpgsqlEFContext;Username=postgres;Password=123456");
         }
 
+        public void Insert()
+        {
+            string sql = "insert into blogs values (@)";
+        }
         public void GetBlogs()
         {
             string sqlQuery = $"select * from {Blog.GetTableName()}";
