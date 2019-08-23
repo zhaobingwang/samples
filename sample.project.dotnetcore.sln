@@ -18,13 +18,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5A9F5A4-9CB4-4B9A-B95D-848CAE9BEC66}"
 	ProjectSection(SolutionItems) = preProject
 		build-backgroundtasks.bat = build-backgroundtasks.bat
+		sonarqube.projetc.netcore.bat = sonarqube.projetc.netcore.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.NetCore.Producer", "src-project-dotnetcore\Sample.NetCore.Producer\Sample.NetCore.Producer.csproj", "{1309F0A6-B033-4E64-AEA9-8C1F9D71BFC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.NetCore.Producer", "src-project-dotnetcore\Sample.NetCore.Producer\Sample.NetCore.Producer.csproj", "{1309F0A6-B033-4E64-AEA9-8C1F9D71BFC6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{78678C26-2FA8-4769-9233-41C96CB67A1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "test-project-dotnetcore\UnitTests\UnitTests.csproj", "{71FDCE9B-7045-4423-B3D2-EB11908E6D5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "test-project-dotnetcore\UnitTests\UnitTests.csproj", "{71FDCE9B-7045-4423-B3D2-EB11908E6D5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
