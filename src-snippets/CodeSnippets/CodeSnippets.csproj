@@ -14,4 +14,12 @@
     <Folder Include="Utilities\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeSnippets.Infrastructure\CodeSnippets.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

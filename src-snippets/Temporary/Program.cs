@@ -10,6 +10,7 @@ using System.Xml;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using CodeSnippets.CSharp;
+using CodeSnippets.Infrastructure;
 
 namespace Temporary
 {
@@ -24,6 +25,7 @@ namespace Temporary
             try
             {
                 DataAnnotationsIssues.Run();
+                var db = new NpgsqlEFContext();
             }
             catch (CustomException ex)
             {
