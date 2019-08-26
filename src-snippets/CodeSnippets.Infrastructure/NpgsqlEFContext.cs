@@ -13,7 +13,7 @@ namespace CodeSnippets.Infrastructure
 
         //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-               => optionsBuilder.UseNpgsql("Host=192.168.0.166;Database=NpgsqlEFContext;Username=postgres;Password=123456");
+               => optionsBuilder.UseNpgsql("Host=192.168.0.166;Database=snippets;Username=postgres;Password=123456");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace CodeSnippets.Infrastructure
             .ToTable("posts");
         }
 
-        public DbSet<Blog> Blog { get; set; }
-        public DbSet<Post> Post { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

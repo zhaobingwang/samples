@@ -8,16 +8,7 @@ namespace CodeSnippets.Infrastructure.Entities
 {
     public class Blog
     {
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Url { get; set; }
-
-        public List<Post> Posts { get; set; }
-
-        public static string GetTableName()
-        {
-            return "blogs";
-        }
+        public int id { get; set; }
+        public string url { get; set; }
     }
 }

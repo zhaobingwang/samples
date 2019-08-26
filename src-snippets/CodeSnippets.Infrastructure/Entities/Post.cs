@@ -8,13 +8,10 @@ namespace CodeSnippets.Infrastructure.Entities
 {
     public class Post
     {
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
+        public string content { get; set; }
 
-        public int BlogId { get; set; }
-        public Blog Blog { get; set; }
+        public int blog_Id { get; set; }
     }
 }

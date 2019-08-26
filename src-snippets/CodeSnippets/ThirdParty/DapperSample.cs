@@ -14,16 +14,19 @@ namespace CodeSnippets.ThirdParty
         IDbConnection dbConnection;
         public DapperSample()
         {
-            dbConnection = new NpgsqlConnection("Host=192.168.0.166;Database=NpgsqlEFContext;Username=postgres;Password=123456");
+            dbConnection = new NpgsqlConnection("Host=192.168.0.166;Database=snippets;Username=postgres;Password=123456");
         }
 
         public void Insert()
         {
-            string sql = "insert into blogs values (@)";
+            Blog blog = new Blog();
+            blog.url = "http://127.0.0.1/blogs/userid";
+            string sql = $"insert into blogs (url) values (@url)";
+            var result = dbConnection.Execute(sql, new { url = blog.url });
         }
         public void GetBlogs()
         {
-            string sqlQuery = $"select * from {Blog.GetTableName()}";
+            string sqlQuery = $"select * from blogs";
             var blogs = dbConnection.Query<Blog>(sqlQuery);
             var a = 1;
         }

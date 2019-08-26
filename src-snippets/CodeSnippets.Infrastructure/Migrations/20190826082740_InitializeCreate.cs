@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CodeSnippets.Infrastructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitializeCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,40 +11,41 @@ namespace CodeSnippets.Infrastructure.Migrations
                 name: "blogs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Url = table.Column<string>(nullable: true)
+                    url = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_blogs", x => x.Id);
+                    table.PrimaryKey("PK_blogs", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "posts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Title = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true),
-                    BlogId = table.Column<int>(nullable: false)
+                    title = table.Column<string>(nullable: true),
+                    content = table.Column<string>(nullable: true),
+                    blog_Id = table.Column<int>(nullable: false),
+                    Blogid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_posts", x => x.Id);
+                    table.PrimaryKey("PK_posts", x => x.id);
                     table.ForeignKey(
-                        name: "FK_posts_blogs_BlogId",
-                        column: x => x.BlogId,
+                        name: "FK_posts_blogs_Blogid",
+                        column: x => x.Blogid,
                         principalTable: "blogs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_posts_BlogId",
+                name: "IX_posts_Blogid",
                 table: "posts",
-                column: "BlogId");
+                column: "Blogid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

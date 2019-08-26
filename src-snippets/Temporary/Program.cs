@@ -26,6 +26,7 @@ namespace Temporary
             try
             {
                 DapperSample dapperSample = new DapperSample();
+                dapperSample.Insert();
                 dapperSample.GetBlogs();
             }
             catch (CustomException ex)
