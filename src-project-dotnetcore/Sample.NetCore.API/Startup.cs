@@ -46,6 +46,12 @@ namespace Sample.NetCore.API
                     .AllowAnyOrigin();
                 });
             });
+
+            // swagger
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Asp.Net Core WebApi", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +70,13 @@ namespace Sample.NetCore.API
             app.UseHttpsRedirection();
             app.UseCors(MyAllowSpecificOrigins);
             app.UseMvc();
+
+            // swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Asp.Net Core WebApi V1");
+            });
         }
     }
 }
