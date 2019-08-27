@@ -44,5 +44,11 @@ namespace Sample.NetCore.Infrastructure.Repositories
             _dbContext.Entry(entity).State = EntityState.Modified;
             return _dbContext.SaveChangesAsync();
         }
+
+        public Task DeleteAsync(TodoItem item)
+        {
+            _dbContext.TodoItems.Remove(item);
+            return _dbContext.SaveChangesAsync();
+        }
     }
 }

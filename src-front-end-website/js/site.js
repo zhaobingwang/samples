@@ -1,4 +1,4 @@
-const uri = "http://localhost:58304/api/todo";
+const uri = "http://localhost:60915/api/todo";
 let todos = null;
 function getCount(data) {
   const el = $("#counter");

@@ -25,9 +25,11 @@ namespace Temporary
         {
             try
             {
-                DapperSample dapperSample = new DapperSample();
-                dapperSample.Insert();
-                dapperSample.GetBlogs();
+                //DapperSample dapperSample = new DapperSample();
+                //dapperSample.Insert();
+                //dapperSample.GetBlogs();
+                Console.WriteLine(DateTimeOffset.Now);
+                var aa = 1;
             }
             catch (CustomException ex)
             {

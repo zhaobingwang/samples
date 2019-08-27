@@ -12,5 +12,6 @@ namespace Sample.NetCore.Infrastructure.Interfaces
         Task<List<TodoItem>> ListAsync();
         Task AddAsync(TodoItem todoItem);
         Task UpdateAsync(TodoItem todoItem);
+        Task DeleteAsync(TodoItem todoItem);
     }
 }
