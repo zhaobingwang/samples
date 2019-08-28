@@ -1,0 +1,27 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "注释 | 解释 | 优先级\r ---|---|---\r BUG | 存在bug | 高\r TODO | 待实现的功能 | 普通\r FIXME | 可以修改/重构代码以实现某些目标(比如更高的可维护性、更好的性能等) | 低",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@aspnet/signalr": "^1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhaobingwang/sample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhaobingwang/sample/issues"
+  },
+  "homepage": "https://github.com/zhaobingwang/sample#readme"
+}
