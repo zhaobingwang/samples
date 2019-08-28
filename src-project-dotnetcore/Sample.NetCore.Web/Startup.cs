@@ -18,6 +18,7 @@ using Sample.NetCore.Web.Services;
 using Sample.NetCore.Infrastructure.Interfaces;
 using Sample.NetCore.Infrastructure.Repositories;
 using Sample.NetCore.Domain.Entities;
+using Sample.NetCore.Web.Hubs;
 
 namespace Sample.NetCore.Web
 {
@@ -59,6 +60,9 @@ namespace Sample.NetCore.Web
             services.AddSingleton<ProfileOptionsService>();
             services.Configure<Settings>(Configuration);
             services.AddScoped<ITodoItemRepository, TodoItemRepository>();
+
+            // signalr
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +85,10 @@ namespace Sample.NetCore.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chathub");
+            });
 
             app.UseMvc(routes =>
             {

@@ -33,4 +33,9 @@
     </None>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\signalr\" />
+  </ItemGroup>
+
 </Project>
