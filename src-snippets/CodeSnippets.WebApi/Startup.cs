@@ -46,6 +46,27 @@ namespace CodeSnippets.WebApi
                     ValidAudience = jwtSettings.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
                 };
+
+                #region 定制JWT，在基于Role授权不管用，可在使用Policy授权下使用
+                //o.SecurityTokenValidators.Clear();
+                //o.SecurityTokenValidators.Add(new MyTokenValidator());
+
+                //o.Events = new JwtBearerEvents()
+                //{
+                //    OnMessageReceived = context =>
+                //    {
+                //        var token = context.Request.Headers["mytoken"];
+                //        context.Token = token.FirstOrDefault();
+                //        return Task.CompletedTask;
+                //    }
+                //}; 
+                #endregion
+
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("SuperAdminOnly", policy => policy.RequireClaim("SuperAdminOnly"));
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

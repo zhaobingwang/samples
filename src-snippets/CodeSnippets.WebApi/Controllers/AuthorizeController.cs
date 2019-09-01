@@ -39,7 +39,8 @@ namespace CodeSnippets.WebApi.Controllers
 
             var claim = new Claim[] {
                 new Claim(ClaimTypes.Name,"admin"),
-                new Claim(ClaimTypes.Role,"admin")
+                new Claim(ClaimTypes.Role,"user"),
+                new Claim("SuperAdminOnly","true")
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));

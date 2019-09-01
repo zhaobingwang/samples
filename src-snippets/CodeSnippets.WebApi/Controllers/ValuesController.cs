@@ -9,7 +9,8 @@ namespace CodeSnippets.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize(Roles = "user")]
+    [Authorize(Policy = "SuperAdminOnly")]
     public class ValuesController : ControllerBase
     {
         // GET api/values
