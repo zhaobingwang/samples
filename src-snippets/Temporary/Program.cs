@@ -12,6 +12,13 @@ using System.Collections.Generic;
 using CodeSnippets.CSharp;
 using CodeSnippets.Infrastructure;
 using CodeSnippets.ThirdParty;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.EntityFrameworkCore;
+using CodeSnippets.Infrastructure.Interfaces;
+using CodeSnippets.Infrastructure.Repositories;
 
 namespace Temporary
 {
@@ -19,17 +26,36 @@ namespace Temporary
     {
         public int Id { get; set; }
     }
+
+
     class Program
     {
-        static void Main(string[] args)
+        public static ILoggerFactory LoggerFactory;
+        public static IConfigurationRoot Configuration;
+        static async Task Main(string[] args)
         {
+
+            var services = new ServiceCollection();
+            // Set up configuration sources.
+            var builder = new ConfigurationBuilder().SetBasePath(Path.Combine(AppContext.BaseDirectory)).AddJsonFile("appsettings.json", optional: true);
+            Configuration = builder.Build();
+
+            services.AddEntityFrameworkSqlite()
+                .AddDbContext<SqliteEFContext>(options => options.UseSqlite(Configuration.GetConnectionString("sqlite")));
+            services.AddScoped<ISampleEntityRepository, SampleEntityRepository>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var sampleEntityService = serviceProvider.GetRequiredService<ISampleEntityRepository>();
+
             try
             {
-                //DapperSample dapperSample = new DapperSample();
-                //dapperSample.Insert();
-                //dapperSample.GetBlogs();
-                Console.WriteLine(DateTimeOffset.Now);
-                var aa = 1;
+
+                var list = await sampleEntityService.ListAsync();
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"{item.Id}");
+                }
+
             }
             catch (CustomException ex)
             {

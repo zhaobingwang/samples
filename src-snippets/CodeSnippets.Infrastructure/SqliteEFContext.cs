@@ -8,16 +8,16 @@ namespace CodeSnippets.Infrastructure
 {
     public class SqliteEFContext : DbContext
     {
-        //public SqliteEFContext(DbContextOptions<SqliteEFContext> options) : base(options)
-        //{
-
-        //}
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public SqliteEFContext(DbContextOptions<SqliteEFContext> options) : base(options)
         {
-            optionsBuilder.UseSqlite(@"Data Source=c:\db\sqlite\codesnippets.db");
+
         }
+
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite(@"Data Source=c:\db\sqlite\codesnippets.db");
+        //}
 
         public DbSet<SampleEntity> SampleEntity { get; set; }
     }
