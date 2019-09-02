@@ -22,9 +22,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper", "src-thirdparty\Dapper\Dapper\Dapper.csproj", "{1904681B-85FE-407A-8CC7-D36281BB3196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.WebMvc", "src-snippets\CodeSnippets.WebMvc\CodeSnippets.WebMvc.csproj", "{6704C60D-C322-404E-9401-072E7E2A977A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.WebMvc", "src-snippets\CodeSnippets.WebMvc\CodeSnippets.WebMvc.csproj", "{6704C60D-C322-404E-9401-072E7E2A977A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.WebApi", "src-snippets\CodeSnippets.WebApi\CodeSnippets.WebApi.csproj", "{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.WebApi", "src-snippets\CodeSnippets.WebApi\CodeSnippets.WebApi.csproj", "{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B8978203-C43F-4BA0-AE23-33812B0B348E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "独立项目Demo", "独立项目Demo", "{D96279E1-B323-4909-A97D-4EB3D407F0FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{583237C4-C100-4BA8-8656-FC43AA2461CA} = {B8978203-C43F-4BA0-AE23-33812B0B348E}
+		{6704C60D-C322-404E-9401-072E7E2A977A} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
+		{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {468C8334-7CF1-4213-A40C-0A7300321346}
