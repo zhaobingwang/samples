@@ -24,14 +24,16 @@ namespace CodeSnippets.WebMvc.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Register()
+        public IActionResult Register(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             var identityUser = new ApplicationUser
             {
                 Email = registerViewModel.Email,
@@ -44,7 +46,7 @@ namespace CodeSnippets.WebMvc.Controllers
             if (identityResult.Succeeded)
             {
                 await _signInManager.SignInAsync(identityUser, new AuthenticationProperties { IsPersistent = true });
-                return RedirectToAction("Index", "Home");
+                return RedirectToLocal(returnUrl);
             }
             else
             {
@@ -62,21 +64,23 @@ namespace CodeSnippets.WebMvc.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(RegisterViewModel loginViewModel)
+        public async Task<IActionResult> Login(RegisterViewModel loginViewModel, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
             if (user == null)
             {
 
             }
             await _signInManager.SignInAsync(user, new AuthenticationProperties { IsPersistent = true });
-            return RedirectToAction("Index", "Home");
+            return RedirectToLocal(returnUrl);
         }
 
 
@@ -84,6 +88,15 @@ namespace CodeSnippets.WebMvc.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 };
