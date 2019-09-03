@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4Center
+namespace Id4.ClientCredentialsApi
 {
     public class Program
     {
@@ -20,6 +20,6 @@ namespace IdentityServer4Center
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:5000");
+                .UseUrls("http://localhost:5001");
     }
 }
