@@ -43,7 +43,20 @@ namespace CodeSnippets.WebMvc.Controllers
 
             if (identityResult.Succeeded)
             {
-                return RedirectToAction("Home", "Index");
+                await _signInManager.SignInAsync(identityUser, new AuthenticationProperties { IsPersistent = true });
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                string errors = null;
+                foreach (var item in identityResult.Errors)
+                {
+                    errors += item.Description;
+                }
+                if (errors != null)
+                {
+                    ViewData["Errors"] = errors;
+                }
             }
 
             return View();
@@ -54,23 +67,23 @@ namespace CodeSnippets.WebMvc.Controllers
             return View();
         }
 
-        //public IActionResult Login()
-        //{
-        //    var claims = new List<Claim>() {
-        //        new Claim(ClaimTypes.Name,"admin"),
-        //        new Claim(ClaimTypes.Role,"admin")
-        //    };
-
-        //    var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-        //    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
-        //    return Ok();
-        //}
-
-        public IActionResult Logout()
+        [HttpPost]
+        public async Task<IActionResult> Login(RegisterViewModel loginViewModel)
         {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Ok();
+            var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
+            if (user == null)
+            {
+
+            }
+            await _signInManager.SignInAsync(user, new AuthenticationProperties { IsPersistent = true });
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 };
