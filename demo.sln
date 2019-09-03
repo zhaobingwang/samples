@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer4Center", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Id4.ClientCredentialsApi", "src-demo\Id4.ClientCredentialsApi\Id4.ClientCredentialsApi.csproj", "{695B78BB-3A76-4C93-A559-922E1F24A2E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Id4.ThirdPartyClient", "src-demo\Id4.ThirdPartyClient\Id4.ThirdPartyClient.csproj", "{7893D669-F8AD-4594-BCE8-311D9EC3A723}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{695B78BB-3A76-4C93-A559-922E1F24A2E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{695B78BB-3A76-4C93-A559-922E1F24A2E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{695B78BB-3A76-4C93-A559-922E1F24A2E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7893D669-F8AD-4594-BCE8-311D9EC3A723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7893D669-F8AD-4594-BCE8-311D9EC3A723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7893D669-F8AD-4594-BCE8-311D9EC3A723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7893D669-F8AD-4594-BCE8-311D9EC3A723}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{C96B7EBE-0AB4-44EA-94C2-43668EC4D8A9} = {BDCEFDFA-5900-4472-861B-3E86A1629E95}
 		{2AC4BFE6-E106-4A73-A48A-100B745F036B} = {5C22DC12-1AB1-412A-87C6-86658E06DA15}
 		{695B78BB-3A76-4C93-A559-922E1F24A2E8} = {5C22DC12-1AB1-412A-87C6-86658E06DA15}
+		{7893D669-F8AD-4594-BCE8-311D9EC3A723} = {5C22DC12-1AB1-412A-87C6-86658E06DA15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D383794F-CC8D-4EBE-BB2E-DD117C21A080}
