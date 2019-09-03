@@ -33,6 +33,10 @@ namespace CodeSnippets.WebMvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel, string returnUrl = null)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             ViewData["ReturnUrl"] = returnUrl;
             var identityUser = new ApplicationUser
             {
@@ -50,15 +54,7 @@ namespace CodeSnippets.WebMvc.Controllers
             }
             else
             {
-                string errors = null;
-                foreach (var item in identityResult.Errors)
-                {
-                    errors += item.Description;
-                }
-                if (errors != null)
-                {
-                    ViewData["Errors"] = errors;
-                }
+                AddErrors(identityResult);
             }
 
             return View();
@@ -71,8 +67,12 @@ namespace CodeSnippets.WebMvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(RegisterViewModel loginViewModel, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel, string returnUrl = null)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             ViewData["ReturnUrl"] = returnUrl;
             var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
             if (user == null)
@@ -97,6 +97,14 @@ namespace CodeSnippets.WebMvc.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
         }
     }
 };

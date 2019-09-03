@@ -11,11 +11,13 @@
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -24,3 +26,8 @@
         </form>
     </div>
 </div>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

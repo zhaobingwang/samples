@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeSnippets.WebMvc.Models
 {
-    public class RegisterViewModel
+    public class LoginViewModel
     {
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -15,9 +15,5 @@ namespace CodeSnippets.WebMvc.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
     }
 }

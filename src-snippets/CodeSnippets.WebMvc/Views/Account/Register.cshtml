@@ -15,19 +15,27 @@
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="ConfirmPassword"></label>
                 <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+            <div class="text-danger" asp-validation-summary="All"></div>
             <button type="submit" class="btn btn-primary">注册</button>
         </form>
-        <label>@ViewData["Errors"]</label>
     </div>
 </div>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
