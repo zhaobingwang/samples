@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href='thirdparty/fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='thirdparty/fullcalendar/daygrid/main.css' rel='stylesheet' />
+</head>
+
+<body>
+    <div id='calendar'></div>
+</body>
+
+</html>
+<script src='thirdparty/fullcalendar/core/main.js'></script>
+<script src='thirdparty/fullcalendar/core/locales-all.js'></script>
+<script src='thirdparty/fullcalendar/daygrid/main.js'></script>
+<script src='thirdparty/fullcalendar/interaction/main.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var initialLocaleCode = 'zh-cn';
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: initialLocaleCode,
+            plugins: ['interaction', 'dayGrid'],
+            header: {
+                left: 'p',
+                center: 'title'
+            },
+            firstDay: 1,
+            dateClick: function(info) {
+                alert('Date: ' + info.dateStr);
+                if (confirm('确定此操作')) {
+                    alert('点击了确定');
+                };
+            }
+        });
+
+        calendar.on('dayClick', function(date, jsEvent, view) {
+            console.log('clicked on ');
+        });
+        calendar.render();
+    });
+</script>
