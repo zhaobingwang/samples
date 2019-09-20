@@ -21,11 +21,18 @@ namespace CodeSnippets.WebApi.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<ActionResult<string>> Get()
+        [HttpGet]
+        public async Task<ActionResult> Get()
         {
+            // 1. Using HttpClientFactory Directly
             var client = _httpClientFactory.CreateClient();
-            var result = await client.GetStringAsync("https://docs.microsoft.com/zh-cn/");
-            return result;
+            //var result = await client.GetStringAsync("https://docs.microsoft.com/zh-cn/");
+            //return result;
+            client.BaseAddress = new Uri("https://api.github.com/");
+            client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+            client.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Snippets");
+            string result = await client.GetStringAsync("/");
+            return Ok(result);
         }
     }
 }
