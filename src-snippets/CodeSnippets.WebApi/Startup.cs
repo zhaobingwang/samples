@@ -40,7 +40,7 @@ namespace CodeSnippets.WebApi
             })
             .AddJwtBearer(o =>
             {
-                o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                o.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidIssuer = jwtSettings.Issuer,
                     ValidAudience = jwtSettings.Audience,
@@ -69,7 +69,7 @@ namespace CodeSnippets.WebApi
                 options.AddPolicy("SuperAdminOnly", policy => policy.RequireClaim("SuperAdminOnly"));
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
             services.AddHttpClient();
         }
 
@@ -88,7 +88,13 @@ namespace CodeSnippets.WebApi
 
             app.UseAuthentication();
             //app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
