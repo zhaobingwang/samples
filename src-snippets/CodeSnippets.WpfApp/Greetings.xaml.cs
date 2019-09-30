@@ -18,11 +18,23 @@ namespace CodeSnippets.WpfApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Greetings : Window
     {
-        public MainWindow()
+        public Greetings()
         {
             InitializeComponent();
+        }
+
+        private void DisplayButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (HelloButton.IsChecked.Value)
+            {
+                MessageBox.Show("Hello.");
+            }
+            else if (GoodbyeButton.IsChecked.Value)
+            {
+                MessageBox.Show("Goodbye.");
+            }
         }
     }
 }
