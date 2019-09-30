@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B8978203
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "独立项目Demo", "独立项目Demo", "{D96279E1-B323-4909-A97D-4EB3D407F0FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.WpfApp", "src-snippets\CodeSnippets.WpfApp\CodeSnippets.WpfApp.csproj", "{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{583237C4-C100-4BA8-8656-FC43AA2461CA} = {B8978203-C43F-4BA0-AE23-33812B0B348E}
 		{6704C60D-C322-404E-9401-072E7E2A977A} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 		{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
+		{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {468C8334-7CF1-4213-A40C-0A7300321346}
