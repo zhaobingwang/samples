@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
-using GrpcServices;
+using GrpcDemoServices;
 using Microsoft.Extensions.Logging;
 
 namespace GrpcServer
@@ -22,6 +22,16 @@ namespace GrpcServer
             {
                 Message = "Hello " + request.Name
             });
+        }
+        public override async Task SayHellos(HelloRequest request, IServerStreamWriter<HelloReply> responseStream, ServerCallContext context)
+        {
+            var i = 0;
+            while (!context.CancellationToken.IsCancellationRequested)
+            {
+                var message = $"How are you {request.Name}?{++i}";
+                await responseStream.WriteAsync(new HelloReply { Message = message });
+                await Task.Delay(1000);
+            }
         }
     }
 }
