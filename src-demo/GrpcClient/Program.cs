@@ -1,5 +1,5 @@
 ﻿using Grpc.Net.Client;
-using GrpcClient.Services;
+using GrpcServices;
 using System;
 using System.Threading.Tasks;
 
