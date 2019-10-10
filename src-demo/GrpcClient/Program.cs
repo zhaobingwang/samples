@@ -9,13 +9,20 @@ namespace GrpcClient
 {
     class Program
     {
+        static Random RNG = new Random();
         static async Task Main(string[] args)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
-            var client = new Greeter.GreeterClient(channel);
+            //var channelGreeter = GrpcChannel.ForAddress("https://localhost:5001");
+            //var clientGreeter = new Greeter.GreeterClient(channelGreeter);
 
-            await UnaryStreamCallExample(client);
-            await ServerStreamingCallExample(client);
+            var channelCounter = GrpcChannel.ForAddress("https://localhost:5001");
+            var clientCounter = new Counter.CounterClient(channelCounter);
+
+            //await UnaryStreamCallExample(clientGreeter);
+            //await ServerStreamingCallExample(clientGreeter);
+            await ClientStreamingCallExample(clientCounter);
+
+            Console.Read();
         }
 
         /// <summary>
@@ -39,7 +46,7 @@ namespace GrpcClient
             var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(3.0));
 
-            using (var call = client.SayHellos(new HelloRequest { Name = "张三" }))
+            using (var call = client.SayHellos(new HelloRequest { Name = "张三" }, cancellationToken: cts.Token))
             {
                 try
                 {
@@ -52,6 +59,29 @@ namespace GrpcClient
                 {
                     Console.WriteLine("Stream cancelled.");
                 }
+            }
+        }
+
+        /// <summary>
+        /// 客户端流式调用
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        private static async Task ClientStreamingCallExample(Counter.CounterClient client)
+        {
+            using (var call = client.AccumulateCount())
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    var count = RNG.Next(5);
+                    Console.WriteLine($"Accumulating with {count}");
+                    await call.RequestStream.WriteAsync(new CounterRequest { Count = count });
+                    await Task.Delay(2000);
+                }
+                await call.RequestStream.CompleteAsync();
+
+                var response = await call;
+                Console.WriteLine($"Count:{response.Count}");
             }
         }
     }

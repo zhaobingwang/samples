@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--Grpc proto start-->
     <Protobuf Include="..\Protos\greet.proto" GrpcServices="Client" Link="Protos\greet.proto" />
+    <Protobuf Include="..\Protos\count.proto" GrpcServices="Client" Link="Protos\count.proto" />
+    <!--Grpc proto end-->
 
     <PackageReference Include="Google.Protobuf" Version="3.9.2" />
     <PackageReference Include="Grpc.Net.Client" Version="2.23.2" />

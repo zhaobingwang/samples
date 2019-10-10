@@ -8,7 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--Grpc proto start-->
     <Protobuf Include="..\Protos\greet.proto" GrpcServices="Server" Link="Protos\greet.proto" />
+    <Protobuf Include="..\Protos\count.proto" GrpcServices="Server" Link="Protos\count.proto" />
+    <!--Grpc proto end-->
+
     <PackageReference Include="Grpc.AspNetCore" Version="2.23.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
   </ItemGroup>

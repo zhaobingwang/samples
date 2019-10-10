@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcDemoServices";
+
+package Count;
+
+service Counter{
+    // Get current count
+    // rpc IncrementCountCount (CounterRequest) returns (CountReply);
+
+    // Increment count through multiple counts
+    rpc AccumulateCount (stream CounterRequest) returns (CounterReply);
+}
+
+// The reqeust message containing the count to increment by
+message CounterRequest {
+    int32 count = 1;
+}
+
+// The response message containing the current count
+message CounterReply {
+    int32 count = 1;
+}
