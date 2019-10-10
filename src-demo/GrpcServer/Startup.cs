@@ -36,6 +36,7 @@ namespace GrpcServer
             {
                 endpoints.MapGrpcService<GreeterService>();
                 endpoints.MapGrpcService<CounterService>();
+                endpoints.MapGrpcService<RacerService>();
 
                 endpoints.MapGet("/", async context =>
                 {

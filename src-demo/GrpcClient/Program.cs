@@ -2,6 +2,7 @@
 using Grpc.Net.Client;
 using GrpcDemoServices;
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,19 +11,20 @@ namespace GrpcClient
     class Program
     {
         static Random RNG = new Random();
+        private static readonly TimeSpan RaceDuration = TimeSpan.FromSeconds(1);
         static async Task Main(string[] args)
         {
-            //var channelGreeter = GrpcChannel.ForAddress("https://localhost:5001");
-            //var clientGreeter = new Greeter.GreeterClient(channelGreeter);
-
-            var channelCounter = GrpcChannel.ForAddress("https://localhost:5001");
-            var clientCounter = new Counter.CounterClient(channelCounter);
+            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var clientGreeter = new Greeter.GreeterClient(channel);
+            var clientCounter = new Counter.CounterClient(channel);
+            var clientRacer = new Racer.RacerClient(channel);
 
             //await UnaryStreamCallExample(clientGreeter);
             //await ServerStreamingCallExample(clientGreeter);
-            await ClientStreamingCallExample(clientCounter);
+            //await ClientStreamingCallExample(clientCounter);
+            await BidirectionalStreamingExample(clientRacer);
 
-            Console.Read();
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -82,6 +84,46 @@ namespace GrpcClient
 
                 var response = await call;
                 Console.WriteLine($"Count:{response.Count}");
+            }
+        }
+
+        /// <summary>
+        /// 双向流式调用
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        private static async Task BidirectionalStreamingExample(Racer.RacerClient client)
+        {
+            var headers = new Metadata { new Metadata.Entry("race-duration", RaceDuration.ToString()) };
+
+            Console.WriteLine("Ready, set, go!");
+            using (var call = client.ReadySetGo(new CallOptions(headers)))
+            {
+
+                // Read incoming messages in a background task
+                RaceMessage? lastMessageReceived = null;
+                var readTask = Task.Run(async () =>
+                {
+                    await foreach (var message in call.ResponseStream.ReadAllAsync())
+                    {
+                        lastMessageReceived = message;
+                    }
+                });
+
+                // Write outgoing messages until timer is complete
+                var sw = Stopwatch.StartNew();
+                var sent = 0;
+                while (sw.Elapsed < RaceDuration)
+                {
+                    await call.RequestStream.WriteAsync(new RaceMessage { Count = ++sent });
+                }
+
+                // Finish call and report results
+                await call.RequestStream.CompleteAsync();
+                await readTask;
+
+                Console.WriteLine($"Messages sent: {sent}");
+                Console.WriteLine($"Messages received: {lastMessageReceived?.Count ?? 0}");
             }
         }
     }

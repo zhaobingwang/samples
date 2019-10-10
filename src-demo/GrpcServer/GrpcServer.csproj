@@ -11,6 +11,7 @@
     <!--Grpc proto start-->
     <Protobuf Include="..\Protos\greet.proto" GrpcServices="Server" Link="Protos\greet.proto" />
     <Protobuf Include="..\Protos\count.proto" GrpcServices="Server" Link="Protos\count.proto" />
+    <Protobuf Include="..\Protos\race.proto" GrpcServices="Server" Link="Protos\race.proto" />
     <!--Grpc proto end-->
 
     <PackageReference Include="Grpc.AspNetCore" Version="2.23.1" />
