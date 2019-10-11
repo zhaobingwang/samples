@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
+using Grpc.Net.Compression;
 using GrpcDemoServices;
 using GrpcServer.Services;
 using Microsoft.AspNetCore.Builder;
@@ -18,7 +20,26 @@ namespace GrpcServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc();
+            // 为所有服务配置选项
+            // 更多服务端gRPC配置，详见：https://docs.microsoft.com/zh-cn/aspnet/core/grpc/configuration?view=aspnetcore-3.0
+            services.AddGrpc(option =>
+            {
+                option.MaxSendMessageSize = 5 * 1024 * 1024;    // 可从服务器发送的最大消息大小（以字节为单位）。 尝试发送超过配置的最大消息大小的消息将导致异常。 默认值：null
+                option.MaxReceiveMessageSize = 2 * 1024 * 1024; // 服务器可接收的最大消息大小（以字节为单位）。 如果服务器收到的消息超过此限制，则会引发异常。 增大此值可使服务器接收更大的消息，但会对内存消耗产生负面影响。 默认4 MB
+                option.EnableDetailedErrors = true; // 如果true为，则在服务方法中引发异常时，详细的异常消息将返回到客户端。 默认值为 false。 设置EnableDetailedErrors 为true可以泄露敏感信息。
+                option.CompressionProviders.Add(new GzipCompressionProvider(CompressionLevel.Optimal));   // 用于压缩和解压缩消息的压缩提供程序的集合。 可以创建自定义压缩提供程序并将其添加到集合中。 默认配置的提供程序支持gzip压缩。 默认值：Gzip
+                option.ResponseCompressionAlgorithm = null; // 压缩算法用于压缩从服务器发送的消息。 该算法必须与CompressionProviders中的压缩提供程序匹配。 为了使算法压缩响应，客户端必须通过在grpc-accept标头中发送来指示它支持该算法。 默认值：null
+                option.ResponseCompressionLevel = CompressionLevel.Optimal; // 用于压缩从服务器发送的消息的压缩级别。 默认值：null
+            });
+
+            // 单个服务的选项可替代和中AddGrpc提供的全局选项，可以使用AddServiceOptions<TService>以下方法配置：
+            //services.AddGrpc().AddServiceOptions<GreeterService>(options =>
+            //{
+            //    options.MaxReceiveMessageSize = 2 * 1024 * 1024; // 2 MB
+            //    options.MaxSendMessageSize = 5 * 1024 * 1024; // 5 MB
+            //});
+
+
             services.AddSingleton<IncrementingCounter>();
             //services.AddScoped<IncrementingCounter>();
 

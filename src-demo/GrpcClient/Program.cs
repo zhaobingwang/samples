@@ -14,7 +14,15 @@ namespace GrpcClient
         private static readonly TimeSpan RaceDuration = TimeSpan.FromSeconds(1);
         static async Task Main(string[] args)
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            // 为客户端配置选项
+            // 更多配置见：https://docs.microsoft.com/zh-cn/aspnet/core/grpc/configuration?view=aspnetcore-3.0#configure-client-options
+            var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions
+            {
+                MaxReceiveMessageSize = 5 * 1024 * 1024,    // 5MB
+                MaxSendMessageSize = 2 * 1024 * 1024    // 2MB
+            });
+
+
             var clientGreeter = new Greeter.GreeterClient(channel);
             var clientCounter = new Counter.CounterClient(channel);
             //var clientRacer = new Racer.RacerClient(channel);
