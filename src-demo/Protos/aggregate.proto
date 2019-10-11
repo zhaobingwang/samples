@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcDemoServices";
+
+import "greet.proto";
+
+package aggregate;
+
+service Aggregator {
+  rpc SayHellos (Greet.HelloRequest) returns (stream Greet.HelloReply);
+}

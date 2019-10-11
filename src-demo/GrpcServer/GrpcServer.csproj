@@ -9,9 +9,10 @@
 
   <ItemGroup>
     <!--Grpc proto start-->
-    <Protobuf Include="..\Protos\greet.proto" GrpcServices="Server" Link="Protos\greet.proto" />
-    <Protobuf Include="..\Protos\count.proto" GrpcServices="Server" Link="Protos\count.proto" />
+    <Protobuf Include="..\Protos\greet.proto" GrpcServices="Both" Link="Protos\greet.proto" />
+    <Protobuf Include="..\Protos\count.proto" GrpcServices="Both" Link="Protos\count.proto" />
     <Protobuf Include="..\Protos\race.proto" GrpcServices="Server" Link="Protos\race.proto" />
+    <Protobuf Include="..\Protos\aggregate.proto" GrpcServices="Server" Link="Protos\aggregate.proto" />
     <!--Grpc proto end-->
 
     <PackageReference Include="Grpc.AspNetCore" Version="2.23.1" />

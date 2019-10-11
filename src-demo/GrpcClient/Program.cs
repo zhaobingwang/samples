@@ -17,16 +17,19 @@ namespace GrpcClient
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
             var clientGreeter = new Greeter.GreeterClient(channel);
             var clientCounter = new Counter.CounterClient(channel);
-            var clientRacer = new Racer.RacerClient(channel);
+            //var clientRacer = new Racer.RacerClient(channel);
+            var clientAggregator = new Aggregator.AggregatorClient(channel);
 
             //await UnaryStreamCallExample(clientGreeter);
             //await ServerStreamingCallExample(clientGreeter);
             //await ClientStreamingCallExample(clientCounter);
-            await BidirectionalStreamingExample(clientRacer);
+            //await BidirectionalStreamingExample(clientRacer);
+            await AggregatorServerStreamingCallExample(clientAggregator);
 
             Console.ReadLine();
         }
 
+        #region gRPC的四种调用方式
         /// <summary>
         /// 一元调用
         /// </summary>
@@ -124,6 +127,28 @@ namespace GrpcClient
 
                 Console.WriteLine($"Messages sent: {sent}");
                 Console.WriteLine($"Messages received: {lastMessageReceived?.Count ?? 0}");
+            }
+        }
+        #endregion
+
+        public static async Task AggregatorServerStreamingCallExample(Aggregator.AggregatorClient client)
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(TimeSpan.FromSeconds(3.0));
+
+            using (var replies = client.SayHellos(new HelloRequest { Name = "张三" }, cancellationToken: cts.Token))
+            {
+                try
+                {
+                    await foreach (var reply in replies.ResponseStream.ReadAllAsync())
+                    {
+                        Console.WriteLine($"Greeting:{reply.Message}");
+                    }
+                }
+                catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled)
+                {
+                    Console.WriteLine("Stream cancelled.");
+                }
             }
         }
     }
