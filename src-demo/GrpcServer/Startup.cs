@@ -75,6 +75,10 @@ namespace GrpcServer
 
             app.UseRouting();
 
+            // 注册 ASP.NET Core 身份验证中间件的顺序。 始终在 UseRouting 之后和 UseEndpoints 之前
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
