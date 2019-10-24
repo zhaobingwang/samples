@@ -49,13 +49,7 @@ namespace Temporary
 
             try
             {
-
-                var list = await sampleEntityService.ListAsync();
-                foreach (var item in list)
-                {
-                    Console.WriteLine($"{item.Id}");
-                }
-
+                TaskIssues.ExceptionHandling();
             }
             catch (CustomException ex)
             {
