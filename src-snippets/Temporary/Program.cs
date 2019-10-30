@@ -49,7 +49,9 @@ namespace Temporary
 
             try
             {
-                TaskIssues.ExceptionHandling();
+                Console.OutputEncoding = Encoding.Unicode;
+                var aa = Emoji.EmojiCodeToUTF16String("1F600");
+                Console.WriteLine(aa);
             }
             catch (CustomException ex)
             {
