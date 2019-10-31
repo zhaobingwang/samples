@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,13 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Files\TextFile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src-thirdparty\Dapper\Dapper\Dapper.csproj" />
     <ProjectReference Include="..\CodeSnippets.Infrastructure\CodeSnippets.Infrastructure.csproj" />
   </ItemGroup>
 
