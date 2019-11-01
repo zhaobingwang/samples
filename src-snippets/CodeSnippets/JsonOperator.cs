@@ -12,6 +12,11 @@ namespace CodeSnippets
         {
             return JsonSerializer.Serialize(model);
         }
+        public static string ToJson(T model, JsonSerializerOptions options)
+        {
+            return JsonSerializer.Serialize(model, options);
+        }
+
         public static T ToObject(string json)
         {
             return JsonSerializer.Deserialize<T>(json);
