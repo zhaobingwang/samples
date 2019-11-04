@@ -20,4 +20,10 @@
     <Folder Include="Issues\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Files\Sample.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

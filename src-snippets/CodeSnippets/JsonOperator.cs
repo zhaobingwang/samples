@@ -1,41 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace CodeSnippets
 {
-    public class JsonOperator<T> where T : class
+    /// <summary>
+    /// Json操作类
+    /// </summary>
+    public static class JsonOperator
     {
-        public static string ToJson(T model)
+        /// <summary>
+        /// 将流作为代表单个JSON值的UTF-8编码数据解析为JsonDocument
+        /// </summary>
+        /// <param name="utf8Json">要解析的JSON数据</param>
+        /// <param name="options">解析期间控制读取器行为的选项</param>
+        /// <returns></returns>
+        public static JsonDocument Parse(Stream utf8Json, JsonDocumentOptions options = default)
         {
-            return JsonSerializer.Serialize(model);
-        }
-        public static string ToJson(T model, JsonSerializerOptions options)
-        {
-            return JsonSerializer.Serialize(model, options);
+            return JsonDocument.Parse(utf8Json, options);
         }
 
-        public static T ToObject(string json)
+        /// <summary>
+        /// 将流作为代表单个JSON值的UTF-8编码数据解析为JsonDocument
+        /// </summary>
+        /// <param name="utf8Json">要解析的JSON数据</param>
+        /// <param name="options">解析期间控制读取器行为的选项</param>
+        /// <param name="cancellationToken">用于监视取消请求的令牌</param>
+        /// <returns></returns>
+        public static Task<JsonDocument> ParseAsync(Stream utf8Json, JsonDocumentOptions options = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            return JsonSerializer.Deserialize<T>(json);
+            return JsonDocument.ParseAsync(utf8Json, options, cancellationToken);
         }
-    }
 
-    public class JsonSampleModel
-    {
-        [JsonIgnore]
-        public long ID { get; set; }
-        public string Name { get; set; }
-        public DateTimeOffset RegTime { get; set; }
-        public bool IsOnline { get; set; }
-        public JsonSampleStatus Status { get; set; }
-        public long? TagId { get; set; }
-    }
-    public enum JsonSampleStatus
-    {
-        Activated = 1,
-        NonActivated = 2
+        /// <summary>
+        /// 将对象转换Json字符串
+        /// </summary>
+        /// <typeparam name="TValue">对象类型</typeparam>
+        /// <param name="value">对象值</param>
+        /// <param name="options">解析期间控制读取器行为的选项</param>
+        /// <returns></returns>
+        public static string ToJson<TValue>(TValue value, JsonSerializerOptions options = default)
+        {
+            return JsonSerializer.Serialize(value, options);
+        }
+
+        /// <summary>
+        /// 将Json转为对象
+        /// </summary>
+        /// <typeparam name="TValue">对象类型</typeparam>
+        /// <param name="json">Json字符串</param>
+        /// <param name="options">解析期间控制读取器行为的选项</param>
+        /// <returns></returns>
+        public static TValue ToObject<TValue>(string json, JsonSerializerOptions options = default)
+        {
+            return JsonSerializer.Deserialize<TValue>(json, options);
+        }
     }
 }
