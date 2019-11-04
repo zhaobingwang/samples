@@ -9,6 +9,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace CodeSnippets.WebApi
 {
@@ -70,6 +76,9 @@ namespace CodeSnippets.WebApi
 
             services.AddControllers();
             services.AddHttpClient();
+            services.AddHealthChecks()
+                .AddCheck<SqlServerHealthCheck>("sqlserver")
+                .AddCheck<SqliteHealthCheck>("sqlite");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,7 +101,31 @@ namespace CodeSnippets.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute().RequireAuthorization();
+                //endpoints.MapHealthChecks("")
             });
+            app.UseHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+            {
+                // 自定义状态码
+                ResultStatusCodes = new Dictionary<HealthStatus, int> { { HealthStatus.Healthy, 200 }, { HealthStatus.Unhealthy, 420 }, { HealthStatus.Degraded, 419 } },
+                ResponseWriter = CustomResponseWriter
+            });
+        }
+
+        private static Task CustomResponseWriter(HttpContext context, HealthReport healthReport)
+        {
+            context.Response.ContentType = "application/json";
+
+            var result = JsonOperator.ToJson(new
+            {
+                status = healthReport.Status.ToString(),
+                errors = healthReport.Entries.Select(e => new
+                {
+                    key = e.Key,
+                    value = e.Value.Status.ToString()
+                })
+            });
+            return context.Response.WriteAsync(result);
+
         }
     }
 }
