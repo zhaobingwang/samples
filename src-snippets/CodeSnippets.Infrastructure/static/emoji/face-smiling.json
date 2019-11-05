@@ -1,0 +1,69 @@
+{
+  "FaceSmiling": [
+    {
+      "No": 1,
+      "Code": "1F600",
+      "CLDRShortName": "grinning face"
+    },
+    {
+      "No": 2,
+      "Code": "1F603",
+      "CLDRShortName": "grinning face with big eyes"
+    },
+    {
+      "No": 3,
+      "Code": "1F604",
+      "CLDRShortName": "grinning face with smiling eyes"
+    },
+    {
+      "No": 4,
+      "Code": "1F601",
+      "CLDRShortName": "beaming face with smiling eyes"
+    },
+    {
+      "No": 5,
+      "Code": "1F606",
+      "CLDRShortName": "grinning squinting face"
+    },
+    {
+      "No": 6,
+      "Code": "1F605",
+      "CLDRShortName": "grinning face with sweat"
+    },
+    {
+      "No": 7,
+      "Code": "1F923",
+      "CLDRShortName": "rolling on the floor laughing"
+    },
+    {
+      "No": 8,
+      "Code": "1F602",
+      "CLDRShortName": "face with tears of joy"
+    },
+    {
+      "No": 9,
+      "Code": "1F642",
+      "CLDRShortName": "slightly smiling face"
+    },
+    {
+      "No": 10,
+      "Code": "1F643",
+      "CLDRShortName": "upside-down face"
+    },
+    {
+      "No": 11,
+      "Code": "1F609",
+      "CLDRShortName": "winking face"
+    },
+    {
+      "No": 12,
+      "Code": "1F60A",
+      "CLDRShortName": "smiling face with smiling eyes"
+    },
+    {
+      "No": 13,
+      "Code": "1F607",
+      "CLDRShortName": "smiling face with halo"
+    }
+  ]
+}

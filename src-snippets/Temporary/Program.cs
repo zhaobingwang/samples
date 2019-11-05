@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration.Json;
 using Microsoft.EntityFrameworkCore;
 using CodeSnippets.Infrastructure.Interfaces;
 using CodeSnippets.Infrastructure.Repositories;
+using System.Diagnostics;
 
 namespace Temporary
 {
@@ -47,11 +48,15 @@ namespace Temporary
             var serviceProvider = services.BuildServiceProvider();
             var sampleEntityService = serviceProvider.GetRequiredService<ISampleEntityRepository>();
 
+            Stopwatch stopwatch = new Stopwatch();
             try
             {
+                stopwatch.Start();
                 Console.OutputEncoding = Encoding.Unicode;
                 var aa = Emoji.EmojiCodeToUTF16String("1F600");
                 Console.WriteLine(aa);
+                Console.WriteLine($"Elapsed time:{stopwatch.ElapsedMilliseconds}ms");
+                stopwatch.Stop();
             }
             catch (CustomException ex)
             {
@@ -75,6 +80,8 @@ namespace Temporary
             }
             finally
             {
+                if (stopwatch.IsRunning)
+                    stopwatch.Stop();
                 Console.WriteLine("end");
             }
         }
