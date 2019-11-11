@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
+using CodeSnippets.WebApi.Extensions;
 
 namespace CodeSnippets.WebApi
 {
@@ -109,6 +110,9 @@ namespace CodeSnippets.WebApi
                 ResultStatusCodes = new Dictionary<HealthStatus, int> { { HealthStatus.Healthy, 200 }, { HealthStatus.Unhealthy, 420 }, { HealthStatus.Degraded, 419 } },
                 ResponseWriter = CustomResponseWriter
             });
+
+            // 自定义中间件
+            app.UseRequestIP();
         }
 
         private static Task CustomResponseWriter(HttpContext context, HealthReport healthReport)
