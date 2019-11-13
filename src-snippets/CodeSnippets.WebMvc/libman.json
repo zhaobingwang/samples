@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "unpkg",
+      "library": "marked@0.7.0",
+      "destination": "wwwroot/lib/marked/",
+      "files": [
+        "lib/marked.js"
+      ]
+    }
+  ]
+}
