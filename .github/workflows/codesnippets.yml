@@ -30,7 +30,7 @@ jobs:
     - name: Publish
       run: |
         version=`git describe --tags`
-        dotnet pack src-snippets/CodeSnippets --configuration release -p:PackageVersion=$version
-        dotnet nuget push src-snippets/CodeSnippets/bin/release/CodeSnippets.$version.nupkg -k ${APIKEY} -s https://www.nuget.org/api/v2/package
+        dotnet pack src-snippets/CodeSnippets --configuration Release -p:PackageVersion=$version
+        dotnet nuget push src-snippets/CodeSnippets/bin/Release/CodeSnippets.$version.nupkg -k ${APIKEY} -s https://www.nuget.org/api/v2/package
       env:
         APIKEY: ${{ secrets.NuGetAPIKey }}
