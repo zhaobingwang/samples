@@ -1,0 +1,36 @@
+name: CodeSnippets Release
+
+on: [push]
+
+jobs:
+  build:
+    name: Build Project CodeSnippets
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.100
+    - name: Build with dotnet
+      run: dotnet build src-snippets/CodeSnippets --configuration Release
+  
+  
+  publish:
+    needs: [build]
+    name: Publish CodeSnippets To NuGet
+    runs-on: [ubuntu-latest]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.100
+    - name: Publish
+      run: |
+        version=`git describe --tags`
+        dotnet pack src-snippets/CodeSnippets --configuration release -p:PackageVersion=$version
+        dotnet nuget push src-snippets/CodeSnippets/bin/release/CodeSnippets.$version.nupkg -k ${APIKEY} -s https://www.nuget.org/api/v2/package
+      env:
+        APIKEY: ${{ secrets.NuGetAPIKey }}
