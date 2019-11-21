@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
+    <PackageProjectUrl>https://github.com/zhaobingwang/sample</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
