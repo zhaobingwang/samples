@@ -26,9 +26,7 @@
     <script src="~/lib/marked/lib/marked.js" asp-append-version="true"></script>
     <script>
         $(function () {
-            console.log($('.container-fluid').height());
             $('#md').height($(document).height() - $('header').height() - $('footer').height());
-            //$('#md').height($('#edit').height() - $())
         });
         $('#md').bind('input propertychange', function () {
             let md = this.value;
@@ -46,7 +44,7 @@
                 smartypants: false,
                 xhtml: false
             });
-            document.getElementById('content').innerHTML = marked(md);
+            $('#content').html(marked(md));
         });
     </script>
 }
