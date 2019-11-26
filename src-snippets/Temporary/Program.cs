@@ -1,4 +1,5 @@
-﻿using CodeSnippets.BCL;
+﻿using CodeSnippets;
+using CodeSnippets.BCL;
 using System;
 
 namespace Temporary
@@ -9,7 +10,7 @@ namespace Temporary
         {
             try
             {
-                Console.WriteLine(default(DateTime).ToString("yyyyMMdd"));
+                Unclassified.RangesAndIndices();
             }
             catch (Exception ex)
             {
