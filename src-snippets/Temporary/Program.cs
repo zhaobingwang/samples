@@ -9,10 +9,7 @@ namespace Temporary
         {
             try
             {
-                var json = Json.Serialize();
-                Console.WriteLine(json);
-                var summary = Json.GetSummary();
-                Console.WriteLine(summary);
+                Console.WriteLine(default(DateTime).ToString("yyyyMMdd"));
             }
             catch (Exception ex)
             {

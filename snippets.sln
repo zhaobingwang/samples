@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.DotNet.CSharp.Consol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Solution Items", "0.Solution Items", "{17952220-91EF-416D-A4F7-E3B55DA08AC6}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\codesnippets.yml = .github\workflows\codesnippets.yml
 		sonarqube.snippets.bat = sonarqube.snippets.bat
 	EndProjectSection
 EndProject
@@ -36,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Temporary", "99.Temporar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.CodeSnippets", "3.CodeSnippets", "{85DF7EB5-CCA9-48CA-A080-225A946EFA47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.ConsoleApp", "src-snippets\CodeSnippets.ConsoleApp\CodeSnippets.ConsoleApp.csproj", "{A39A73B4-87E5-4886-A4F7-87862A3AA24D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.ConsoleApp", "src-snippets\CodeSnippets.ConsoleApp\CodeSnippets.ConsoleApp.csproj", "{A39A73B4-87E5-4886-A4F7-87862A3AA24D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
