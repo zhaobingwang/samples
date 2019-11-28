@@ -27,7 +27,13 @@ namespace CodeSnippets.WebMvc
                     ClientSecrets={
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes={"api"}
+                    RequireConsent=false,
+                    RedirectUris={ "http://localhost:5001/signin-oidc"},
+                    PostLogoutRedirectUris={ "http://localhost:5001/signout-callback-oidc"},
+                    AllowedScopes={
+                        IdentityServer4.IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServer4.IdentityServerConstants.StandardScopes.OpenId
+                    }
                 }
             };
         }
