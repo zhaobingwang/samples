@@ -23,16 +23,23 @@ namespace CodeSnippets.WebMvc
             {
                 new Client(){
                     ClientId="mvc",
+                    ClientName="MVC WebApp Client",
+                    ClientUri="http://localhost:5001",
+                    LogoUri="https://blog.tedd.no/wp-content/uploads/2019/06/128-Bitmap-BIG_ASP.NET-Core-MVC-Logo_2colors_Square_RGB.png",
+                    AllowRememberConsent=true,
+                    Description="This is a sample.",
+
                     AllowedGrantTypes=GrantTypes.Implicit,
                     ClientSecrets={
                         new Secret("secret".Sha256())
                     },
-                    RequireConsent=false,
+                    RequireConsent=true,
                     RedirectUris={ "http://localhost:5001/signin-oidc"},
                     PostLogoutRedirectUris={ "http://localhost:5001/signout-callback-oidc"},
                     AllowedScopes={
                         IdentityServer4.IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServer4.IdentityServerConstants.StandardScopes.OpenId
+                        IdentityServer4.IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServer4.IdentityServerConstants.StandardScopes.Email,
                     }
                 }
             };

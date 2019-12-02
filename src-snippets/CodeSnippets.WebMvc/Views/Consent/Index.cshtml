@@ -5,7 +5,7 @@
 
 <div class="row page-header">
     <div class="col-sm-10">
-        @if (string.IsNullOrWhiteSpace(Model.ClientLogoUrl))
+        @if (!string.IsNullOrWhiteSpace(Model.ClientLogoUrl))
         {
             <div>
                 <img src="@Model.ClientLogoUrl" />
@@ -23,6 +23,12 @@
         <form asp-action="Index">
             @if (Model.IdentityScopes.Any())
             {
+                <div class="panel">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-user"></span>
+                        用户信息
+                    </div>
+                </div>
                 <ul class="list-group">
                     @foreach (var scope in Model.IdentityScopes)
                     {

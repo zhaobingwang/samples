@@ -23,14 +23,14 @@ namespace CodeSnippets.WebMvc.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string returnUrl)
+        public async Task<IActionResult> Index(string returnUrl)
         {
-            var model = BuildConsentViewModel();
+            var model = await BuildConsentViewModel(returnUrl);
             if (model == null)
             {
 
             }
-            return View();
+            return View(model);
         }
 
         private async Task<ConsentViewModel> BuildConsentViewModel(string returnUrl)
@@ -39,10 +39,10 @@ namespace CodeSnippets.WebMvc.Controllers
             if (returnUrl == null)
                 return null;
 
-            var client = _clientStore.FindEnabledClientByIdAsync(request.ClientId);
-            var resources = await _resourceStore.FindApiResourcesByScopeAsync(request.ScopesRequested);
+            var client = await _clientStore.FindEnabledClientByIdAsync(request.ClientId);
+            var resources = await _resourceStore.FindEnabledResourcesByScopeAsync(request.ScopesRequested);
 
-
+            return CreateConsentViewModel(request, client, resources);
         }
 
         private ConsentViewModel CreateConsentViewModel(AuthorizationRequest request, Client client, Resources resources)
@@ -56,6 +56,7 @@ namespace CodeSnippets.WebMvc.Controllers
             vm.IdentityScopes = resources.IdentityResources.Select(i => CreateScopeViewModel(i));
             vm.ResourceScopes = resources.ApiResources.SelectMany(i => i.Scopes).Select(x => CreateScopeViewModel(x));
 
+            return vm;
         }
 
         private ScopeViewModel CreateScopeViewModel(IdentityResource identityResource)
