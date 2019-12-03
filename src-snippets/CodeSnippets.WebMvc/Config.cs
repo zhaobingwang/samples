@@ -3,6 +3,7 @@ using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CodeSnippets.WebMvc
@@ -39,7 +40,7 @@ namespace CodeSnippets.WebMvc
                     AllowedScopes={
                         IdentityServer4.IdentityServerConstants.StandardScopes.Profile,
                         IdentityServer4.IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServer4.IdentityServerConstants.StandardScopes.Email,
+                        //IdentityServer4.IdentityServerConstants.StandardScopes.Email,
                     }
                 }
             };
@@ -60,7 +61,12 @@ namespace CodeSnippets.WebMvc
                 new TestUser{
                     SubjectId="1",
                     Username="admin",
-                    Password="123456"
+                    Password="123456",
+                    Claims=new List<Claim>
+                    {
+                        new Claim("name","admin"),
+                        new Claim("website","https://www.baidu.com")
+                    }
                 }
             };
         }

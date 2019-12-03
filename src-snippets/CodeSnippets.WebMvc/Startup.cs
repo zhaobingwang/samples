@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using CodeSnippets.WebMvc.Entities;
 using Microsoft.AspNetCore.Identity;
 using IdentityServer4;
+using CodeSnippets.WebMvc.Services;
 
 namespace CodeSnippets.WebMvc
 {
@@ -68,6 +69,9 @@ namespace CodeSnippets.WebMvc
             //        options.LoginPath = "/Account/Login";
             //        //options.AccessDeniedPath = "";
             //    });
+
+
+            services.AddScoped<ConsentService>();
 
             services.AddControllersWithViews();
         }
