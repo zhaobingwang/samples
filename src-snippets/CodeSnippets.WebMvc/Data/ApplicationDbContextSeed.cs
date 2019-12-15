@@ -22,7 +22,7 @@ namespace CodeSnippets.WebMvc.Data
                     Email = "admin@admin.com",
                     NormalizedUserName = "admin"
                 };
-                var result = await _userManager.CreateAsync(defaultUser, "Pwd123456");
+                var result = await _userManager.CreateAsync(defaultUser, "Pwd@123456");
                 if (!result.Succeeded)
                 {
                     throw new Exception("初始化默认用户失败");
