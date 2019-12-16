@@ -17,6 +17,7 @@ using CodeSnippets.WebMvc.Entities;
 using Microsoft.AspNetCore.Identity;
 using IdentityServer4;
 using CodeSnippets.WebMvc.Services;
+using IdentityServer4.Services;
 
 namespace CodeSnippets.WebMvc
 {
@@ -47,18 +48,17 @@ namespace CodeSnippets.WebMvc
                 .AddInMemoryClients(Config.GetClients())
                 .AddInMemoryApiResources(Config.GetResource())
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddAspNetIdentity<ApplicationUser>()
+                .Services.AddScoped<IProfileService, ProfileService>();
 
 
-
-
-            //services.Configure<IdentityOptions>(options =>
-            //{
-            //    options.Password.RequireLowercase = false;
-            //    options.Password.RequireNonAlphanumeric = false;
-            //    options.Password.RequireUppercase = false;
-            //    options.Password.RequiredLength = 8;
-            //});
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+            });
 
             //services.Configure<CookiePolicyOptions>(options =>
             //{

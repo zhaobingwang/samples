@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +40,17 @@ namespace Ids.MvcClient
                 options.ClientId = "mvc";
                 options.ClientSecret = "secret";
                 options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+
+                options.ClaimActions.MapJsonKey("sub", "sub");
+                options.ClaimActions.MapJsonKey("preferred_username", "preferred_username");
+                options.ClaimActions.MapJsonKey("sub", "sub");
+                options.ClaimActions.MapJsonKey("avatar", "avatar");
+                options.ClaimActions.MapCustomJson("role", jobj => jobj.GetProperty("role").ToString());
+
+                options.Scope.Add("offline_access");
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
             });
         }
 

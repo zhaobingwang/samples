@@ -27,20 +27,26 @@ namespace CodeSnippets.WebMvc
                     ClientName="MVC WebApp Client",
                     ClientUri="http://localhost:5001",
                     LogoUri="https://blog.tedd.no/wp-content/uploads/2019/06/128-Bitmap-BIG_ASP.NET-Core-MVC-Logo_2colors_Square_RGB.png",
-                    AllowRememberConsent=true,
-                    Description="This is a sample.",
-
-                    AllowedGrantTypes=GrantTypes.Implicit,
+                    AllowedGrantTypes=GrantTypes.HybridAndClientCredentials,
                     ClientSecrets={
                         new Secret("secret".Sha256())
                     },
+                    AllowOfflineAccess=true,
+                    AllowAccessTokensViaBrowser=true,
+                    AllowRememberConsent=true,
+                    Description="This is a sample.",
+
                     RequireConsent=true,
                     RedirectUris={ "http://localhost:5001/signin-oidc"},
                     PostLogoutRedirectUris={ "http://localhost:5001/signout-callback-oidc"},
+                    //AlwaysIncludeUserClaimsInIdToken=true,
+
+                    // scopes that client has access to
                     AllowedScopes={
                         IdentityServer4.IdentityServerConstants.StandardScopes.Profile,
                         IdentityServer4.IdentityServerConstants.StandardScopes.OpenId,
-                        //IdentityServer4.IdentityServerConstants.StandardScopes.Email,
+                        IdentityServer4.IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "api1"
                     }
                 }
             };
