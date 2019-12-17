@@ -39,7 +39,7 @@ namespace CodeSnippets.WebMvc
                     RequireConsent=true,
                     RedirectUris={ "http://localhost:5001/signin-oidc"},
                     PostLogoutRedirectUris={ "http://localhost:5001/signout-callback-oidc"},
-                    //AlwaysIncludeUserClaimsInIdToken=true,
+                    AlwaysIncludeUserClaimsInIdToken=true,
 
                     // scopes that client has access to
                     AllowedScopes={

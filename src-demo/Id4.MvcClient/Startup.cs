@@ -40,13 +40,13 @@ namespace Ids.MvcClient
                 options.ClientId = "mvc";
                 options.ClientSecret = "secret";
                 options.SaveTokens = true;
-                options.GetClaimsFromUserInfoEndpoint = true;
+                //options.GetClaimsFromUserInfoEndpoint = true;
 
-                options.ClaimActions.MapJsonKey("sub", "sub");
-                options.ClaimActions.MapJsonKey("preferred_username", "preferred_username");
-                options.ClaimActions.MapJsonKey("sub", "sub");
-                options.ClaimActions.MapJsonKey("avatar", "avatar");
-                options.ClaimActions.MapCustomJson("role", jobj => jobj.GetProperty("role").ToString());
+                //options.ClaimActions.MapJsonKey("sub", "sub");
+                //options.ClaimActions.MapJsonKey("preferred_username", "preferred_username");
+                //options.ClaimActions.MapJsonKey("sub", "sub");
+                //options.ClaimActions.MapJsonKey("avatar", "avatar");
+                //options.ClaimActions.MapCustomJson("role", jobj => jobj.GetProperty("role").ToString());
 
                 options.Scope.Add("offline_access");
                 options.Scope.Add("openid");
