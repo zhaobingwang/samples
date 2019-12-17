@@ -50,23 +50,23 @@ namespace CodeSnippets.WebMvc
 
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
-                .AddInMemoryClients(Config.GetClients())
-                .AddInMemoryApiResources(Config.GetResource())
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                //.AddConfigurationStore(options =>
-                //{
-                //    options.ConfigureDbContext = builder =>
-                //    {
-                //        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
-                //    };
-                //})
-                //.AddOperationalStore(options =>
-                //{
-                //    options.ConfigureDbContext = builder =>
-                //    {
-                //        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
-                //    };
-                //})
+                //.AddInMemoryClients(Config.GetClients())
+                //.AddInMemoryApiResources(Config.GetResource())
+                //.AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                    {
+                        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+                    };
+                })
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                    {
+                        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+                    };
+                })
                 .AddAspNetIdentity<ApplicationUser>()
                 .Services.AddTransient<IProfileService, ProfileService>();
 
@@ -111,7 +111,7 @@ namespace CodeSnippets.WebMvc
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            //InitIdentityServerDataBase(app);
+            InitIdentityServerDataBase(app);
 
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
