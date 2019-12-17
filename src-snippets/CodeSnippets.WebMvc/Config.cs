@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
@@ -23,31 +24,27 @@ namespace CodeSnippets.WebMvc
             return new List<Client>
             {
                 new Client(){
-                    ClientId="mvc",
-                    ClientName="MVC WebApp Client",
-                    ClientUri="http://localhost:5001",
-                    LogoUri="https://blog.tedd.no/wp-content/uploads/2019/06/128-Bitmap-BIG_ASP.NET-Core-MVC-Logo_2colors_Square_RGB.png",
-                    AllowedGrantTypes=GrantTypes.HybridAndClientCredentials,
-                    ClientSecrets={
-                        new Secret("secret".Sha256())
-                    },
-                    AllowOfflineAccess=true,
-                    AllowAccessTokensViaBrowser=true,
-                    AllowRememberConsent=true,
-                    Description="This is a sample.",
+    ClientId = "mvc",
+    ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    RequireConsent=true,
-                    RedirectUris={ "http://localhost:5001/signin-oidc"},
-                    PostLogoutRedirectUris={ "http://localhost:5001/signout-callback-oidc"},
-                    AlwaysIncludeUserClaimsInIdToken=true,
+    AllowedGrantTypes = GrantTypes.Code,
+    RequireConsent = false,
+    RequirePkce = true,
 
-                    // scopes that client has access to
-                    AllowedScopes={
-                        IdentityServer4.IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServer4.IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServer4.IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "api1"
-                    }
+    // where to redirect to after login
+    RedirectUris = { "http://localhost:5001/signin-oidc" },
+
+    // where to redirect to after logout
+    PostLogoutRedirectUris = { "http://localhost:5001/signout-callback-oidc" },
+
+    AllowedScopes = new List<string>
+    {
+        IdentityServerConstants.StandardScopes.OpenId,
+        IdentityServerConstants.StandardScopes.Profile,
+        "api1"
+    },
+
+    AllowOfflineAccess = true
                 }
             };
         }

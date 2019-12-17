@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.CodeSnippets", "3.CodeSni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.ConsoleApp", "src-snippets\CodeSnippets.ConsoleApp\CodeSnippets.ConsoleApp.csproj", "{A39A73B4-87E5-4886-A4F7-87862A3AA24D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.IdentityCenter", "src-snippets\CodeSnippets.IdentityCenter\CodeSnippets.IdentityCenter.csproj", "{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{A39A73B4-87E5-4886-A4F7-87862A3AA24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A39A73B4-87E5-4886-A4F7-87862A3AA24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A39A73B4-87E5-4886-A4F7-87862A3AA24D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 		{54499819-02BE-4590-994C-A00581C43D60} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 		{A39A73B4-87E5-4886-A4F7-87862A3AA24D} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
+		{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {468C8334-7CF1-4213-A40C-0A7300321346}
