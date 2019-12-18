@@ -24,9 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.WebMvc", "src-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.WebApi", "src-snippets\CodeSnippets.WebApi\CodeSnippets.WebApi.csproj", "{8AF0C1A2-F624-4AD1-8A91-E4E79C0D03AA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Tests", "1.Tests", "{B8978203-C43F-4BA0-AE23-33812B0B348E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Tests", "0.Tests", "{B8978203-C43F-4BA0-AE23-33812B0B348E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Clients", "2.Clients", "{D96279E1-B323-4909-A97D-4EB3D407F0FC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Clients", "3.Clients", "{D96279E1-B323-4909-A97D-4EB3D407F0FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.WpfApp", "src-snippets\CodeSnippets.WpfApp\CodeSnippets.WpfApp.csproj", "{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF}"
 EndProject
@@ -34,11 +34,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.Winform", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Temporary", "99.Temporary", "{DC6DF50C-2D1A-4188-A098-401447C8BFE7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.CodeSnippets", "3.CodeSnippets", "{85DF7EB5-CCA9-48CA-A080-225A946EFA47}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.CodeSnippets", "1.CodeSnippets", "{85DF7EB5-CCA9-48CA-A080-225A946EFA47}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.ConsoleApp", "src-snippets\CodeSnippets.ConsoleApp\CodeSnippets.ConsoleApp.csproj", "{A39A73B4-87E5-4886-A4F7-87862A3AA24D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.IdentityCenter", "src-snippets\CodeSnippets.IdentityCenter\CodeSnippets.IdentityCenter.csproj", "{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.IdentityCenter", "src-snippets\CodeSnippets.IdentityCenter\CodeSnippets.IdentityCenter.csproj", "{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Server", "2.Server", "{0A79A8D6-85C9-47D7-B9B7-1D5AB931182F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,7 +112,7 @@ Global
 		{1E7E7A49-5EFA-42C3-8B2C-4BE8C0077BFF} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 		{54499819-02BE-4590-994C-A00581C43D60} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
 		{A39A73B4-87E5-4886-A4F7-87862A3AA24D} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
-		{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B} = {D96279E1-B323-4909-A97D-4EB3D407F0FC}
+		{EBC36BBD-1E00-4F64-A0EF-C3EE0D6E9D3B} = {0A79A8D6-85C9-47D7-B9B7-1D5AB931182F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {468C8334-7CF1-4213-A40C-0A7300321346}
