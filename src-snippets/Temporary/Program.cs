@@ -13,7 +13,6 @@ namespace Temporary
             try
             {
                 Unclassified.RangesAndIndices();
-                DateTime.Now.IsAfter
             }
             catch (Exception ex)
             {
