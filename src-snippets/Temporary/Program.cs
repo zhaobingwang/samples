@@ -1,6 +1,8 @@
 ﻿using CodeSnippets;
 using CodeSnippets.BCL;
 using System;
+using CSTree;
+using CSTree.BCLExtensions;
 
 namespace Temporary
 {
@@ -11,6 +13,7 @@ namespace Temporary
             try
             {
                 Unclassified.RangesAndIndices();
+                DateTime.Now.IsAfter
             }
             catch (Exception ex)
             {
