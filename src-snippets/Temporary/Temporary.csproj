@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeSnippets\CodeSnippets.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -22,6 +18,11 @@
 
   <ItemGroup>
     <PackageReference Include="CSTree" Version="0.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeSnippets.Data\CodeSnippets.Data.csproj" />
+    <ProjectReference Include="..\CodeSnippets\CodeSnippets.csproj" />
   </ItemGroup>
 
 </Project>

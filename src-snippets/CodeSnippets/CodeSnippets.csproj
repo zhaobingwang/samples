@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CodeSnippets.Data\CodeSnippets.Data.csproj" />
     <ProjectReference Include="..\CodeSnippets.Infrastructure\CodeSnippets.Infrastructure.csproj" />
   </ItemGroup>
 
