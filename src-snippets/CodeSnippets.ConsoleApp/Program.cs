@@ -51,14 +51,20 @@ namespace CodeSnippets.ConsoleApp
             try
             {
                 stopwatch.Start();
-                Console.OutputEncoding = Encoding.Unicode;
 
-                var json = await File.ReadAllTextAsync("static/emoji/face-smiling.json");
-                var emojis = JsonOperator.ToObject<FaceSmilingDto>(json);
-                foreach (var emoji in emojis.FaceSmiling)
-                {
-                    Console.Write(Emoji.EmojiCodeToUTF16String(emoji.Code));
-                }
+                #region emoji
+                //Console.OutputEncoding = Encoding.Unicode;
+
+                //var json = await File.ReadAllTextAsync("static/emoji/face-smiling.json");
+                //var emojis = JsonOperator.ToObject<FaceSmilingDto>(json);
+                //foreach (var emoji in emojis.FaceSmiling)
+                //{
+                //    Console.Write(Emoji.EmojiCodeToUTF16String(emoji.Code));
+                //} 
+                #endregion
+
+                await new AccessAPI().Run();
+
                 Console.WriteLine($"\nElapsed time:{stopwatch.ElapsedMilliseconds}ms");
                 stopwatch.Stop();
             }

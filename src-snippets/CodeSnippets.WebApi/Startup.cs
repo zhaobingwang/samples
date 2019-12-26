@@ -35,47 +35,59 @@ namespace CodeSnippets.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
-            var jwtSettings = new JwtSettings();
-            Configuration.Bind("JwtSettings", jwtSettings);
+            #region obsolete
+            //services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
+            //var jwtSettings = new JwtSettings();
+            //Configuration.Bind("JwtSettings", jwtSettings);
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(o =>
-            {
-                o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidAudience = jwtSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
-                };
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(o =>
+            //{
+            //    o.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidIssuer = jwtSettings.Issuer,
+            //        ValidAudience = jwtSettings.Audience,
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+            //    };
 
-                #region 定制JWT，在基于Role授权不管用，可在使用Policy授权下使用
-                //o.SecurityTokenValidators.Clear();
-                //o.SecurityTokenValidators.Add(new MyTokenValidator());
+            //    #region 定制JWT，在基于Role授权不管用，可在使用Policy授权下使用
+            //    //o.SecurityTokenValidators.Clear();
+            //    //o.SecurityTokenValidators.Add(new MyTokenValidator());
 
-                //o.Events = new JwtBearerEvents()
-                //{
-                //    OnMessageReceived = context =>
-                //    {
-                //        var token = context.Request.Headers["mytoken"];
-                //        context.Token = token.FirstOrDefault();
-                //        return Task.CompletedTask;
-                //    }
-                //}; 
-                #endregion
+            //    //o.Events = new JwtBearerEvents()
+            //    //{
+            //    //    OnMessageReceived = context =>
+            //    //    {
+            //    //        var token = context.Request.Headers["mytoken"];
+            //    //        context.Token = token.FirstOrDefault();
+            //    //        return Task.CompletedTask;
+            //    //    }
+            //    //}; 
+            //    #endregion
 
-            });
+            //});
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("SuperAdminOnly", policy => policy.RequireClaim("SuperAdminOnly"));
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("SuperAdminOnly", policy => policy.RequireClaim("SuperAdminOnly"));
+            //}); 
+            #endregion
 
             services.AddControllers();
+
+            // 将身份验证服务添加到DI并配置Bearer为默认方案。
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", option =>
+                {
+                    option.Authority = "http://localhost:5000";
+                    option.RequireHttpsMetadata = false;
+                    option.Audience = "CodeSnippets.WebApi";
+                });
+
             services.AddHttpClient();
             services.AddHealthChecks()
                 .AddCheck<SqlServerHealthCheck>("sqlserver")
@@ -98,10 +110,12 @@ namespace CodeSnippets.WebApi
                 app.UseHsts();
             }
 
-            app.UseAuthentication();
-            app.UseAuthorization();
             //app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseAuthentication();    // 将身份验证中间件添加到管道中，以便对主机的每次调用都将自动执行身份验证。
+            app.UseAuthorization();    // 添加了授权中间件，以确保匿名客户端无法访问我们的API端点。
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute().RequireAuthorization();
