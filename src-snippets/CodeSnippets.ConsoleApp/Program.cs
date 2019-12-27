@@ -21,6 +21,7 @@ using CodeSnippets.Infrastructure.Interfaces;
 using CodeSnippets.Infrastructure.Repositories;
 using System.Diagnostics;
 using CodeSnippets.Infrastructure.Dto;
+using DapperMSSql = CodeSnippets.Infrastructure.Dapper.MSSqlServer;
 
 namespace CodeSnippets.ConsoleApp
 {
@@ -31,6 +32,7 @@ namespace CodeSnippets.ConsoleApp
     class Program
     {
         public static ILoggerFactory LoggerFactory;
+        //public static IConfigurationRoot Configuration;
         public static IConfigurationRoot Configuration;
         static async Task Main(string[] args)
         {
@@ -40,12 +42,20 @@ namespace CodeSnippets.ConsoleApp
             var builder = new ConfigurationBuilder().SetBasePath(Path.Combine(AppContext.BaseDirectory)).AddJsonFile("appsettings.json", optional: true);
             Configuration = builder.Build();
 
+            services.AddSingleton<IConfiguration>(Configuration);
+
             services.AddEntityFrameworkSqlite()
                 .AddDbContext<SqliteEFContext>(options => options.UseSqlite(Configuration.GetConnectionString("sqlite")));
             services.AddScoped<ISampleEntityRepository, SampleEntityRepository>();
 
+            #region Dapper-MSSqlServer
+            services.AddTransient<DapperMSSql.IBaseRepository, DapperMSSql.BaseRepository>();
+            #endregion
+
             var serviceProvider = services.BuildServiceProvider();
             var sampleEntityService = serviceProvider.GetRequiredService<ISampleEntityRepository>();
+            var baseRepository = serviceProvider.GetRequiredService<DapperMSSql.IBaseRepository>();
+
 
             Stopwatch stopwatch = new Stopwatch();
             try
@@ -63,7 +73,10 @@ namespace CodeSnippets.ConsoleApp
                 //} 
                 #endregion
 
-                await new AccessAPI().Run();
+
+
+                var aa = baseRepository.Get();
+                //await new AccessAPI().Run();
 
                 Console.WriteLine($"\nElapsed time:{stopwatch.ElapsedMilliseconds}ms");
                 stopwatch.Stop();
