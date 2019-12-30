@@ -75,10 +75,10 @@ namespace CodeSnippets.ConsoleApp
 
 
 
-                var aa = baseRepository.Get();
-                //await new AccessAPI().Run();
+                //var aa = baseRepository.Get();
+                await new AccessAPI().Run();
 
-                Console.WriteLine($"\nElapsed time:{stopwatch.ElapsedMilliseconds}ms");
+                //Console.WriteLine($"\nElapsed time:{stopwatch.ElapsedMilliseconds}ms");
                 stopwatch.Stop();
             }
             catch (CustomException ex)

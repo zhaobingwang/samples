@@ -15,7 +15,7 @@ namespace CodeSnippets.WebApi.Controllers
     {
         public IActionResult Get()
         {
-            return new JsonResult(User.Claims.Select(c => new { c.Type, char.MinValue }));
+            return new JsonResult(User.Claims.Select(c => new { c.Type, c.Value }));
         }
     }
 }

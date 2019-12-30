@@ -35,7 +35,7 @@ namespace CodeSnippets.ConsoleApp
                 return;
             }
             Console.WriteLine(tokenResponse.Json);
-            Console.WriteLine("*".PadLeft(50, '*'));
+
             // call api
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
@@ -48,8 +48,7 @@ namespace CodeSnippets.ConsoleApp
             else
             {
                 var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(content);
-                //Console.WriteLine(Newtonsoft.Json.Linq.JArray.Parse(content));
+                Console.WriteLine(Newtonsoft.Json.Linq.JArray.Parse(content));
             }
         }
     }
