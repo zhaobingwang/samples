@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.DotNet.CSharp.Consol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Solution Items", "0.Solution Items", "{17952220-91EF-416D-A4F7-E3B55DA08AC6}"
 	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
 		sonarqube.snippets.bat = sonarqube.snippets.bat
 	EndProjectSection
 EndProject
@@ -48,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.Data", "src-sn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.Infrastructure.IntegrationTests", "test\CodeSnippets.Infrastructure.IntegrationTests\CodeSnippets.Infrastructure.IntegrationTests.csproj", "{5849252A-E510-4EBE-9999-339CB17557B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets.IS4UI", "src-snippets\CodeSnippets.IS4UI\CodeSnippets.IS4UI.csproj", "{66C3A025-5013-4384-9A56-D63448A9D28D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.IS4UI", "src-snippets\CodeSnippets.IS4UI\CodeSnippets.IS4UI.csproj", "{66C3A025-5013-4384-9A56-D63448A9D28D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
