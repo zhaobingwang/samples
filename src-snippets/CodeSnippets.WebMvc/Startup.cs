@@ -48,36 +48,37 @@ namespace CodeSnippets.WebMvc
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryClients(Config.GetClients())
-                .AddInMemoryApiResources(Config.GetResource())
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                //.AddConfigurationStore(options =>
-                //{
-                //    options.ConfigureDbContext = builder =>
-                //    {
-                //        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
-                //    };
-                //})
-                //.AddOperationalStore(options =>
-                //{
-                //    options.ConfigureDbContext = builder =>
-                //    {
-                //        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
-                //    };
-                //})
-                .AddAspNetIdentity<ApplicationUser>()
-                .Services.AddTransient<IProfileService, ProfileService>();
+            #region MyRegion
+            //services.AddIdentityServer()
+            //    .AddDeveloperSigningCredential()
+            //    .AddInMemoryClients(Config.GetClients())
+            //    .AddInMemoryApiResources(Config.GetResource())
+            //    .AddInMemoryIdentityResources(Config.GetIdentityResources())
+            //    //.AddConfigurationStore(options =>
+            //    //{
+            //    //    options.ConfigureDbContext = builder =>
+            //    //    {
+            //    //        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+            //    //    };
+            //    //})
+            //    //.AddOperationalStore(options =>
+            //    //{
+            //    //    options.ConfigureDbContext = builder =>
+            //    //    {
+            //    //        builder.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+            //    //    };
+            //    //})
+            //    .AddAspNetIdentity<ApplicationUser>()
+            //    .Services.AddTransient<IProfileService, ProfileService>();
 
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 6;
-            });
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.Password.RequiredLength = 6;
+            //});
 
             //services.Configure<CookiePolicyOptions>(options =>
             //{
@@ -91,10 +92,33 @@ namespace CodeSnippets.WebMvc
             //    {
             //        options.LoginPath = "/Account/Login";
             //        //options.AccessDeniedPath = "";
-            //    });
+            //    }); 
+            #endregion
 
 
-            services.AddScoped<ConsentService>();
+            //services.AddScoped<ConsentService>();
+
+            // 将身份验证服务添加到DI
+            // 我们使用cookie来本地登录用户（通过“Cookies”作为DefaultScheme），并且将DefaultChallengeScheme设置为oidc。因为当我们需要用户登录时，我们将使用OpenID Connect协议。
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            // 添加可以处理cookie的处理程序
+            .AddCookie("Cookies")
+            // 用于配置执行OpenID Connect协议的处理程序
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.Authority = "http://localhost:5000";    // 指示了受信任令牌服务地址
+                options.RequireHttpsMetadata = false;
+
+                options.ClientId = "mvc";
+                options.ClientSecret = "secret";
+                options.ResponseType = "code";
+
+                options.SaveTokens = true;  // 用于将来自IdentityServer的令牌保留在cookie中
+            });
 
             services.AddControllersWithViews();
         }
@@ -117,15 +141,17 @@ namespace CodeSnippets.WebMvc
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseIdentityServer();
+            //app.UseIdentityServer();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}")
+                .RequireAuthorization();    // RequireAuthorization方法禁用整个应用程序的匿名访问
             });
         }
 

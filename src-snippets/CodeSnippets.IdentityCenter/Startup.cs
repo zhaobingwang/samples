@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeSnippets.IdentityCenter.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +24,10 @@ namespace CodeSnippets.IdentityCenter
         public void ConfigureServices(IServiceCollection services)
         {
             var builder = services.AddIdentityServer()
+                .AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)
-                .AddInMemoryClients(Config.Clients);
+                .AddInMemoryClients(Config.Clients)
+                .AddTestUsers(TestUsers.Users);
             builder.AddDeveloperSigningCredential();
 
             services.AddControllersWithViews();
