@@ -14,7 +14,6 @@ set /p tag=Tag:
 set /p workdir=Working directory:
 set /p repo=Repository:
 
-
 @echo Locate to the working directory
 cd %workdir%
 
