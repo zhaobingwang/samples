@@ -7,7 +7,6 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using CodeSnippets.WebMvc.Data;
 
 namespace CodeSnippets.WebMvc
 {
@@ -17,10 +16,10 @@ namespace CodeSnippets.WebMvc
         {
             CreateWebHostBuilder(args)
                 .Build()
-                .MigrationDbContext<ApplicationDbContext>((context, services) =>
-                {
-                    new ApplicationDbContextSeed().SeedAsync(context, services).Wait();
-                })
+                //.MigrationDbContext<ApplicationDbContext>((context, services) =>
+                //{
+                //    new ApplicationDbContextSeed().SeedAsync(context, services).Wait();
+                //})
                 .Run();
         }
 

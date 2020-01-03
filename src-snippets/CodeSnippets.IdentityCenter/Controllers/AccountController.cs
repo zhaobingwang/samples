@@ -52,7 +52,7 @@ namespace CodeSnippets.IdentityCenter.Controllers
                     };
 
                     await Microsoft.AspNetCore.Http.AuthenticationManagerExtensions.SignInAsync(HttpContext, user.SubjectId, user.Username, props);
-                    return RedirectToLocal(returnUrl);
+                    return View();//RedirectToLocal(returnUrl);
                 }
                 ModelState.AddModelError(nameof(loginViewModel.Password), "Wrong password");
             }

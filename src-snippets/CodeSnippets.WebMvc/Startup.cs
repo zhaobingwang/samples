@@ -1,26 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using CodeSnippets.WebMvc.Data;
-using Microsoft.EntityFrameworkCore;
-using CodeSnippets.WebMvc.Entities;
-using Microsoft.AspNetCore.Identity;
-using IdentityServer4;
-using CodeSnippets.WebMvc.Services;
-using IdentityServer4.Services;
 using System.Reflection;
-using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Mappers;
 
 namespace CodeSnippets.WebMvc
 {
@@ -39,14 +21,14 @@ namespace CodeSnippets.WebMvc
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            });
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //{
+            //    options.UseSqlServer(connectionString);
+            //});
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddIdentity<ApplicationUser, ApplicationRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
             #region MyRegion
             //services.AddIdentityServer()
@@ -155,38 +137,38 @@ namespace CodeSnippets.WebMvc
             });
         }
 
-        public void InitIdentityServerDataBase(IApplicationBuilder app)
-        {
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
-                var configurationDbContext = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+        //public void InitIdentityServerDataBase(IApplicationBuilder app)
+        //{
+        //    using (var scope = app.ApplicationServices.CreateScope())
+        //    {
+        //        scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
+        //        var configurationDbContext = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
 
-                if (!configurationDbContext.Clients.Any())
-                {
-                    foreach (var client in Config.GetClients())
-                    {
-                        configurationDbContext.Clients.Add(client.ToEntity());
-                    }
-                    configurationDbContext.SaveChanges();
-                }
-                if (!configurationDbContext.ApiResources.Any())
-                {
-                    foreach (var api in Config.GetResource())
-                    {
-                        configurationDbContext.ApiResources.Add(api.ToEntity());
-                    }
-                    configurationDbContext.SaveChanges();
-                }
-                if (!configurationDbContext.IdentityResources.Any())
-                {
-                    foreach (var identity in Config.GetIdentityResources())
-                    {
-                        configurationDbContext.IdentityResources.Add(identity.ToEntity());
-                    }
-                    configurationDbContext.SaveChanges();
-                }
-            }
-        }
+        //        if (!configurationDbContext.Clients.Any())
+        //        {
+        //            foreach (var client in Config.GetClients())
+        //            {
+        //                configurationDbContext.Clients.Add(client.ToEntity());
+        //            }
+        //            configurationDbContext.SaveChanges();
+        //        }
+        //        if (!configurationDbContext.ApiResources.Any())
+        //        {
+        //            foreach (var api in Config.GetResource())
+        //            {
+        //                configurationDbContext.ApiResources.Add(api.ToEntity());
+        //            }
+        //            configurationDbContext.SaveChanges();
+        //        }
+        //        if (!configurationDbContext.IdentityResources.Any())
+        //        {
+        //            foreach (var identity in Config.GetIdentityResources())
+        //            {
+        //                configurationDbContext.IdentityResources.Add(identity.ToEntity());
+        //            }
+        //            configurationDbContext.SaveChanges();
+        //        }
+        //    }
+        //}
     }
 }
