@@ -102,6 +102,8 @@ namespace CodeSnippets.WebMvc
                 options.SaveTokens = true;  // 用于将来自IdentityServer的令牌保留在cookie中
             });
 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
             services.AddControllersWithViews();
         }
 
