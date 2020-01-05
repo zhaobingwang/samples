@@ -100,6 +100,9 @@ namespace CodeSnippets.WebMvc
                 options.ResponseType = "code";
 
                 options.SaveTokens = true;  // 用于将来自IdentityServer的令牌保留在cookie中
+
+                options.Scope.Add("CodeSnippets.WebApi");
+                options.Scope.Add("offline_access");
             });
 
             services.AddRazorPages().AddRazorRuntimeCompilation();

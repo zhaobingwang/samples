@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CodeSnippets.WebMvc.Models;
+using Microsoft.AspNetCore.Authentication;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace CodeSnippets.WebMvc.Controllers
 {
@@ -22,6 +25,19 @@ namespace CodeSnippets.WebMvc.Controllers
 
         public IActionResult AuthInfo()
         {
+            return View();
+        }
+
+        public async Task<IActionResult> CallApi()
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+            var content = await client.GetStringAsync("http://localhost:5001/identity");
+
+            ViewBag.Json = JArray.Parse(content).ToString();
             return View();
         }
 

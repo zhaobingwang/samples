@@ -48,8 +48,11 @@ namespace CodeSnippets.IdentityCenter
 
                 AllowedScopes=new List<string>{
                     IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile
-                }
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "CodeSnippets.WebApi"
+                },
+
+                AllowOfflineAccess=true
             }
         };
 
@@ -58,7 +61,7 @@ namespace CodeSnippets.IdentityCenter
         public static IEnumerable<IdentityResource> Ids => new List<IdentityResource>
         {
             new IdentityResources.OpenId(),
-            new IdentityResources.Profile()
+            new IdentityResources.Profile(),
         };
     }
 }
