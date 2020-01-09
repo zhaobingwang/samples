@@ -49,7 +49,7 @@ namespace CodeSnippets.IdentityCenter
                 AllowedScopes=new List<string>{
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
-                    "CodeSnippets.WebApi"
+                    "CodeSnippets.WebApi"   // 启用对刷新令牌的支持
                 },
 
                 AllowOfflineAccess=true
