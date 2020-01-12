@@ -52,6 +52,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.IS4UI", "src-snippets\CodeSnippets.IS4UI\CodeSnippets.IS4UI.csproj", "{66C3A025-5013-4384-9A56-D63448A9D28D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSnippets.IS4EF", "src-snippets\CodeSnippets.IS4EF\CodeSnippets.IS4EF.csproj", "{A28BFAB2-3086-4A4A-B248-69D08C970D8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +120,10 @@ Global
 		{66C3A025-5013-4384-9A56-D63448A9D28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66C3A025-5013-4384-9A56-D63448A9D28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66C3A025-5013-4384-9A56-D63448A9D28D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A28BFAB2-3086-4A4A-B248-69D08C970D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A28BFAB2-3086-4A4A-B248-69D08C970D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A28BFAB2-3086-4A4A-B248-69D08C970D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A28BFAB2-3086-4A4A-B248-69D08C970D8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{08FBF266-3350-47D4-B915-60E573EF5877} = {DE26E2C8-A05D-4728-90C0-35CFA290B594}
 		{5849252A-E510-4EBE-9999-339CB17557B4} = {B8978203-C43F-4BA0-AE23-33812B0B348E}
 		{66C3A025-5013-4384-9A56-D63448A9D28D} = {0A79A8D6-85C9-47D7-B9B7-1D5AB931182F}
+		{A28BFAB2-3086-4A4A-B248-69D08C970D8D} = {0A79A8D6-85C9-47D7-B9B7-1D5AB931182F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {468C8334-7CF1-4213-A40C-0A7300321346}
