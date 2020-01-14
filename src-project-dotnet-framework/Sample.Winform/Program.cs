@@ -18,7 +18,7 @@ namespace Sample.Winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MQ.RabbitMQOperation());
+            Application.Run(new OleDbIndex());
         }
     }
 }
