@@ -32,7 +32,7 @@ namespace CodeSnippets.AspNet
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("Hello World From Default Startup!");
                 });
             });
         }
