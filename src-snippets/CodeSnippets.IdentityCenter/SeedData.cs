@@ -56,6 +56,7 @@ namespace CodeSnippets.IdentityCenter
                 {
                     context.ApiResources.Add(api.ToEntity());
                 }
+                context.SaveChanges();
             }
 
             if (!context.IdentityResources.Any())
