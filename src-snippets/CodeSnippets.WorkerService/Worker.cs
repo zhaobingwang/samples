@@ -25,5 +25,19 @@ namespace CodeSnippets.WorkerService
                 await Task.Delay(1000, stoppingToken);
             }
         }
+
+        public override async Task StartAsync(CancellationToken stoppingToken)
+        {
+            _logger.LogInformation("start...");
+
+            await Task.CompletedTask;
+        }
+
+        public override async Task StopAsync(CancellationToken stoppingToken)
+        {
+            _logger.LogInformation("stop...");
+
+            await Task.CompletedTask;
+        }
     }
 }
