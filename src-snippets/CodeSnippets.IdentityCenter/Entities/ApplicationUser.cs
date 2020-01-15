@@ -8,11 +8,7 @@ using System.Threading.Tasks;
 
 namespace CodeSnippets.IdentityCenter.Entities
 {
-    public class ApplicationUser : IdentityUser<int>
+    public class ApplicationUser : IdentityUser
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
-        public override int Id { get; set; }
-        public string Avatar { get; set; }
     }
 }

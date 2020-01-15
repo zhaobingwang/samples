@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodeSnippets.IdentityCenter.Entities;
 using CodeSnippets.IdentityCenter.Models;
+using IdentityServer4.Services;
 using IdentityServer4.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -13,14 +14,15 @@ namespace CodeSnippets.IdentityCenter.Controllers
 {
     public class AccountController : Controller
     {
-        //private UserManager<ApplicationUser> _userManager;
-        //private SignInManager<ApplicationUser> _signInManager;
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
+        private IIdentityServerInteractionService _interaction;
 
-        private readonly TestUserStore _users;
-
-        public AccountController(TestUserStore users)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IIdentityServerInteractionService interaction)
         {
-            _users = users;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _interaction = interaction;
         }
         public IActionResult Login(string returnUrl)
         {
@@ -36,32 +38,41 @@ namespace CodeSnippets.IdentityCenter.Controllers
                 return View();
             }
 
-            var user = _users.FindByUsername(loginViewModel.UserName);
+            var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
             if (user == null)
             {
-                ModelState.AddModelError(nameof(loginViewModel.UserName), "User not exists");
+                ModelState.AddModelError(nameof(loginViewModel.Email), $"Email {loginViewModel.Email} not exists");
             }
             else
             {
-                if (_users.ValidateCredentials(loginViewModel.UserName, loginViewModel.Password))
+                if (await _userManager.CheckPasswordAsync(user, loginViewModel.Password))
                 {
-                    var props = new AuthenticationProperties
+                    AuthenticationProperties props = null;
+                    if (loginViewModel.RememberMe)
                     {
-                        IsPersistent = true,
-                        ExpiresUtc = DateTimeOffset.UtcNow.Add(TimeSpan.FromMinutes(30))
-                    };
+                        props = new AuthenticationProperties
+                        {
+                            IsPersistent = true,
+                            ExpiresUtc = DateTimeOffset.UtcNow.Add(TimeSpan.FromMinutes(30))
+                        };
+                    }
 
-                    await Microsoft.AspNetCore.Http.AuthenticationManagerExtensions.SignInAsync(HttpContext, user.SubjectId, user.Username, props);
-                    return View();//RedirectToLocal(returnUrl);
+                    await _signInManager.SignInAsync(user, props);
+
+                    if (_interaction.IsValidReturnUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    return Redirect("~/");
                 }
                 ModelState.AddModelError(nameof(loginViewModel.Password), "Wrong password");
             }
-            return View();
+            return View(loginViewModel);
         }
 
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 

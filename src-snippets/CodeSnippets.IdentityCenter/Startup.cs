@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using CodeSnippets.IdentityCenter.Data;
 using CodeSnippets.IdentityCenter.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,10 +27,23 @@ namespace CodeSnippets.IdentityCenter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<>(options =>
-            //{
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConncetion"));
-            //});
+            services.AddDbContext<AspNetAccountDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultAspNetAccountConnection"));
+            });
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AspNetAccountDbContext>()
+                .AddDefaultTokenProviders();
+            services.Configure<IdentityOptions>(options =>
+            {
+                // FIXME:ΩµµÕ√‹¬Î∏¥‘”∂»Œﬁ–ß£ø
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
@@ -47,7 +62,7 @@ namespace CodeSnippets.IdentityCenter
                         builder.UseSqlServer(connectionString);
                     };
                 })
-                .AddTestUsers(TestUsers.Users); ;
+                .AddAspNetIdentity<ApplicationUser>();
 
             builder.AddDeveloperSigningCredential();
 

@@ -18,7 +18,10 @@ namespace CodeSnippets.IdentityCenter
 
             var config = host.Services.GetRequiredService<IConfiguration>();
             var connectionString = config.GetConnectionString("DefaultConnection");
+            var connectionStringAspNetAccount = config.GetConnectionString("DefaultAspNetAccountConnection");
+
             SeedData.EnsureSeedData(connectionString);
+            SeedData.EnsureSeedAspNetAccountData(connectionStringAspNetAccount);
 
             host.Run();
         }
