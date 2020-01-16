@@ -36,7 +36,6 @@ namespace CodeSnippets.IdentityCenter
                 .AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
             {
-                // FIXME:ΩµµÕ√‹¬Î∏¥‘”∂»Œﬁ–ß£ø
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;

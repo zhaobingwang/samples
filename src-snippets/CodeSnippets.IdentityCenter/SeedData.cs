@@ -87,6 +87,16 @@ namespace CodeSnippets.IdentityCenter
                 .AddEntityFrameworkStores<AspNetAccountDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
+
             using (var serviceProvider = services.BuildServiceProvider())
             {
                 using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -104,7 +114,7 @@ namespace CodeSnippets.IdentityCenter
                             UserName = "zhangsan",
                             Email = "zhangsan@email.com"
                         };
-                        var result = userManager.CreateAsync(zhangsan, "Password$123").Result;
+                        var result = userManager.CreateAsync(zhangsan, "123456").Result;
                         if (!result.Succeeded)
                         {
                             throw new Exception(result.Errors.First().Description);
@@ -134,7 +144,7 @@ namespace CodeSnippets.IdentityCenter
                             UserName = "lisi",
                             Email = "lisi@email.com"
                         };
-                        var result = userManager.CreateAsync(lisi, "Password$123").Result;
+                        var result = userManager.CreateAsync(lisi, "123456").Result;
                         if (!result.Succeeded)
                         {
                             throw new Exception(result.Errors.First().Description);
