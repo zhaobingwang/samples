@@ -68,6 +68,15 @@ namespace CodeSnippets.IdentityCenter
             {
                 foreach (var id in Config.Ids)
                 {
+                    if (id.Name == "openid")
+                    {
+                        id.DisplayName = "用户标识符";
+                    }
+                    if (id.Name == "profile")
+                    {
+                        id.DisplayName = "用户账号信息";
+                        id.Description = "你的账号信息（姓名等）";
+                    }
                     context.IdentityResources.Add(id.ToEntity());
                 }
                 context.SaveChanges();

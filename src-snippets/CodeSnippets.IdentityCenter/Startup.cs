@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using CodeSnippets.IdentityCenter.Data;
 using CodeSnippets.IdentityCenter.Entities;
+using CodeSnippets.IdentityCenter.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -65,7 +66,9 @@ namespace CodeSnippets.IdentityCenter
 
             builder.AddDeveloperSigningCredential();
 
-            services.AddControllersWithViews();
+            services.AddScoped<ConsentService>();
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,25 @@
+﻿@using CodeSnippets.IdentityCenter.Models
+@model ScopeViewModel
+
+<li class="list-group-item">
+    <label>
+        <input class="" type="checkbox" id="scopes_@Model.Name" name="ScopesConsented" value="@Model.Name" checked="@Model.Checked" disabled="@Model.Required" />
+        <strong>@Model.DisplayName</strong>
+
+        @if (Model.Required)
+        {
+            <input type="hidden" name="ScopesConsented" value="@Model.Name" />
+        }
+
+        @if (Model.Emphasize)
+        {
+            <span class=""></span>
+        }
+    </label>
+    @if (Model.Description != null)
+    {
+        <div class="">
+            <label for="scopes_@Model.Name">@Model.Description</label>
+        </div>
+    }
+</li>

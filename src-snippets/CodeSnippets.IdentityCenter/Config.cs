@@ -36,10 +36,15 @@ namespace CodeSnippets.IdentityCenter
             new Client
             {
                 ClientId="mvc",
+                ClientName="MVC测试程序",
+                ClientUri="http://localhost:5002",
+                LogoUri=$"http://localhost:5000/images/github.png",
+                Description="这是一个MVC测试程序",
                 ClientSecrets={new Secret("secret".Sha256())},
 
                 AllowedGrantTypes=GrantTypes.Code,
-                RequireConsent=false,
+                RequireConsent=true,
+                AllowRememberConsent=true,
                 RequirePkce=true,
 
                 RedirectUris={ "http://localhost:5002/signin-oidc"},
@@ -49,6 +54,7 @@ namespace CodeSnippets.IdentityCenter
                 AllowedScopes=new List<string>{
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.Email,
                     "CodeSnippets.WebApi"   // 启用对刷新令牌的支持
                 },
 
