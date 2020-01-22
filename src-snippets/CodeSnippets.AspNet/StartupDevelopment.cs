@@ -14,6 +14,7 @@ namespace CodeSnippets.AspNet
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -21,12 +22,18 @@ namespace CodeSnippets.AspNet
 
             app.UseRouting();
 
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello World From Development Startup!");
+            //    });
+            //});
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World From Development Startup!");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

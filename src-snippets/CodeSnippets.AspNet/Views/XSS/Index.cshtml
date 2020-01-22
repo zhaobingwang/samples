@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Security-XSS-Index</h1>
+
+@Html.Raw(ViewBag.StoredXSS)
+
+@Html.Raw(Context.Request.Query["query"])
+@*@Html.Raw(System.Web.HttpUtility.UrlEncode(Context.Request.Query["query"]))*@
