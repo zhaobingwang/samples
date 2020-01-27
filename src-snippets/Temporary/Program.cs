@@ -3,6 +3,7 @@ using CodeSnippets.BCL;
 using System;
 using CSTree;
 using CSTree.BCLExtensions;
+using CodeSnippets.Security;
 
 namespace Temporary
 {
@@ -12,7 +13,7 @@ namespace Temporary
         {
             try
             {
-                Unclassified.RangesAndIndices();
+                CryptographySample.Pbkdf2();
             }
             catch (Exception ex)
             {
