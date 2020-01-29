@@ -13,7 +13,7 @@ namespace Temporary
         {
             try
             {
-                CryptographySample.Pbkdf2();
+                CryptographySample.MockUserLogin();
             }
             catch (Exception ex)
             {
