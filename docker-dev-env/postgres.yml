@@ -1,0 +1,13 @@
+version: "3"
+services:
+  db_postgres:
+    image: postgres:9.6.17
+    ports:
+      - 5432:5432
+    # restart: always
+    environment:
+      POSTGRES_PASSWORD: 123456
+      PGDATA: /var/lib/postgresql/data/pgdata
+    container_name: pg
+    volumes:
+      - /docker/pg/data:/var/lib/postgresql/data/pgdata

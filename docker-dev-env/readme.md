@@ -6,3 +6,7 @@
 
 - 安装
 > docker-compose -f .\mysql.yml up -d
+
+## 安装postgres
+
+> docker-compose -f .\postgres.yml up -d
