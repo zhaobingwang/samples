@@ -21,6 +21,13 @@ namespace CodeSnippets.WebApi.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
+        [Route("exception")]
+        [HttpGet]
+        public string Exception()
+        {
+            throw new BusinessException("Test Business Exception Message");
+        }
+
         [HttpGet]
         public async Task<ActionResult> Get()
         {

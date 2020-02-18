@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 using CodeSnippets.WebApi.Extensions;
+using CodeSnippets.WebApi.Filters;
 
 namespace CodeSnippets.WebApi
 {
@@ -95,6 +96,8 @@ namespace CodeSnippets.WebApi
 
             // 全球化和本地化
             services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc(options => options.Filters.Add(typeof(GlobalExceptionFilter)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
