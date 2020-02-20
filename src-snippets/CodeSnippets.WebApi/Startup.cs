@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Http;
 using System.Linq;
 using CodeSnippets.WebApi.Extensions;
 using CodeSnippets.WebApi.Filters;
+using CodeSnippets.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeSnippets.WebApi
 {
@@ -77,6 +79,9 @@ namespace CodeSnippets.WebApi
             //    options.AddPolicy("SuperAdminOnly", policy => policy.RequireClaim("SuperAdminOnly"));
             //}); 
             #endregion
+
+            services.AddEntityFrameworkSqlite()
+                .AddDbContext<SqliteDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("sqlite")));
 
             services.AddControllers();
 

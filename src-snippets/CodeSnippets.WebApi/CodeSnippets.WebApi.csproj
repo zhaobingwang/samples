@@ -8,12 +8,17 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CodeSnippets.Infrastructure\CodeSnippets.Infrastructure.csproj" />
     <ProjectReference Include="..\CodeSnippets\CodeSnippets.csproj" />
   </ItemGroup>
 

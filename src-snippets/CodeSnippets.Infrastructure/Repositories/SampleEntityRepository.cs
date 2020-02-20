@@ -30,7 +30,7 @@ namespace CodeSnippets.Infrastructure.Repositories
 
         public Task<SampleEntity> GetAsync(int id)
         {
-            return _dbContext.SampleEntity.FindAsync(id);
+            return _dbContext.SampleEntity.FindAsync(id).AsTask();
         }
 
         public Task<List<SampleEntity>> ListAsync()

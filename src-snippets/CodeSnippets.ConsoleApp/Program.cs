@@ -22,6 +22,7 @@ using CodeSnippets.Infrastructure.Repositories;
 using System.Diagnostics;
 using CodeSnippets.Infrastructure.Dto;
 using DapperMSSql = CodeSnippets.Infrastructure.Dapper.MSSqlServer;
+using CodeSnippets.Infrastructure.Data;
 
 namespace CodeSnippets.ConsoleApp
 {
@@ -45,7 +46,7 @@ namespace CodeSnippets.ConsoleApp
             services.AddSingleton<IConfiguration>(Configuration);
 
             services.AddEntityFrameworkSqlite()
-                .AddDbContext<SqliteEFContext>(options => options.UseSqlite(Configuration.GetConnectionString("sqlite")));
+                .AddDbContext<SqliteDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("sqlite")));
             services.AddScoped<ISampleEntityRepository, SampleEntityRepository>();
 
             #region Dapper-MSSqlServer

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CodeSnippets.Infrastructure.Migrations.SqliteEF
+namespace CodeSnippets.Infrastructure.Data.Migrations.Sqlite.CodeSnippetsDb
 {
-    public partial class InitializeCreate : Migration
+    public partial class InitializeCodeSnippetsDbConfiguration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
