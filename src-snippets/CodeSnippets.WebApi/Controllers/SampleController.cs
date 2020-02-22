@@ -16,9 +16,13 @@ namespace CodeSnippets.WebApi.Controllers
     {
         private readonly SqliteDbContext _sqliteDbContext;
         private readonly ILogger<SampleController> _logger;
-        public SampleController(SqliteDbContext sqliteDbContext, ILogger<SampleController> logger)
+        public SampleController(SqliteDbContext sqliteDbContext)
         {
             _sqliteDbContext = sqliteDbContext;
+        }
+        public SampleController(SqliteDbContext sqliteDbContext, ILogger<SampleController> logger) : this(sqliteDbContext)
+        {
+
             _logger = logger;
         }
 

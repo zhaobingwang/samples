@@ -38,6 +38,24 @@ namespace CodeSnippets.WebApi.UnitTests
             sampleData.StringValue.Should().Be("sample");
         }
 
+        [TestMethod]
+        public async Task Get_ReturnOK_WithExpectedParameters()
+        {
+            // Arrange
+            var dbContext = await GetSqliteDbContextAsync();
+            var controller = new SampleController(dbContext);
+
+            // Act
+            var response = await controller.Get(1);
+            var responseModel = ((OkObjectResult)response).Value as SampleEntity;
+
+            // Assert
+            Assert.IsInstanceOfType(response, typeof(OkObjectResult));
+            Assert.IsTrue(responseModel.Id == 1);
+            Assert.IsFalse(responseModel.BoolValue);
+            Assert.IsTrue(responseModel.StringValue == "sample");
+        }
+
         private async Task<SqliteDbContext> GetSqliteDbContextAsync()
         {
             var options = new DbContextOptionsBuilder<SqliteDbContext>()
