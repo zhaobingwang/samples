@@ -19,6 +19,8 @@ using CodeSnippets.WebApi.Extensions;
 using CodeSnippets.WebApi.Filters;
 using CodeSnippets.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using CodeSnippets.WebApi.Interfaces;
+using CodeSnippets.WebApi.Services;
 
 namespace CodeSnippets.WebApi
 {
@@ -98,6 +100,8 @@ namespace CodeSnippets.WebApi
             services.AddHealthChecks()
                 .AddCheck<SqlServerHealthCheck>("sqlserver")
                 .AddCheck<SqliteHealthCheck>("sqlite");
+
+            services.AddScoped<IFoo, Foo>();
 
             // 全球化和本地化
             services.AddLocalization(options => options.ResourcesPath = "Resources");
