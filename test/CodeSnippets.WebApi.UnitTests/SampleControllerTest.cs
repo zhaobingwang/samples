@@ -106,6 +106,32 @@ namespace CodeSnippets.WebApi.UnitTests
             Assert.IsTrue(responseModel.StringValue == "ping");
         }
 
+        [TestMethod]
+        public async Task Get_ReturnOK_WithPingTrue_UsingFluentAssertions()
+        {
+            // Arrange
+            var dbContext = await GetSqliteDbContextAsync();
+
+            var loggerMock = new Mock<ILogger<SampleController>>();
+            var logger = loggerMock.Object;
+
+            var fooMock = new Mock<IFoo>();
+            fooMock.Setup(foo => foo.Ping("localhost")).Returns(true);
+            var foo = fooMock.Object;
+
+            var controller = new SampleController(dbContext, logger, foo);
+
+            // Act
+            var response = await controller.Get(2);
+
+            // Assert
+            var result = response.Should().BeOfType<OkObjectResult>().Subject;
+            var sampleData = result.Value.Should().BeAssignableTo<SampleEntity>().Subject;
+            sampleData.Id.Should().Be(2);
+            sampleData.BoolValue.Should().BeFalse();
+            sampleData.StringValue.Should().Be("ping");
+        }
+
         private async Task<SqliteDbContext> GetSqliteDbContextAsync()
         {
             var options = new DbContextOptionsBuilder<SqliteDbContext>()
