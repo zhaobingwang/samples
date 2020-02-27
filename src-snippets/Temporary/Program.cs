@@ -6,6 +6,7 @@ using CSTree.BCLExtensions;
 using CodeSnippets.Security;
 using CodeSnippets.BCL.System_Net_Http;
 using System.Threading.Tasks;
+using CodeSnippets.Issues;
 
 namespace Temporary
 {
@@ -15,8 +16,7 @@ namespace Temporary
         {
             try
             {
-                HttpClientSnippets httpClientSnippets = new HttpClientSnippets();
-                await httpClientSnippets.GetAsync();
+                Model2Dict.Run();
             }
             catch (Exception ex)
             {
