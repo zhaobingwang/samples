@@ -1,8 +1,10 @@
+using Identity.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net.Http;
 
 namespace Identity.API
 {
@@ -29,6 +31,10 @@ namespace Identity.API
                 .AddInMemoryIdentityResources(Config.IdentityResources);
 
             builder.AddDeveloperSigningCredential();
+
+            services.AddSingleton(new HttpClient());
+            services.AddScoped<IUserService, UserService>();
+
             services.AddControllers();
         }
 
