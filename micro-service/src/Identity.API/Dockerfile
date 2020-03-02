@@ -7,14 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["MicroService/Identity/Identity.csproj", "MicroService/Identity/"]
-RUN dotnet restore "MicroService/Identity/Identity.csproj"
+COPY ["MicroService/Identity/Identity.API.csproj", "MicroService/Identity.API/"]
+RUN dotnet restore "MicroService/Identity.API/Identity.API.csproj"
 COPY . .
-WORKDIR "/src/MicroService/Identity"
-RUN dotnet build "Identity.csproj" -c Release -o /app/build
+WORKDIR "/src/MicroService/Identity.API"
+RUN dotnet build "Identity.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Identity.csproj" -c Release -o /app/publish
+RUN dotnet publish "Identity.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

@@ -1,7 +1,7 @@
 ﻿using IdentityServer4.Models;
 using System.Collections.Generic;
 
-namespace Identity
+namespace Identity.API
 {
     public static class Config
     {
