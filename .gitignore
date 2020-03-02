@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 /.sonarqube
 /src-snippets/CodeSnippets.IdentityCenter/tempkey.rsa
+/micro-service/src/Identity.API/tempkey.rsa
