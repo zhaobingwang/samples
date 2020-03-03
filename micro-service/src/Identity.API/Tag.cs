@@ -7,8 +7,8 @@ namespace Identity.API
 {
     public class Tag
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Value { get; set; }
+        public int id { get; set; }
+        public int userId { get; set; }
+        public string value { get; set; }
     }
 }

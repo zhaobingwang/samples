@@ -13,7 +13,7 @@ namespace ServiceA.Controllers
     {
         [HttpPost]
         [Route("tag/create")]
-        public IActionResult CreateTag([FromBody]Tag tag)
+        public IActionResult CreateTag([FromForm]Tag tag)
         {
             // 假设数据库记录添加成功，直接返回对象
             Tag tagEntity = new Tag();

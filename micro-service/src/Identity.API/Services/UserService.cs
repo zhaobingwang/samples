@@ -26,7 +26,10 @@ namespace Identity.API.Services
             parameters.Add("value", tag);
 
             //var content = new FormUrlEncodedContent(parameters);
-            var content = new StringContent(JsonSerializer.Serialize(parameters), Encoding.UTF8, "application/x-www-form-urlencoded");
+            //var content = new StringContent(JsonSerializer.Serialize(parameters), Encoding.UTF8, "application/x-www-form-urlencoded");
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(userId.ToString()), "userId");
+            content.Add(new StringContent(tag), "value");
 
             var response = await _httpClient.PostAsync($"{_userServiceUrl}/user/tag/create", content);
 
