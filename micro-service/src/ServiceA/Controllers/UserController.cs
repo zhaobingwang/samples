@@ -13,13 +13,13 @@ namespace ServiceA.Controllers
     {
         [HttpPost]
         [Route("tag/create")]
-        public IActionResult CreateTag([FromForm]Tag tag)
+        public IActionResult CreateTag(int userId, string value)
         {
             // 假设数据库记录添加成功，直接返回对象
             Tag tagEntity = new Tag();
             tagEntity.Id = 1;
-            tagEntity.UserId = tag.UserId;
-            tagEntity.Value = tag.Value;
+            tagEntity.UserId = userId;
+            tagEntity.Value = value;
             return Ok(tagEntity);
         }
     }
