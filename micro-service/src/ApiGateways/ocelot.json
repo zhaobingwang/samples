@@ -10,10 +10,14 @@
         }
       ],
       "UpstreamPathTemplate": "/service-a/{url}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "SampleKey",
+        "AllowedScopes": [ "gateway_api" ]
+      }
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5000"
+    "BaseUrl": "http://localhost"
   }
 }

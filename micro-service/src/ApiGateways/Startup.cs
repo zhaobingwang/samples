@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,18 @@ namespace ApiGateways
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var authenticationProviderKey = "SampleKey";
+            Action<IdentityServerAuthenticationOptions> options = o =>
+            {
+                o.Authority = "http://localhost:5200";
+                o.ApiName = "gateway_api";
+                o.SupportedTokens = SupportedTokens.Both;
+                o.ApiSecret = "123456";
+                o.RequireHttpsMetadata = false;
+            };
+
+            services.AddAuthentication()
+                .AddIdentityServerAuthentication(authenticationProviderKey, options);
             services.AddOcelot();
         }
 

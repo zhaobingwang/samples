@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System.Collections.Generic;
 
 namespace Identity.API
@@ -8,7 +9,7 @@ namespace Identity.API
         // Defining an API Resource
         public static IEnumerable<ApiResource> Apis => new List<ApiResource>
         {
-            new ApiResource("User.Api","User Services")
+            new ApiResource("gateway_api","ApiGateways")
         };
 
         // Defining Client
@@ -27,7 +28,9 @@ namespace Identity.API
                 },
 
                 // scopes that client has access to
-                AllowedScopes={ "User.Api" }
+                AllowedScopes=new List<string>{
+                    "gateway_api",
+                }
             }
         };
 
