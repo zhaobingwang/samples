@@ -4,12 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace ServiceA
+namespace ServiceB
 {
     public class ServiceDisvoveryOptions
     {
         public string ServiceName { get; set; }
-        public string ServiceBName { get; set; }
 
         public ConsulOptions Consul { get; set; }
     }

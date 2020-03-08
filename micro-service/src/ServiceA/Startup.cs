@@ -13,6 +13,10 @@ using Consul;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using ServiceA.Services;
+using System.Net.Http;
+using DnsClient;
+using System.Net;
 
 namespace ServiceA
 {
@@ -41,6 +45,13 @@ namespace ServiceA
                     cfg.Address = new Uri(serviceConfiguration.Consul.HttpEndpoint);
                 }
             }));
+            services.AddSingleton<IDnsQuery>(d =>
+            {
+                var serviceConfiguration = d.GetRequiredService<IOptions<ServiceDisvoveryOptions>>().Value;
+                return new LookupClient(serviceConfiguration.Consul.DnsEndpoint.ToIPEndPoint());
+            });
+            services.AddScoped<IArticleService, ArticleService>();
+            services.AddSingleton(new HttpClient());
 
             services.AddHealthChecks();
             services.AddControllers();
