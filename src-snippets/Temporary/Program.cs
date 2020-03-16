@@ -16,8 +16,10 @@ namespace Temporary
         {
             try
             {
-                await PostRequest4ApiIssues.Run4MFD();
-                //Console.ReadKey();
+                LockIssues.ConcurrentQueue();
+                LockIssues.Queue();
+                
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
