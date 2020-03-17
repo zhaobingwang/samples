@@ -49,6 +49,13 @@ namespace MailKitDemo
                 client.Connect("imap.163.com", 993, true);
                 client.Authenticate(FromAddress, FromPassword);
 
+                var clientImplementation = new ImapImplementation
+                {
+                    Name = "MailKitDemo",
+                    Version = "1.0.0"
+                };
+                var serverImplementation = client.Identify(clientImplementation);
+
                 var inbox = client.Inbox;
                 inbox.Open(FolderAccess.ReadOnly);
 
