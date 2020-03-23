@@ -331,3 +331,4 @@ ASALocalRun/
 /.sonarqube
 /src-snippets/CodeSnippets.IdentityCenter/tempkey.rsa
 /micro-service/src/Identity.API/tempkey.rsa
+/Architectures/ABP/AspNetBoilerplate/5.2.0/aspnet-core/src/AspNetBoilerplate.Web.Mvc/App_Data/Logs
