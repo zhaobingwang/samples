@@ -1,0 +1,16 @@
+﻿@using System.Text.Encodings.Web
+@using AspNetBoilerplate.Web.Views.Shared.Components.AccountLanguages
+@model LanguageSelectionViewModel
+@if (Model.Languages.Count > 1)
+{
+    <div class="text-center">
+        @foreach (var language in Model.Languages)
+        {
+            <a href="~/AbpLocalization/ChangeCulture?cultureName=@(language.Name)&returnUrl=@(UrlEncoder.Default.Encode(Context.Request.Path + Context.Request.QueryString))">
+                <span class="@(language.Name == Model.CurrentLanguage.Name ? "current-language-icon" : "")" title="@language.DisplayName">
+                    <i class="@language.Icon"></i>
+                </span>
+            </a>
+        }
+    </div>
+}
