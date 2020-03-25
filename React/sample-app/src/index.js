@@ -2,66 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Square extends React.Component {
-    render() {
-        return (
-            <button className="square">
-                {/* TODO */}
-            </button>
-        );
-    }
+// JSX
+const name = '叶文洁';
+const element1 = <h1>Hello,{name}!</h1>
+
+const user = {
+    firstName: '淼',
+    lastName: '汪'
 }
-
-class Board extends React.Component {
-    renderSquare(i) {
-        return <Square />;
-    }
-
-    render() {
-        const status = 'Next player: X';
-
-        return (
-            <div>
-                <div className="status">{status}</div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
-            </div>
-        );
-    }
+function formatCnName(user) {
+    return user.lastName + ' ' + user.firstName;
 }
-
-class Game extends React.Component {
-    render() {
-        return (
-            <div className="game">
-                <div className="game-board">
-                    <Board />
-                </div>
-                <div className="game-info">
-                    <div>{/* status */}</div>
-                    <ol>{/* TODO */}</ol>
-                </div>
-            </div>
-        );
-    }
-}
+const element2 = (
+    <h1>
+        Hello,{formatCnName(user)}!
+    </h1>
+)
 
 // ========================================
 
 ReactDOM.render(
-    <Game />,
-    document.getElementById('root')
+    // element1,
+    element2,
+    document.getElementById('root'),
 );
