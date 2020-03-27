@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import JSX from './JSX';
 import RenderingElements from './rendering-elements';
-import JSX from './JSX';
 import './index.css';
 
 
