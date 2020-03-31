@@ -7,6 +7,7 @@ using CodeSnippets.Security;
 using CodeSnippets.BCL.System_Net_Http;
 using System.Threading.Tasks;
 using CodeSnippets.Issues;
+using CodeSnippets.CSharp.LINQ;
 
 namespace Temporary
 {
@@ -16,14 +17,12 @@ namespace Temporary
         {
             try
             {
-                LockIssues.ConcurrentQueue();
-                LockIssues.Queue();
-                
+                LINQSnippets.IntroToLINQ();
+
                 Console.ReadKey();
             }
             catch (Exception ex)
             {
-                // 
                 Console.WriteLine(ex.ToString());
             }
         }
