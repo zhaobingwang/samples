@@ -43,5 +43,10 @@ namespace CodeSnippets.CSharp.LINQ
                 Console.WriteLine("{0,1}", num);
             }
         }
+
+
+        #region Query expression basics
+
+        #endregion
     }
 }
