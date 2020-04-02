@@ -8,6 +8,7 @@ using CodeSnippets.BCL.System_Net_Http;
 using System.Threading.Tasks;
 using CodeSnippets.Issues;
 using CodeSnippets.CSharp.LINQ;
+using CodeSnippets.CSharp;
 
 namespace Temporary
 {
@@ -17,8 +18,7 @@ namespace Temporary
         {
             try
             {
-                LINQSnippets.IntroToLINQ();
-
+                OperatorsSnippets.BooleanLogicalOperators();
                 Console.ReadKey();
             }
             catch (Exception ex)
