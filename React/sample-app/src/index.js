@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 // import JSX from './JSX';
 // import RenderingElements from './rendering-elements';
 // import ComponentsAndProps from './ComponentsAndProps';
-import StateAndLifecycle from './StateAndLifecycle'
+// import StateAndLifecycle from './StateAndLifecycle';
+import HandlingEvents from './HandlingEvents';
 import './index.css';
 
 
