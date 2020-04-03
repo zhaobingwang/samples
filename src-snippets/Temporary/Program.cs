@@ -18,7 +18,7 @@ namespace Temporary
         {
             try
             {
-                OperatorsSnippets.BooleanLogicalOperators();
+                LINQToObjectsSnippets.CountWords();
                 Console.ReadKey();
             }
             catch (Exception ex)
