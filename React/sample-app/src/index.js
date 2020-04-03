@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom';
 // import ComponentsAndProps from './ComponentsAndProps';
 // import StateAndLifecycle from './StateAndLifecycle';
 // import HandlingEvents from './HandlingEvents';
-import ConditionalRendering from './ConditionalRendering';
+// import ConditionalRendering from './ConditionalRendering';
+import ListsAndKeys from './ListsAndKeys';
 import './index.css';
 
 
