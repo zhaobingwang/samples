@@ -8,7 +8,8 @@ import ReactDOM from 'react-dom';
 // import ConditionalRendering from './ConditionalRendering';
 // import ListsAndKeys from './ListsAndKeys';
 // import Forms from './Forms';
-import LiftingStateUp from './LiftingStateUp';
+// import LiftingStateUp from './LiftingStateUp';
+import CompositionVSInheritance from './CompositionVSInheritance';
 import './index.css';
 
 
