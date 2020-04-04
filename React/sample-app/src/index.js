@@ -7,7 +7,8 @@ import ReactDOM from 'react-dom';
 // import HandlingEvents from './HandlingEvents';
 // import ConditionalRendering from './ConditionalRendering';
 // import ListsAndKeys from './ListsAndKeys';
-import Forms from './Forms';
+// import Forms from './Forms';
+import LiftingStateUp from './LiftingStateUp';
 import './index.css';
 
 
