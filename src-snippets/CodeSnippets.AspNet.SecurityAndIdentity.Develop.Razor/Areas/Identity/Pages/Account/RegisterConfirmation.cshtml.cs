@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.AspNetCore.Identity;
 
 namespace CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Areas.Identity.Pages.Account
 {
