@@ -4,14 +4,16 @@ using CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Migrations
 {
     [DbContext(typeof(DevelopContext))]
-    partial class DevelopContextModelSnapshot : ModelSnapshot
+    [Migration("20200414090552_RenameDefaultTableName")]
+    partial class RenameDefaultTableName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
