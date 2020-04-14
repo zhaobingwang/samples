@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Areas.Identity.Data;
+using CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Data
         {
         }
 
+        public DbSet<Contact> Contacts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -31,7 +33,8 @@ namespace CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Data
             {
                 b.ToTable("UserClaims");
             });
-            builder.Entity<IdentityUserLogin<string>>(b => {
+            builder.Entity<IdentityUserLogin<string>>(b =>
+            {
                 b.ToTable("UserLogins");
             });
             builder.Entity<IdentityUserToken<string>>(b =>
