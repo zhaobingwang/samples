@@ -23,6 +23,7 @@ namespace CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddIdentityConfig();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +42,7 @@ namespace CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
