@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Areas.Identity.Data;
+using CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Authorization;
 using CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +46,16 @@ namespace CodeSnippets.AspNet.SecurityAndIdentity.Develop.Razor
                     .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+
+            // Authorization handlers.
+            services.AddScoped<IAuthorizationHandler,
+                                  ContactIsOwnerAuthorizationHandler>();
+
+            services.AddSingleton<IAuthorizationHandler,
+                                  ContactAdministratorsAuthorizationHandler>();
+
+            services.AddSingleton<IAuthorizationHandler,
+                                  ContactManagerAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
