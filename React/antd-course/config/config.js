@@ -1,7 +1,9 @@
 export default {
-    singular: true,
-    routes: [{
-        path: '/',
-        component: './HelloWorld',
-    }],
+  singular: true,
+  routes: [
+    {
+      path: "/",
+      component: "./HelloWorld",
+    },
+  ],
 };
