@@ -13,6 +13,6 @@
   "license": "ISC",
   "devDependencies": {
     "umi": "^3.1.1",
-    "umi-plugin-react": "^1.15.8"
+    "@umijs/preset": "^1.15.8"
   }
 }
