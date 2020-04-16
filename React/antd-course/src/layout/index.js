@@ -47,13 +47,13 @@ class BasicLayout extends Component {
                 </span>
               }
             >
-              <Menu.Item key="2">
+              <Menu.Item key="12">
                 <Link to="/dashboard/analysis">分析页</Link>
               </Menu.Item>
-              <Menu.Item key="3">
+              <Menu.Item key="13">
                 <Link to="/dashboard/monitor">监控页</Link>
               </Menu.Item>
-              <Menu.Item key="4">
+              <Menu.Item key="14">
                 <Link to="/dashboard/workplace">工作台</Link>
               </Menu.Item>
             </SubMenu>
