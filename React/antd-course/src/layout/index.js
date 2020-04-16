@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Layout, Menu } from "antd";
 import { DashboardOutlined, PieChartOutlined } from "@ant-design/icons";
+import { Link } from "umi";
 
 // Header, Footer, Sider, Content组件在Layout组件模块下
 const { Header, Content, Footer, Sider } = Layout;
@@ -22,8 +23,10 @@ class BasicLayout extends Component {
           ></div>
           <Menu theme="dark" mode="inline" defaultOpenKeys={["1"]}>
             <Menu.Item key="1">
-              <PieChartOutlined />
-              <span>HelloWorld</span>
+              <Link to="/helloworld">
+                <PieChartOutlined />
+                <span>HelloWorld</span>
+              </Link>
             </Menu.Item>
             <SubMenu
               key="sub1"
@@ -34,9 +37,15 @@ class BasicLayout extends Component {
                 </span>
               }
             >
-              <Menu.Item key="2">分析页</Menu.Item>
-              <Menu.Item key="3">监控页</Menu.Item>
-              <Menu.Item key="4">工作台</Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/dashboard/analysis">分析页</Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/dashboard/monitor">监控页</Link>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/dashboard/workplace">工作台</Link>
+              </Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
