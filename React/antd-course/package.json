@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "umi": "^3.1.1",
-    "@umijs/preset": "^1.15.8"
+    "@umijs/preset-react": "^1.4.16",
+    "umi": "^3.1.1"
+  },
+  "dependencies": {
+    "antd": "^4.1.3"
   }
 }
