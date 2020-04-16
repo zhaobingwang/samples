@@ -1,6 +1,10 @@
 import { Component } from "react";
 import { Layout, Menu } from "antd";
-import { DashboardOutlined, PieChartOutlined } from "@ant-design/icons";
+import {
+  DashboardOutlined,
+  PieChartOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons";
 import { Link } from "umi";
 
 // Header, Footer, Sider, Content组件在Layout组件模块下
@@ -26,6 +30,12 @@ class BasicLayout extends Component {
               <Link to="/helloworld">
                 <PieChartOutlined />
                 <span>HelloWorld</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/puzzlecards">
+                <QuestionCircleOutlined />
+                <span>Puzzle Card</span>
               </Link>
             </Menu.Item>
             <SubMenu

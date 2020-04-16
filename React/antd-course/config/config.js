@@ -1,6 +1,7 @@
 export default {
   singular: true,
   antd: {},
+  dva: {},
   routes: [
     {
       path: "/",
@@ -13,6 +14,10 @@ export default {
         {
           path: "helloworld",
           component: "./HelloWorld",
+        },
+        {
+          path: "puzzlecards",
+          component: "./puzzlecards",
         },
         {
           path: "/dashboard",
