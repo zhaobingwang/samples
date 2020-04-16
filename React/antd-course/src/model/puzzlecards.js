@@ -17,7 +17,7 @@ export default {
       const { call, put } = sagaEffects;
 
       // see more info : https://github.com/15Dkatz/official_joke_api
-      const endPointURI = "https://official-joke-api.appspot.com/random_joke";
+      const endPointURI = "/dev/random_joke";
 
       const puzzle = yield call(reqeust, endPointURI);
       yield put({ type: "addNewCard", payload: puzzle });
