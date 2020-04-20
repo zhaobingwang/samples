@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "UEditor";
+}
+@section StyleSheet{
+    <link rel="stylesheet" href="~/lib/summernote/dist/summernote-bs4.css" />
+}
+
+<h1>Summernote</h1>
+<div id="summernote"></div>
+
+
+@section Scripts{
+    <script src="~/lib/summernote/dist/summernote-bs4.js"></script>
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Hello Bootstrap 4',
+            tabsize: 2,
+            height: 100
+        });
+    </script>
+}
+
