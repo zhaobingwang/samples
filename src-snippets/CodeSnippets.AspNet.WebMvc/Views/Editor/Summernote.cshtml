@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "UEditor";
 }
 @section StyleSheet{
@@ -7,8 +6,19 @@
 }
 
 <h1>Summernote</h1>
+<hr />
+<h2>HTML:@Html.Raw(System.Web.HttpUtility.HtmlEncode("<script>alert('hi')</script>"))</h2>
+<h2>HTML:@System.Web.HttpUtility.HtmlEncode("<script>alert('hi')</script>")</h2>
+<h2>HTML:@ViewData["html"]</h2>
+@*<h2>HTML:@Html.Raw(ViewData["html"])</h2>*@
+<hr />
+<h2>HTML2:@Html.Raw(System.Web.HttpUtility.HtmlEncode("<p>hi.</p>"))</h2>
+<h2>HTML2:@Html.Raw(System.Web.HttpUtility.HtmlEncode("<script>alert('hi')</script>"))</h2>
+<h2>HTML2:@HtmlSanitizer.Sanitize("<p>hi.</p><script>alert('hi')</script>")</h2>
+<hr />
 <div id="summernote"></div>
-
+<button class="btn btn-primary mt-2" onclick="getContent()">Get Content</button>
+<button class="btn btn-primary mt-2" onclick="submit()">Submit</button>
 
 @section Scripts{
     <script src="~/lib/summernote/dist/summernote-bs4.js"></script>
@@ -18,6 +28,26 @@
             tabsize: 2,
             height: 100
         });
+
+        function getContent() {
+            var content = $('#summernote').summernote("code");
+            console.log(content);
+        }
+
+        function submit() {
+            var data = {
+                content: $('#summernote').summernote("code")
+            };
+            $.ajax({
+                type: 'post',
+                url: 'summernote',
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        }
     </script>
 }
 
