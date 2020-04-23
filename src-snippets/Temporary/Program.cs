@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using CodeSnippets.Issues;
 using CodeSnippets.CSharp.LINQ;
 using CodeSnippets.CSharp;
+using CodeSnippets.CSharp.ExpressionTrees;
+using CodeSnippets.DesignPatterns.SpecificationPattern;
 
 namespace Temporary
 {
@@ -18,8 +20,7 @@ namespace Temporary
         {
             try
             {
-                LINQToObjectsSnippets.CountWords();
-                Console.ReadKey();
+                SpecificationPattern.Run();
             }
             catch (Exception ex)
             {
