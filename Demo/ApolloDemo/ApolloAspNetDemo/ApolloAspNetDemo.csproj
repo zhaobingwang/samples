@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Com.Ctrip.Framework.Apollo" Version="2.3.0" />
     <PackageReference Include="Com.Ctrip.Framework.Apollo.Configuration" Version="2.3.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
