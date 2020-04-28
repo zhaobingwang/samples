@@ -20,7 +20,7 @@ namespace Temporary
         {
             try
             {
-                SpecificationPattern.Run();
+                DataProtectionSnippets.Run();
             }
             catch (Exception ex)
             {
