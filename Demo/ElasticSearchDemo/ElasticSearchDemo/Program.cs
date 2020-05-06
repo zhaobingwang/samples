@@ -15,26 +15,36 @@ namespace ElasticSearchDemo
             settings.BasicAuthentication(uname, upw);
             var client = new ElasticClient(settings);
 
-            var sample = new Sample
-            {
-                Id = 6,
-                RegTime = DateTime.UtcNow,
-                Message = "test msg"
-            };
+            #region obsolete
+            //var sample = new Sample
+            //{
+            //    Id = 6,
+            //    RegTime = DateTime.UtcNow,
+            //    Message = "111"
+            //};
 
-            var response = client.Index(sample, idx => idx.Index(index));
+            //var response = client.Index(sample, idx => idx.Index(index));
 
-            var doc = client.Get<Sample>(1, idx => idx.Index(index));
-            Console.WriteLine(JsonSerializer.Serialize(doc.Source));
+            //var doc = client.Get<Sample>(1, idx => idx.Index(index));
+            //Console.WriteLine(JsonSerializer.Serialize(doc.Source));
 
-            var searchDoc = client.Search<Sample>(s => s.Index(index)
-            .From(0)
-            .Size(10)
-            .Query(q => q.Term(t => t.Message, "testmsg") || q.Match(mq => mq.Field(f => f.Message)
-                   .Query("test")))
-            );
-            Console.WriteLine(JsonSerializer.Serialize(searchDoc.Documents));
-            var a = 1;
+            //var searchDoc = client.Search<Sample>(s => s.Index(index)
+            //.From(0)
+            //.Size(10)
+            //.Query(q => q.Term(t => t.Message, "testmsg") || q.Match(mq => mq.Field(f => f.Message)
+            //       .Query("test")))
+            //);
+            //var all = client.Search<Sample>(s => s.Index(index));
+            //Console.WriteLine(JsonSerializer.Serialize(searchDoc.Documents));
+
+            //var deleteResponse = client.DeleteMany(searchDoc.Documents, index);
+            //var a = 1; 
+            #endregion
+        }
+
+        private void Delete()
+        {
+
         }
     }
 
