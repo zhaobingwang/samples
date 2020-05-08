@@ -20,7 +20,7 @@ namespace Temporary
         {
             try
             {
-                DataProtectionSnippets.Run();
+                YieldSnippets.Run();
             }
             catch (Exception ex)
             {
