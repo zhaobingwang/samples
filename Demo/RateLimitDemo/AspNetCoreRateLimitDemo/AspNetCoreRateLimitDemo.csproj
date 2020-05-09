@@ -4,5 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AspNetCoreRateLimit" Version="3.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+  </ItemGroup>
+
 
 </Project>

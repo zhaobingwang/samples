@@ -10,7 +10,7 @@ namespace AspNetCoreRateLimitDemo.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecast2Controller : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
@@ -20,7 +20,7 @@ namespace AspNetCoreRateLimitDemo.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IDistributedCache _cache;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IDistributedCache cache)
+        public WeatherForecast2Controller(ILogger<WeatherForecastController> logger, IDistributedCache cache)
         {
             _logger = logger;
             _cache = cache;

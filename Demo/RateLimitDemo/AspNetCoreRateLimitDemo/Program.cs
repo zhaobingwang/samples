@@ -20,7 +20,11 @@ namespace AspNetCoreRateLimitDemo
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .ConfigureAppConfiguration((host, config) =>
+                    {
+                        config.AddJsonFile("rate-limit-config.json", true, true);
+                    });
                 });
     }
 }
