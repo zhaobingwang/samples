@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeSnippets.Winform.HZHControlsSnippets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace CodeSnippets.Winform
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Tmp());
+                Application.Run(new HZHHome());
             }
             catch (Exception ex)
             {

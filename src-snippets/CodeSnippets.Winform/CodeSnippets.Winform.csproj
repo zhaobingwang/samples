@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HZH_Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HZH_Controls.1.0.11\lib\net40\HZH_Controls.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +55,30 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="HZHCalendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HZHCalendar.Designer.cs">
+      <DependentUpon>HZHCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HZHControlsSnippets\HZHBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HZHControlsSnippets\HZHBase.Designer.cs">
+      <DependentUpon>HZHBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HZHControlsSnippets\HZHHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HZHControlsSnippets\HZHHome.Designer.cs">
+      <DependentUpon>HZHHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HZHControlsSnippets\HZHTxtBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HZHControlsSnippets\HZHTxtBox.Designer.cs">
+      <DependentUpon>HZHTxtBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tmp.cs">
@@ -63,6 +90,18 @@
     <Compile Include="UIModule\PleaseWait.cs" />
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HZHCalendar.resx">
+      <DependentUpon>HZHCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HZHControlsSnippets\HZHBase.resx">
+      <DependentUpon>HZHBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HZHControlsSnippets\HZHHome.resx">
+      <DependentUpon>HZHHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HZHControlsSnippets\HZHTxtBox.resx">
+      <DependentUpon>HZHTxtBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +116,7 @@
     <EmbeddedResource Include="Tmp.resx">
       <DependentUpon>Tmp.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,5 +133,6 @@
   <ItemGroup>
     <Content Include="images\loading_01.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
