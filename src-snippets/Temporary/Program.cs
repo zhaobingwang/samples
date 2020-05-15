@@ -20,7 +20,7 @@ namespace Temporary
         {
             try
             {
-                YieldSnippets.Run();
+                OperatorsSnippets.RightShiftOperator();
             }
             catch (Exception ex)
             {
