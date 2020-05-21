@@ -10,7 +10,10 @@ namespace CodeSnippets.DataStructuresAndAlgorithms
 
         public static void Run()
         {
-            BubbleSort();
+            //BubbleSort();
+            QuickSort(list, 0, list.Count-1);
+
+            PrintList(list, "Quick sort array.");
         }
         public static void BubbleSort()
         {
@@ -35,17 +38,36 @@ namespace CodeSnippets.DataStructuresAndAlgorithms
 
         public static void QuickSort(List<int> list, int left, int right)
         {
+            var len = list.Count;
+            var partitionIndex = 1;
             if (left < right)
             {
-                int i, j, x;
-                i = left;
-                j = right;
-                x = list[i];
-                while (i < j)
+                partitionIndex = Partition(list, left, right);
+                QuickSort(list, left, partitionIndex - 1);
+                QuickSort(list, partitionIndex + 1, right);
+            }
+        }
+        private static int Partition(List<int> list, int left, int right)
+        {
+            int pivot = left;
+            var idx = pivot + 1;
+            for (int i = idx; i <= right; i++)
+            {
+                if (list[i] < list[pivot])
                 {
-
+                    Swap(list, i, idx);
+                    idx++;
                 }
             }
+            Swap(list, pivot, idx - 1);
+            return idx - 1;
+        }
+
+        private static void Swap(List<int> list, int i, int j)
+        {
+            var tmp = list[i];
+            list[i] = list[j];
+            list[j] = tmp;
         }
 
         private static void PrintList(List<int> list, string title)
