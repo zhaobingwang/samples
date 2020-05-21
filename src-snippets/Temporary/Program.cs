@@ -11,6 +11,7 @@ using CodeSnippets.CSharp.LINQ;
 using CodeSnippets.CSharp;
 using CodeSnippets.CSharp.ExpressionTrees;
 using CodeSnippets.DesignPatterns.SpecificationPattern;
+using CodeSnippets.DataStructuresAndAlgorithms;
 
 namespace Temporary
 {
@@ -20,7 +21,7 @@ namespace Temporary
         {
             try
             {
-                DataProtectionSnippets.Run();
+                SortAlgorithm.Run();
             }
             catch (Exception ex)
             {
