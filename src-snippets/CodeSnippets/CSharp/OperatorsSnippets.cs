@@ -20,7 +20,27 @@ namespace CodeSnippets.CSharp
             Console.WriteLine(false ^ true);   // output: True
             Console.WriteLine(false ^ false);  // output: False
         }
+        #endregion
 
+        #region bitwise and shift operators
+        public static void LeftShiftOperator()
+        {
+            Console.WriteLine(3 << 0);  // 3
+            Console.WriteLine(3 << 1);  // 6
+            Console.WriteLine(3 << 2);  // 12
+            Console.WriteLine(3 << 3);  // 24
+            Console.WriteLine(3 << 4);  // 48
+        }
+
+        public static void RightShiftOperator()
+        {
+            Console.WriteLine(16 >> 0); // 16
+            Console.WriteLine(16 >> 1); // 8
+            Console.WriteLine(16 >> 2); // 4
+            Console.WriteLine(16 >> 3); // 2
+            Console.WriteLine(16 >> 4); // 1
+            Console.WriteLine(16 >> 5); // 0
+        }
         #endregion
     }
 }
