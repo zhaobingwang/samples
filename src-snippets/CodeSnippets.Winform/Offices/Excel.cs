@@ -194,6 +194,73 @@ namespace CodeSnippets.Winform.Offices
             }
             return result;
         }
+
+        private void btnEasyWrite_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var users = GetUsers();
+
+                // 创建Excel文件对象
+                var workbook = new HSSFWorkbook();
+
+                // 创建工作表
+                var sheet = workbook.CreateSheet("Easy Write");
+
+                var cellStyle = NpoiExcelExportHelper._.CreateStyle(workbook, NPOI.SS.UserModel.HorizontalAlignment.Center, VerticalAlignment.Center, 10, true, 400);
+
+
+                var row = NpoiExcelExportHelper._.CreateRow(sheet, 0, 20);
+                var cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 0, "ID");
+                cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 1, "Name");
+                cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 2, "DOB");
+                cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 3, "Gender");
+                cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 4, "Status");
+
+                int idx = 1;
+                foreach (var user in users)
+                {
+                    var aa = cellStyle;
+                    aa.DataFormat = HSSFDataFormat.GetBuiltinFormat("0.00");
+                    row = NpoiExcelExportHelper._.CreateRow(sheet, idx, 20);
+                    cell = NpoiExcelExportHelper._.CreateCells(row, aa, 0, user.ID);
+                    cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 1, user.Name);
+                    cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 2, user.DOB);
+                    cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 3, user.Gender);
+                    cell = NpoiExcelExportHelper._.CreateCells(row, cellStyle, 4, user.Status);
+                    idx++;
+                }
+
+                string excelPath = AppDomain.CurrentDomain.BaseDirectory + "\\tmp.xls";
+
+                using (var fileStream = new FileStream(excelPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    workbook.Write(fileStream);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        private List<User> GetUsers()
+        {
+            List<User> users = new List<User>();
+            for (int i = 1; i <= 10; i++)
+            {
+                users.Add(new User
+                {
+                    ID = i.ToString(),
+                    Name = "测试" + i.ToString(),
+                    DOB = DateTime.Now.ToString("yyyy-MM-dd"),
+                    Gender = i % 2 == 0 ? "男" : "女",
+                    Status = i % 2 == 3 ? "注销" : "正常"
+                });
+            }
+            return users;
+        }
     }
     class User
     {
