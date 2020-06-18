@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<div>
+    <form method="post">
+        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+        <div class="form-group">
+            <label>用户名：</label>
+            <input type="text" name="userName" class="form-control" placeholder="请输入用户名" />
+        </div>
+        <div class="form-group">
+            <label>密码：</label>
+            <input type="password" name="password" class="form-control" placeholder="请输入密码" />
+        </div>
+        <button type="submit" class="btn btn-primary">登录</button>
+    </form>
+</div>
