@@ -5,16 +5,18 @@ services:
 
   mongo:
     image: mongo:4.2.6
-    restart: always
+    # restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123456
+    container_name: mongo
 
   mongo-express:
     image: mongo-express:0.54.0
-    restart: always
+    # restart: always
     ports:
-      - 8081:8081
+      - 18081:8081
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
+    container_name: mongo-express
