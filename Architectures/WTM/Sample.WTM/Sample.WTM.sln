@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WTM", "Sample.WTM\Sample.WTM.csproj", "{8fd26ef8-3f55-4ee5-9a40-aaf4cc98ba47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WTM.Test", "Sample.WTM.Test\Sample.WTM.Test.csproj", "{18b2f7b1-e4bc-4619-9368-5a48f1f2b657}"
+EndProject
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8fd26ef8-3f55-4ee5-9a40-aaf4cc98ba47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8fd26ef8-3f55-4ee5-9a40-aaf4cc98ba47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8fd26ef8-3f55-4ee5-9a40-aaf4cc98ba47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8fd26ef8-3f55-4ee5-9a40-aaf4cc98ba47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F219808-E6E8-4C1D-B846-41F2F7CF20FA}
+	EndGlobalSection
+EndGlobal
