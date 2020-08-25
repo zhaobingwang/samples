@@ -16,14 +16,14 @@ namespace ElasticSearchDemo
             var client = new ElasticClient(settings);
 
             #region obsolete
-            //var sample = new Sample
-            //{
-            //    Id = 6,
-            //    RegTime = DateTime.UtcNow,
-            //    Message = "111"
-            //};
+            var sample = new Sample
+            {
+                //Id = 6,
+                RegTime = DateTime.UtcNow,
+                Message = "111"
+            };
 
-            //var response = client.Index(sample, idx => idx.Index(index));
+            var response = client.Index(sample, idx => idx.Index(index));
 
             //var doc = client.Get<Sample>(1, idx => idx.Index(index));
             //Console.WriteLine(JsonSerializer.Serialize(doc.Source));
@@ -38,7 +38,7 @@ namespace ElasticSearchDemo
             //Console.WriteLine(JsonSerializer.Serialize(searchDoc.Documents));
 
             //var deleteResponse = client.DeleteMany(searchDoc.Documents, index);
-            //var a = 1; 
+            var a = 1;
             #endregion
         }
 
@@ -50,7 +50,7 @@ namespace ElasticSearchDemo
 
     class Sample
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public DateTime RegTime { get; set; }
         public string Message { get; set; }
     }
