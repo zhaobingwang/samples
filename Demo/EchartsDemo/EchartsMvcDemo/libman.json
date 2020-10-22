@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "echarts@4.9.0",
+      "destination": "wwwroot/lib/echarts/",
+      "files": [
+        "dist/extension/bmap.js",
+        "dist/extension/bmap.js.map",
+        "dist/extension/bmap.min.js",
+        "dist/extension/dataTool.js",
+        "dist/extension/dataTool.js.map",
+        "dist/extension/dataTool.min.js",
+        "dist/echarts-en.common.js",
+        "dist/echarts-en.common.min.js",
+        "dist/echarts-en.js",
+        "dist/echarts-en.js.map",
+        "dist/echarts-en.min.js",
+        "dist/echarts-en.simple.js",
+        "dist/echarts-en.simple.min.js",
+        "dist/echarts.common.js",
+        "dist/echarts.common.min.js",
+        "dist/echarts.js",
+        "dist/echarts.js.map",
+        "dist/echarts.min.js",
+        "dist/echarts.simple.js",
+        "dist/echarts.simple.min.js"
+      ]
+    }
+  ]
+}
