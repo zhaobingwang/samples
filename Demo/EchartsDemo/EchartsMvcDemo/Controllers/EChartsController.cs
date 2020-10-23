@@ -36,6 +36,43 @@ namespace EchartsMvcDemo.Controllers
             return Ok(vo);
         }
 
+        [HttpGet("product_data")]
+        public IActionResult PieData()
+        {
+            List<string[]> pie = new List<string[]>();
+            //string[,] pie = new string[5, 7];
+            for (int i = 0; i < 5; i++)
+            {
+                if (i == 0)
+                {
+                    string[] cur = new string[] {
+                        "产品",
+                        DateTime.Now.AddYears(-5).Year.ToString(),
+                        DateTime.Now.AddYears(-4).Year.ToString(),
+                        DateTime.Now.AddYears(-3).Year.ToString(),
+                        DateTime.Now.AddYears(-2).Year.ToString(),
+                        DateTime.Now.AddYears(-1).Year.ToString(),
+                        DateTime.Now.Year.ToString(),
+                    };
+                    pie.Add(cur);
+                }
+                else
+                {
+                    string[] cur = new string[] {
+                        getProductName(i),
+                        new Random().Next(1000,9999).ToString(),
+                        new Random().Next(1000,9999).ToString(),
+                        new Random().Next(1000,9999).ToString(),
+                        new Random().Next(1000,9999).ToString(),
+                        new Random().Next(1000,9999).ToString(),
+                        new Random().Next(1000,9999).ToString(),
+                    };
+                    pie.Add(cur);
+                }
+            }
+            return Ok(new { source = pie });
+        }
+
         public DataSetVO GetSampleDataVO()
         {
             DataSetVO vo = new DataSetVO();
@@ -135,6 +172,24 @@ namespace EchartsMvcDemo.Controllers
                     break;
             }
             return val;
+        }
+
+        private string getProductName(int i)
+        {
+
+            switch (i)
+            {
+                case 1:
+                    return "手机";
+                case 2:
+                    return "服饰";
+                case 3:
+                    return "日用";
+                case 4:
+                    return "电脑";
+                default:
+                    return "未知";
+            }
         }
     }
 }
