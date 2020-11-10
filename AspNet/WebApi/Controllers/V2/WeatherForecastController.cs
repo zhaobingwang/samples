@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers.V2
 {
     [ApiController]
-    [Route("[controller]")]
+    //[Route("[controller]")]
+    [Route("api/v2/rbac/[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
